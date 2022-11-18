@@ -19,10 +19,10 @@ char	*ft_strtrim(const char *src, const char *set)
 		return (0);
 	else if (!set)
 		return (ft_strdup(src));
-	end = ft_strchr(src, 0) - 1;
-	while (ft_strchr(set, *src) && src <= end)
+	end = ft_strchr(src, '\0') - 1;
+	while (*src && ft_strchr(set, *src))
 		src++;
-	while (ft_strchr(set, *end) && src < end)
+	while (end > src && ft_strchr(set, *end))
 		end--;
 	return (ft_substr(src, 0, end - src + 1));
 }

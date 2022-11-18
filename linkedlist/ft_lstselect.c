@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-t_list	*ft_lstselect(t_list *lst, size_t select)
+t_list	*ft_lstselect(t_list *lst, unsigned int select)
 {
 	while (lst && select--)
 		lst = lst->next;

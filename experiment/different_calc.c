@@ -90,5 +90,5 @@ int	main(void)
 	compare(96);
 	compare(97);
 	compare(144);
-	compare145();
+	compare(145);
 }

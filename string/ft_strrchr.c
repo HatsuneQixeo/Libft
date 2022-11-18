@@ -18,9 +18,10 @@ char	*ft_strrchr(const char *str, int c)
 
 	i = ft_strlen(str) + 1;
 	chr = (char)c;
-	if (str)
-		while (i--)
-			if (str[i] == chr)
-				return ((char *)&str[i]);
+	if (!str)
+		return (0);
+	while (i--)
+		if (str[i] == chr)
+			return ((char *)&str[i]);
 	return (0);
 }

@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   ft_valid_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hqixeo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 18:48:22 by hqixeo            #+#    #+#             */
-/*   Updated: 2022/10/19 18:48:23 by hqixeo           ###   ########.fr       */
+/*   Created: 2022/11/13 08:16:58 by hqixeo            #+#    #+#             */
+/*   Updated: 2022/11/13 08:17:04 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-long	ft_atol(const char *str)
+static char	ft_str_dupchr(const char *base)
 {
-	long	nbr;
-	int		sign;
+	base--;
+	while (*++base)
+		if (ft_strchr(base + 1, *base))
+			return (*base);
+	return (0);
+}
 
-	nbr = 0;
-	sign = 1;
-	while (ft_isspace(*str))
-		str++;
-	if (*str == '-' || *str == '+')
-		if (*str++ == '-')
-			sign = -1;
-	while (ft_isdigit(*str))
-		nbr = (nbr * 10) + (*str++ - '0');
-	return (nbr * sign);
+int	ft_validbase(const char *base)
+{
+	return (ft_strlen(base) >= 2 && !ft_str_dupchr(base)
+		&& !ft_strchr(base, '+') && !ft_strchr(base, '-'));
 }

@@ -13,6 +13,8 @@
 
 char	*ft_strskipchr(const char *str, char c)
 {
+	if (!str)
+		return (0);
 	while (*str && *str == c)
 		str++;
 	return ((char *)str);
@@ -27,18 +29,6 @@ char	*ft_strcreate(char set, size_t size)
 	str = malloc(size + 1);
 	str[size] = 0;
 	return (ft_memset(str, set, size));
-}
-
-char	*ft_strfill(char *str, char set, int len_add, t_ftstr ft_str)
-{
-	char	*str_c;
-
-	if (len_add <= 0)
-		return (str);
-	str_c = ft_strcreate(set, len_add);
-	str = ft_strmodify(str, str_c, ft_str);
-	free(str_c);
-	return (str);
 }
 
 void	ft_swapchar(char *sign, char *set)

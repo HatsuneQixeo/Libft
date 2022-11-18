@@ -32,7 +32,7 @@ char	*ft_strjoin(const char *str1, const char *str2)
 }
 
 //Reverse str2 with str1, dedicated for strmodify
-char	*ft_strjoin_rev(const char *str1, const char *str2)
+char	*ft_strrjoin(const char *str1, const char *str2)
 {
 	return (ft_strjoin(str2, str1));
 }

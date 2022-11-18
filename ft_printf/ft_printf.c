@@ -53,6 +53,9 @@ int	ft_dprintf(int fd, const char *str, ...)
 	return (ft_printf_core(fd, str, args, ft_putstr_fd));
 }
 
+//endl are somewhat useless for printf under normal condition
+//, since we usually specify what to print and the argument manually
+//, and removing \n is way easier than removing _endl
 int	ft_printf_endl(const char *str, ...)
 {
 	va_list	args;

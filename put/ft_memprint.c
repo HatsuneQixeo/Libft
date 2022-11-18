@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memprint.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hqixeo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/13 08:16:42 by hqixeo            #+#    #+#             */
+/*   Updated: 2022/11/13 08:16:43 by hqixeo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 
 // ft_printf("is: %.*s\n", bpl, ptr_uc);
@@ -5,9 +16,9 @@ static void	memprint_loop(const void **ptr, size_t bpl, int pad, size_t i_bytes)
 {
 	const unsigned char	*ptr_uc;
 
-	ptr_uc = *ptr;
 	if (!bpl)
 		return ;
+	ptr_uc = *ptr;
 	ft_printf("len(%*d):", pad, i_bytes);
 	while (bpl--)
 		ft_printf(" [%3d]", *ptr_uc++);

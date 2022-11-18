@@ -11,13 +11,22 @@
 /* ************************************************************************** */
 #include "libft.h"
 
+void	ft_clear(char **str)
+{
+	if (!str)
+		return ;
+	free(*str);
+	*str = 0;
+}
+
 void	ft_clear_strlist(char **strlist)
 {
-	size_t	y;
+	int	y;
 
+	if (!strlist)
+		return ;
 	y = 0;
-	if (strlist)
-		while (strlist[y])
-			free(strlist[y++]);
+	while (strlist[y])
+		ft_clear(&strlist[y++]);
 	free(strlist);
 }

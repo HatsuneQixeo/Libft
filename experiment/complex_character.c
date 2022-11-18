@@ -1,7 +1,5 @@
 #include "libft.h"
 
-void	ft_memprint(const void *ptr, size_t bytes, size_t data_size);
-
 //Other language character
 
 static void	print_complex_character(const char *src)

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strprintable.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hqixeo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/13 08:16:51 by hqixeo            #+#    #+#             */
+/*   Updated: 2022/11/13 08:16:52 by hqixeo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 
 static int	ft_padsize(const char *base)
@@ -17,16 +28,14 @@ static int	ft_setnpc(char *str, unsigned char npc,
 			const char *base, int len_pad)
 {
 	char	*str_npc;
-	int		pad_size;
 
 	str_npc = ft_utoa_base(npc, base);
 	if (!str_npc)
 		return (0);
 	*str++ = '\\';
-	pad_size = len_pad - ft_strlen(str_npc);
-	ft_memset(str, *base, pad_size);
-	str[pad_size] = 0;
-	ft_strlcat(str, str_npc, len_pad + 1);
+	str_npc = ft_strcombine(ft_strcreate(*base, len_pad - ft_strlen(str_npc)),
+			str_npc);
+	ft_strlcpy(str, str_npc, len_pad + 1);
 	free(str_npc);
 	return (1 + len_pad);
 }
@@ -40,7 +49,7 @@ char	*ft_strprintable(const char *src, const char *base)
 	int		len_pad;
 	size_t	len_printable;
 
-	if (!src || !base)
+	if (!src || !base || !ft_validbase(base))
 		return (0);
 	len_pad = ft_padsize(base);
 	len_printable = ft_strchr_countis(src, ft_isprint);

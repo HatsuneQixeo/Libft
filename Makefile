@@ -17,7 +17,7 @@ RM := rm -f
 all : ${NAME}
 
 ${NAME} : ${OBJS}
-	ar rcs $@ $^
+	@ar rcs $@ $^
 
 %.o : %.c ${HEADER}
 	${CC} ${CFLAGS} -I ${INCLUDE} -c $< -o $@
@@ -33,26 +33,21 @@ test : ${NAME}
 
 testsan : ${SRCS} ${TEST_DIR}test.c
 	@${CC} ${CFLAGS} -I ${INCLUDE} $^ -fsanitize=address -g3 -o test.miku 
-	@sh eshperiment.sh test nocom
+	@./test.miku
 
 clean :
 	${RM} ${OBJS}
 
 fclean : clean
-	${RM} ${NAME} ${PRG_TEST}
+	${RM} ${NAME} ${wildcard *.miku} ${wildcard *.dSYM}
 
 re : fclean all
 
 norm :
 	@norminette ${SRCS} | grep Error
 
-PFT_DIR := libft/
-
-${PFT_DIR} :
-	mkdir $@
-
-pft : ${NAME} ${PFT_DIR}
-	cp $< ${PFT_DIR}$<
+pft : ${NAME}
+	@cp $< libftprintf.a && cd pft && make && ./test
+	@${RM} libftprintf.a
 
 .PHONY : test pft
-

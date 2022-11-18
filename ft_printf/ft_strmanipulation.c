@@ -11,16 +11,29 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-static int	ft_findsign(char *str)
+//This is sufficient for this project
+//, since you are doing precision before any other padding
+static int	ft_findsign(const char *str)
 {
-	if (ft_strchr(str, '-') || ft_strchr(str, '+') || ft_strchr(str, ' '))
+	if (ft_strchr("-+ ", *str))
 		return (1);
-	else if (ft_strstr(str, "0x") || ft_strstr(str, "0X"))
+	else if (!ft_strncmp(str, "0x", 2) || !ft_strncmp(str, "0X", 2))
 		return (2);
 	else
 		return (0);
 }
 
+// static int	ft_findsign(char *str)
+// {
+// 	if (ft_strchr(str, '-') || ft_strchr(str, '+') || ft_strchr(str, ' '))
+// 		return (1);
+// 	else if (ft_strstr(str, "0x") || ft_strstr(str, "0X"))
+// 		return (2);
+// 	else
+// 		return (0);
+// }
+
+		// return (ft_strmodify(str, str + flags->precision, ft_mod_substr));
 static char	*ft_period_string(char *str, t_flags *flags)
 {
 	char	*tmp;
@@ -36,48 +49,58 @@ static char	*ft_period_string(char *str, t_flags *flags)
 
 static char	*ft_period(char *str, t_flags *flags)
 {
-	int	len_fill;
+	int	len_pad;
 	int	sign;
 
 	if (flags->format == 's' || flags->format == 'b')
 		return (ft_period_string(str, flags));
 	sign = ft_findsign(str);
-	if (!flags->precision && !ft_strcmp(str + sign, "0"))
+	if (!flags->precision && !ft_strcmp(&str[sign], "0")
+		&& !(flags->format == 'o' && flags->sharp))
 		str[sign] = 0;
-	len_fill = flags->precision + sign - ft_strlen(str);
-	return (ft_strfill(str, '0', len_fill, ft_strjoin_rev));
+	len_pad = flags->precision + sign - ft_strlen(str);
+	if (len_pad <= 0)
+		return (str);
+	return (ft_strcombine(ft_strcreate('0', len_pad), str));
 }
 
 static char	*ft_setsign(char *str, t_flags *flags)
 {
-	char	*set;
-	char	*sign;
+	char	*c_set;
+	char	*c_sign;
 
 	if (flags->format == 'u' || flags->format == 'o'
 		|| flags->format == 's' || flags->format == 'b')
 		return (str);
-	set = ft_strskipchr(str, ' ');
-	sign = ft_strskipchr(set, '0');
-	if (*sign == '-' || *sign == '+'
-		|| (*sign == ' ' && ft_isdigit(*(sign + 1))))
-		ft_swapchar(sign, set);
-	else if (*sign == 'x' || *sign == 'X')
-		ft_swapchar(sign, ++set);
+	c_set = ft_strskipchr(str, ' ');
+	c_sign = ft_strskipchr(c_set, '0');
+	if (*c_sign == '-' || *c_sign == '+'
+		|| (*c_sign == ' ' && ft_isdigit(*(c_sign + 1))))
+		ft_swapchar(c_set, c_sign);
+	else if (*c_sign == 'x' || *c_sign == 'X')
+		ft_swapchar(++c_set, c_sign);
 	return (str);
 }
 
 char	*ft_strfinalize(char *str, t_flags *flags)
 {
-	int	len_fill;
+	int	len_pad;
 
 	if (flags->period)
 		str = ft_period(str, flags);
-	len_fill = flags->width - ft_strlen(str);
-	if (flags->negative_field)
-		str = ft_strfill(str, ' ', len_fill, ft_strjoin);
+	len_pad = flags->width - ft_strlen(str);
+	if (len_pad <= 0)
+		return (ft_setsign(str, flags));
+	else if (flags->negative_field)
+		str = ft_strcombine(str, ft_strcreate(' ', len_pad));
 	else if (flags->zero && !flags->period)
-		str = ft_strfill(str, '0', len_fill, ft_strjoin_rev);
+		str = ft_strcombine(ft_strcreate('0', len_pad), str);
 	else if (flags->width)
-		str = ft_strfill(str, ' ', len_fill, ft_strjoin_rev);
+		str = ft_strcombine(ft_strcreate(' ', len_pad), str);
+	if (flags->format == 'b')
+	{
+		str = ft_strmodify(str, HEXADECIMAL, ft_strprintable);
+		str = ft_strmodify(str, "\\00", ft_strjoin);
+	}
 	return (ft_setsign(str, flags));
 }

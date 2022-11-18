@@ -13,7 +13,10 @@
 
 //Modify str with the given function and free it
 //Return the modified string
-//Available function: join, join_rev, trim, printable, strstr
+//Note: use ft_strdup to avoid loss of current string
+//, instead of returning NULL in given function
+//
+//Available function: join, join_rev, trim, printable
 char	*ft_strmodify(char *str, const char *mod, t_ftstr ft_str)
 {
 	char	*str_main;

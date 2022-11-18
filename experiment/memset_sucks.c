@@ -1,6 +1,5 @@
 #include "libft.h"
 #include <string.h>
-void	ft_memprint(void *ptr, size_t bytes, int bytes_per_len);
 
 static void	memset_sucks(unsigned int nbr, void *(set)(void *, int, size_t))
 {

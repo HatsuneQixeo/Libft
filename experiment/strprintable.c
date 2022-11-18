@@ -49,6 +49,7 @@ static void	ft_printno_sign(const char *src)
 
 static void	allbase(const char *src)
 {
+	ft_printf("src: %s\n", src);
 	ft_printf("\nBinary\n");
 	ft_printno(src, "01");
 	ft_printf("\nOctal\n");
@@ -65,21 +66,21 @@ static void	putno(const char *str)
 	ft_printf("\n");
 }
 
+	// putno("Coucou\ntu vas bien ?\n");
+	// putno("Hatsune \t Miku \t is   very \t cute \n");
 int	main(void)
 {
 	int	nbr;
 
 	nbr = 0xffffff;
-	// putno("Coucou\ntu vas bien ?\n");
-	// putno("Hatsune \t Miku \t is   very \t cute \n");
 	allbase("Coucou\ntu vas bien ?\n");
-	// allbase("Hatsune \t Miku \t is   very \t cute \n");
-	// allbase("Hatsune Miku\200");
-	// allbase("初音未來,  人類的未來");
-	// allbase((char *)&nbr);
+	allbase("Hatsune \t Miku \t is   very \t cute \n");
+	allbase("Hatsune Miku\200");
+	allbase("初音未來,  人類的未來");
+	allbase((char *)&nbr);
+}
 	// ft_printno_sign("Coucou\ntu vas bien ?\n");
 	// ft_printno_sign("Hatsune \t Miku \t is   very \t cute \n");
-}
 
 void	asdvcbn_static_isstupid(void)
 {

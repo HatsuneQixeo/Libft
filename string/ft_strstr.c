@@ -16,7 +16,9 @@ char	*ft_strstr(const char *str, const char *to_find)
 	size_t	len;
 	size_t	len_to_find;
 
-	if (!*to_find)
+	if (!str || !to_find)
+		return (0);
+	else if (!*to_find)
 		return ((char *)str);
 	len = ft_strlen(str);
 	len_to_find = ft_strlen(to_find);

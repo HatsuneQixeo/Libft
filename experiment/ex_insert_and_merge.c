@@ -42,36 +42,13 @@ void	ft_printoverlap(const char *str1, const char *str2)
 // 	ft_printoverlap("", miku);
 // }
 
-//Function as joining 3 string
-//This function supports inserting a string into the middle on a string
-char	*ft_strinsert(const char *first, const char *insert, const char *last)
-{
-	char	*str;
-	size_t	len;
-
-	if (!first || !insert || !last)
-		return (0);
-	else if ((first + ft_strlen(first) - ft_strlen(last)) != last)
-		return (ft_strmodify(ft_strjoin(first, insert), last, ft_strjoin));
-	else if (first >= last)
-		return (0);
-	len = ft_strlen(first) + ft_strlen(insert) + 1;
-	str = malloc(len);
-	if (!str)
-		return (0);
-	ft_strlcpy(str, first, last - first + 1);
-	ft_strlcat(str, insert, len);
-	ft_strlcat(str, last, len);
-	return (str);
-}
-
 // Insert
-static void	ft_printinsert(char *first, char *insert, char *last)
+static void	ft_printinsert(const char *first, const char *insert, const char *last)
 {
 	char	*str;
 
 	str = ft_strinsert(first, insert, last);
-	ft_printf("first:	(%s)\n", first, insert, last);
+	ft_printf("first:	(%s)\n", first);
 	ft_printf("insert:	(%s)\n", insert);
 	ft_printf("last:	(%s)\n", last);
 	if (ft_stroverlap(first, last))
@@ -154,18 +131,18 @@ static void	test_strmerge(char *src, ...)
 	va_end(args);
 }
 
-int	main(void)
-{
-	char	*asdmiku;
+// int	main(void)
+// {
+// 	char	*asdmiku;
 
-	asdmiku = ft_strdup("Miku");
-	ft_printf("Hatsune Miku is now at: %p\n", MIKU);
-	test_strmerge(ft_strdup("Hatsune"), " ", "Miku", " ", "is", " ", "love", " ", "Hatsune", " ", "Miku", " ", "is", " ", "live");
-	test_strmerge(ft_strdup(MIKU));
-	test_strmerge(ft_strdup(MIKU), 0);
-	test_strmerge(ft_strdup("Hatsune"), " Miku");
-	test_strmerge(0);
-	//will crash
-	// test_strmerge(asdmiku);
-	system("leaks -q ex_insert_and_merge.miku");
-}
+// 	asdmiku = ft_strdup("Miku");
+// 	ft_printf("Hatsune Miku is now at: %p\n", MIKU);
+// 	test_strmerge(ft_strdup("Hatsune"), " ", "Miku", " ", "is", " ", "love", " ", "Hatsune", " ", "Miku", " ", "is", " ", "live");
+// 	test_strmerge(ft_strdup(MIKU));
+// 	test_strmerge(ft_strdup(MIKU), 0);
+// 	test_strmerge(ft_strdup("Hatsune"), " Miku");
+// 	test_strmerge(0);
+// 	//will crash
+// 	// test_strmerge(asdmiku);
+// 	system("leaks -q ex_insert_and_merge.miku");
+// }

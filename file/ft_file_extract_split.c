@@ -13,17 +13,12 @@
 
 //Convert the file content in given file to 2d array(malloc)
 //Note: This function exclude every '\n', including empty line
-char	**ft_file_extract_split(const char *file)
+char	**ft_file_extract_split(int fd)
 {
-	int		fd;
 	char	*str;
 	char	*str_part;
 	char	**strlist;
 
-	if (file)
-		fd = ft_file_open(file);
-	else
-		fd = 0;
 	str = 0;
 	str_part = get_next_line(fd);
 	while (str_part)
@@ -31,7 +26,6 @@ char	**ft_file_extract_split(const char *file)
 		str = ft_strcombine(str, str_part);
 		str_part = get_next_line(fd);
 	}
-	close(fd);
 	strlist = ft_split(str, '\n');
 	free(str);
 	return (strlist);

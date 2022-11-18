@@ -1,4 +1,5 @@
 #include "libft.h"
+#include <limits.h>
 
 //float makes literally no sense
 // {
@@ -58,16 +59,16 @@
 // }
 
 //Added b conversion
-int	main(void)
-{
-	ft_printf("%b\n", "Hatsune Miku\n");
-	ft_printf("%.12b\n", "Hatsune Miku\n");
-	ft_printf("%.13b\n", "Hatsune Miku\n");
-	ft_printf("%.13b\n", "Hatsune Miku\n\n");
-	ft_printf("%.14b\n", "Hatsune Miku\n\n");
-	ft_printf("%.14b\n", "Hatsune Miku\n\n\n");
-	system("leaks -q printf_related.miku");
-}
+// int	main(void)
+// {
+// 	ft_printf("%b\n", "Hatsune Miku\n");
+// 	ft_printf("%.12b\n", "Hatsune Miku\n");
+// 	ft_printf("%.13b\n", "Hatsune Miku\n");
+// 	ft_printf("%.13b\n", "Hatsune Miku\n\n");
+// 	ft_printf("%.14b\n", "Hatsune Miku\n\n");
+// 	ft_printf("%.14b\n", "Hatsune Miku\n\n\n");
+// 	system("leaks -q printf_related.miku");
+// }
 
 typedef struct print
 {
@@ -113,3 +114,133 @@ int	ft_printall(t_list *lst, int fd)
 	ft_lstclear(&lst, ft_freeprint);
 	return (len_all);
 }
+
+// int	main(void)
+// {
+// 	// unsigned long	nbr;
+
+// 	// nbr = -1;
+// 	ft_printf("lusize: %d\n", sizeof(unsigned long));
+// 	ft_printf("llusize: %d\n", sizeof(unsigned long long));
+// 	ft_printf("ldsize: %d\n", sizeof(long double));
+// 	printf("%hu\n", (unsigned long)-1);
+// 	printf("%hhu\n", (unsigned long long)-1);
+// 	// if l, else if h
+// 	{
+// 		// printf("%lu\n", (unsigned long)-1);
+// 		// printf("%llu\n", (unsigned long long)-1);
+// 		// printf("%lhu\n", (unsigned long)-1);
+// 		// printf("%llhu\n", (unsigned long long)-1);
+// 		// printf("%hlu\n", (unsigned long)-1);
+// 		// printf("%hhlu\n", (unsigned long long)-1);
+// 		ft_printf("%lu\n", (unsigned long)-1);
+// 		ft_printf("%llu\n", (unsigned long long)-1);
+// 		ft_printf("%lhu\n", (unsigned long)-1);
+// 		ft_printf("%llhu\n", (unsigned long long)-1);
+// 		ft_printf("%hlu\n", (unsigned long)-1);
+// 		ft_printf("%hhlu\n", (unsigned long long)-1);
+// 	}
+// 	//% 2
+// 	{	
+// 		// printf("%hhhhhhhhu\n", (unsigned long)-1);
+// 		// printf("%hhhhhhhhhhhhhu\n", (unsigned long long)-1);
+// 		// printf("%hhhhhhhhhhhhhhu\n", (unsigned long long)-1);
+// 		// printf("%hhhhhhhhhhhhhhhu\n", (unsigned long long)-1);
+// 		ft_printf("%hhhhhhhhd\n", 33333);
+// 		ft_printf("%hhhhhhhhhhhhhd\n", 33333);
+// 		ft_printf("%hhhhhhhhhhhhhhd\n", 33333);
+// 		ft_printf("%hhhhhhhhhhhhhhhd\n", 33333);
+// 	}
+// 	printf("%zx\n", (size_t)-1);
+// }
+
+//Unsigned long and short
+// int	main(void)
+// {
+// 	ft_printf("H\n");
+// 	printf("%hu\n", -1);
+// 	ft_printf("%hu\n", -1);
+// 	ft_printf("HH\n");
+// 	printf("%hhu\n", -1);
+// 	ft_printf("%hhu\n", -1);
+// 	ft_printf("HHH\n");
+// 	printf("%hhhu\n", -1);
+// 	ft_printf("%hhhu\n", -1);
+// 	ft_printf("L\n");
+// 	printf("%lu\n", (unsigned long)-1);
+// 	ft_printf("%lu\n", (unsigned long)-1);
+// 	ft_printf("LL\n");
+// 	printf("%llu\n", (unsigned long long)-1);
+// 	ft_printf("%llu\n", (unsigned long long)-1);
+// 	ft_printf("LLL\n");
+// 	printf("%lllu\n", (unsigned long)-1);
+// 	ft_printf("%lllu\n", (unsigned long)-1);
+// }
+// Signed long and short
+// int	main(void)
+// {
+// 	ft_printf("H\n");
+// 	printf("%hd\n", 35000);
+// 	ft_printf("%hd\n", 35000);
+// 	ft_printf("HH\n");
+// 	printf("%hhd\n", 128);
+// 	ft_printf("%hhd\n", 128);
+// 	ft_printf("HHH\n");
+// 	printf("%hhhd\n", -1);
+// 	ft_printf("%hhhd\n", -1);
+// 	ft_printf("L\n");
+// 	printf("%ld\n", -1);
+// 	ft_printf("%ld\n", -1);
+// 	ft_printf("LL\n");
+// 	printf("%lld\n", -1);
+// 	ft_printf("%lld\n", -1);
+// 	ft_printf("LLL\n");
+// 	printf("%llld\n", -1);
+// 	ft_printf("%llld\n", -1);
+// 	ft_printf("casting\n");
+// 	printf("%ld\n", (long)-1);
+// 	printf("%lld\n", (long)-1);
+// 	printf("%ld\n", -1);
+// 	printf("%lld\n", -1);
+// 	printf("%lld\n",522337203685470ll);
+// 	ft_printf("%lld\n",522337203685470ll);
+// 	// for (long number = 0; number > -100; number--)
+// 	// 	printf("%ld\n", number);
+// }
+
+int notinsubject_o_prec0val0_basic_bench(void){return printf("%.0o", 0);}
+int notinsubject_o_prec0val0_implicit_bench(void){return printf("%.o", 0);}
+int notinsubject_o_prec0val0_w_bench(void){return printf("%5.0o", 0);}
+int notinsubject_o_prec0val0_w_impl_bench(void){return printf("%5.o", 0);}
+int notinsubject_o_prec0val0_wlj_bench(void){return printf("%-5.0o", 0);}
+int notinsubject_o_prec0val0_wlj_impl_bench(void){return printf("%-5.o", 0);}
+int notinsubject_o_prec0val0_af_bench(void){return printf("%#.0o", 0);}
+int notinsubject_o_prec0val0_af_impl_bench(void){return printf("%#.o", 0);}
+int notinsubject_o_prec0val0_waf_bench(void){return printf("%#5.0o", 0);}
+int notinsubject_o_prec0val0_waf_impl_bench(void){return printf("%#5.o", 0);}
+int notinsubject_o_prec0val0_waflj_bench(void){return printf("%#-5.0o", 0);}
+int notinsubject_o_prec0val0_waflj_impl_bench(void){return printf("%#-5.o", 0);}
+
+//octal
+// int	main(void)
+// {
+// 	printf("\nreturn: %d\n", printf("//%#.0o//", 0));
+// 	ft_printf("\nft_return: %d\n", ft_printf("//%#.0o//", 0));
+// 	printf("\nreturn: %d\n", printf("//%#.o//", 0));
+// 	ft_printf("\nft_return: %d\n", ft_printf("//%#.o//", 0));
+// 	printf("\nreturn: %d\n", printf("//%#5.0o//", 0));
+// 	ft_printf("\nft_return: %d\n", ft_printf("//%#5.0o//", 0));
+// 	printf("\nreturn: %d\n", printf("//%#5.o//", 0));
+// 	ft_printf("\nft_return: %d\n", ft_printf("//%#5.o//", 0));
+// 	printf("\nreturn: %d\n", printf("//%#-5.0o//", 0));
+// 	ft_printf("\nft_return: %d\n", ft_printf("//%#-5.0o//", 0));
+// 	printf("\nreturn: %d\n", printf("//%#-5.o//", 0));
+// 	ft_printf("\nft_return: %d\n", ft_printf("//%#-5.o//", 0));
+// 	printf("\nreturn: %d\n", printf("//%#.0o//", 0));
+// 	ft_printf("\nft_return: %d\n", ft_printf("//%#.0o//", 0));
+// 	printf("\nreturn: %d\n", printf("printf%02.7o", 3267));
+// 	ft_printf("\nft_return: %d\n", ft_printf("ftprintf%02.7o", 3267));
+// 	printf("\nreturn: %d\n", printf("(%#0-8.5o)", 0));
+// 	ft_printf("\nft_return: %d\n", ft_printf("(%#0-8.5o)", 0));
+	
+// }

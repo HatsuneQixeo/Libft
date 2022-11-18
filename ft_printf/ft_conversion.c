@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-static int	ft_printwidth(char fill, int width, int fd)
+static int	ft_printwidth(char c, int width, int fd)
 {
-	return (ft_strrelease_fd(ft_strfill(0, fill, width, ft_strjoin), fd));
+	return (ft_strrelease_fd(ft_strcreate(c, width), fd));
 }
 
 static int	ft_character(char c, t_flags *flags)
@@ -31,46 +31,6 @@ static int	ft_character(char c, t_flags *flags)
 			+ ft_putchar_fd(c, flags->fd));
 }
 
-static char	*ft_decimal(int d, t_flags *flags)
-{
-	if (d < 0)
-		return (ft_itoa(d));
-	else if (flags->plus)
-		return (ft_strmodify(ft_itoa(d), "+", ft_strjoin_rev));
-	else if (flags->space)
-		return (ft_strmodify(ft_itoa(d), " ", ft_strjoin_rev));
-	else
-		return (ft_itoa(d));
-}
-
-static char	*ft_unsigned(uintptr_t hex, t_flags *flags)
-{
-	char	*str;
-
-	if (flags->format == 'p')
-		return (ft_strmodify(ft_utoa_base(hex, HEXADECIMAL),
-				"0x", ft_strjoin_rev));
-	else if (flags->format == 'u')
-		return (ft_utoa_base(hex, DECIMAL));
-	else if (flags->format == 'x')
-		str = ft_utoa_base(hex, HEXADECIMAL);
-	else if (flags->format == 'X')
-		str = ft_utoa_base(hex, "0123456789ABCDEF");
-	else if (flags->format == 'o')
-		str = ft_utoa_base(hex, OCTAL);
-	else
-		return (0);
-	if (*str == '0' || !flags->sharp)
-		return (str);
-	else if (flags->format == 'x')
-		return (ft_strmodify(str, "0x", ft_strjoin_rev));
-	else if (flags->format == 'X')
-		return (ft_strmodify(str, "0X", ft_strjoin_rev));
-	else if (flags->format == 'o')
-		return (ft_strmodify(str, "0", ft_strjoin_rev));
-	return (str);
-}
-
 int	ft_conversion(va_list args, t_flags *flags)
 {
 	char	*str;
@@ -78,12 +38,13 @@ int	ft_conversion(va_list args, t_flags *flags)
 	if (flags->format == 's' || flags->format == 'b')
 		str = ft_strdup(va_arg(args, char *));
 	else if (flags->format == 'd' || flags->format == 'i')
-		str = ft_decimal(va_arg(args, int), flags);
+		str = ft_decimal(va_arg(args, long long), flags);
 	else if (flags->format == 'p')
-		str = ft_unsigned(va_arg(args, uintptr_t), flags);
+		str = ft_strmodify(ft_utoa_base(va_arg(args, uintptr_t), HEXADECIMAL),
+				"0x", ft_strrjoin);
 	else if (flags->format == 'u' || flags->format == 'o'
 		|| flags->format == 'x' || flags->format == 'X')
-		str = ft_unsigned(va_arg(args, unsigned int), flags);
+		str = ft_unsigned(va_arg(args, unsigned long long), flags);
 	else if (flags->format == 'c')
 		return (ft_character(va_arg(args, int), flags));
 	else if (flags->format)
@@ -92,8 +53,5 @@ int	ft_conversion(va_list args, t_flags *flags)
 		return (0);
 	if (!str)
 		str = ft_strdup("(null)");
-	str = ft_strfinalize(str, flags);
-	if (flags->format == 'b')
-		str = ft_strmodify(str, HEXADECIMAL, ft_strprintable);
-	return (ft_strrelease_fd(str, flags->fd));
+	return (ft_strrelease_fd(ft_strfinalize(str, flags), flags->fd));
 }

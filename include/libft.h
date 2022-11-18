@@ -28,8 +28,6 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-char	**ft_file_extract_lst(const char *file);
-char	**ft_file_extract_split(const char *file);
 char	*ft_file_extract(int fd);
 int		ft_file_format(const char *file, const char *format);
 int		ft_file_open(const char *file);
@@ -46,7 +44,7 @@ int		ft_isdigit(int c);
 int		ft_islower(char c);
 int		ft_isprint(int c);
 int		ft_isspace(int c);
-int		ft_isupper(char c);
+int		ft_isupper(int c);
 
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
@@ -56,7 +54,7 @@ void	ft_lstiter(t_list *lst, void (*ft)(void *));
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*ft)(void *), void (*del)(void *));
 t_list	*ft_lstnew(void *content);
-t_list	*ft_lstselect(t_list *lst, size_t select);
+t_list	*ft_lstselect(t_list *lst, unsigned int select);
 int		ft_lstsize(t_list *lst);
 
 void	ft_memprint(const void *ptr, size_t bytes, size_t data_size);
@@ -85,7 +83,7 @@ char	*ft_strcombine(char *str1, char *str2);
 char	*ft_strdup(const char *str1);
 char	*ft_strinsert(const char *first, const char *insert, const char *last);
 void	ft_striteri(char *str, void (*ft)(unsigned int, char *));
-char	*ft_strjoin_rev(const char *str, const char *add);
+char	*ft_strrjoin(const char *str, const char *add);
 char	*ft_strjoin(const char *str1, const char *str2);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
@@ -111,14 +109,17 @@ char	*ft_strliststr(char **strlist, const char *str);
 void	ft_swapchar(char *sign, char *set);
 char	*ft_strskipchr(const char *str, char c);
 char	*ft_strcreate(char set, size_t size);
-char	*ft_strfill(char *str, char set, int len_add, t_ftstr ft_str);
 
 int		ft_atoi(const char *str);
 long	ft_atol(const char *str);
 char	*ft_itoa(int n);
-char	*ft_utoa_base(uintptr_t un_n, const char *base);
+char	*ft_lltoa(long long n);
+char	**ft_lsttoaa(t_list *lst);
+char	**ft_lsttoaa_clear(t_list **lst);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+char	*ft_utoa_base(uintptr_t un_n, const char *base);
+int		ft_validbase(const char *base);
 
 char	ft_mapi_capitalize(unsigned int i, char c);
 char	ft_mapi_lower(unsigned int i, char c);
@@ -128,4 +129,7 @@ char	ft_mapi_upper(unsigned int i, char c);
 void	ft_iteri_lower(unsigned int i, char *str);
 void	ft_iteri_upper(unsigned int i, char *str);
 
+char	*ft_mod_realloc(const char *src, const char *str_void);
+char	*ft_mod_substr(const char *src, const char *src_end);
+char	*ft_mod_strstrdup(const char *src, const char *find);
 #endif

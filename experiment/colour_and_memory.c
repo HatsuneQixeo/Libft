@@ -76,49 +76,84 @@
 
 //interaction with freed memory
 // {
-	void	asd(void)
-	{
-		char	*ptr;
+	// void	asd(void)
+	// {
+	// 	char	*ptr;
 
-		ptr = malloc(2);
-		ft_printf("%p\n", ptr);
-		*ptr = 'M';
-		ft_printf("asd: %s\n", ptr);
-		free(ptr);
-		ptr[1] = 'A';
-		ft_printf("asd: %s\n", ptr);
-		ptr = malloc(1);
-		ft_printf("%p\n", ptr);
-		ft_printf("before q: %s\n", ptr);
-		*ptr = 'Q';
-		ft_printf("asd: %s\n", ptr);
-		free(ptr);
-	}
+	// 	ptr = malloc(2);
+	// 	ft_printf("%p\n", ptr);
+	// 	*ptr = 'M';
+	// 	ft_printf("asd: %s\n", ptr);
+	// 	free(ptr);
+	// 	ptr[1] = 'A';
+	// 	ft_printf("asd: %s\n", ptr);
+	// 	ptr = malloc(1);
+	// 	ft_printf("%p\n", ptr);
+	// 	ft_printf("before q: %s\n", ptr);
+	// 	*ptr = 'Q';
+	// 	ft_printf("asd: %s\n", ptr);
+	// 	free(ptr);
+	// }
 
-	int	main(int argc, char **argv)
-	{
-		// char	**split;
-		// size_t	y;
+	// int	main(int argc, char **argv)
+	// {
+	// 	// char	**split;
+	// 	// size_t	y;
 
-		// if (argc != 2)
-		// 	return (!ft_printf("Need one, and only one argument\n"));
-		// split = ft_split(argv[1], '|');
-		// ft_strlistiter(split, ft_strtrim, " ");
-		// y = 0;
-		// while (split[y])
-		// {
-		// 	ft_printf("%s\n", split[y]);
-		// 	ft_printf("%p\n", split[y]);
-		// 	y++;
-		// }
-		asd();
-		// y = 0;
-		// while (split[y])
-		// {
-		// 	ft_printf("%s\n", split[y]);
-		// 	ft_printf("%p\n", split[y]);
-		// 	y++;
-		// }
-		// system("leaks -q test");
-	}
+	// 	// if (argc != 2)
+	// 	// 	return (!ft_printf("Need one, and only one argument\n"));
+	// 	// split = ft_split(argv[1], '|');
+	// 	// ft_strlistiter(split, ft_strtrim, " ");
+	// 	// y = 0;
+	// 	// while (split[y])
+	// 	// {
+	// 	// 	ft_printf("%s\n", split[y]);
+	// 	// 	ft_printf("%p\n", split[y]);
+	// 	// 	y++;
+	// 	// }
+	// 	asd();
+	// 	// y = 0;
+	// 	// while (split[y])
+	// 	// {
+	// 	// 	ft_printf("%s\n", split[y]);
+	// 	// 	ft_printf("%p\n", split[y]);
+	// 	// 	y++;
+	// 	// }
+	// 	// system("leaks -q test");
+	// }
 // }
+
+//Handling potential malloc error for strlist
+int	main(void)
+{
+	t_list	*lst;
+	char	**strlist;
+
+	lst = ft_lstnew(ft_strdup("Hatsune"));
+	ft_lstadd_back(&lst, ft_lstnew(" "));
+	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("Miku")));
+	lst->next->content = 0;
+	strlist = ft_lsttoaa_clear(&lst);
+	ft_putstrlist_fd(strlist, 1);
+	ft_clear_strlist(strlist);
+	strlist = 0;
+	system("leaks -q test.miku");
+}
+
+
+//Double array
+int	main(void)
+{
+	// char	**pptr;
+	// char	*ptr;
+
+	// ptr = "Hatsune Miku";
+	// pptr = &ptr;
+	// ft_printf("pptrtest: %c\n", *pptr);
+	// ft_printf("pptrtest: %c\n", **pptr);
+	// ft_printf("pptrtest: %c\n", (*pptr)[1]);
+	// ft_printf("pptrtest: %s\n", *pptr);
+	// ft_printf("pptrtest: %s\n", &**pptr);
+	// ft_printf("pptrtest: %s\n", &(*pptr)[1]);
+	// ft_printf("pptrtest: %s\n", (*pptr) + 1);
+}

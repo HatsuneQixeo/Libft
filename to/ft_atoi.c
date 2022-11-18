@@ -27,3 +27,20 @@ int	ft_atoi(const char *str)
 		nbr = (nbr * 10) + (*str++ - '0');
 	return (nbr * sign);
 }
+
+long	ft_atol(const char *str)
+{
+	long	nbr;
+	int		sign;
+
+	nbr = 0;
+	sign = 1;
+	while (ft_isspace(*str))
+		str++;
+	if (*str == '-' || *str == '+')
+		if (*str++ == '-')
+			sign = -1;
+	while (ft_isdigit(*str))
+		nbr = (nbr * 10) + (*str++ - '0');
+	return (nbr * sign);
+}

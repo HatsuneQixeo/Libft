@@ -24,21 +24,6 @@ static int	ft_digit_count_base(uintptr_t un_n, int len_base)
 	return (digit);
 }
 
-static char	ft_str_dupchr(const char *base)
-{
-	base--;
-	while (*++base)
-		if (ft_strchr(base + 1, *base))
-			return (*base);
-	return (0);
-}
-
-static int	ft_validbase(const char *base)
-{
-	return (ft_strlen(base) >= 2 && !ft_str_dupchr(base)
-		&& !ft_strchr(base, '+') && !ft_strchr(base, '-'));
-}
-
 char	*ft_utoa_base(uintptr_t un_n, const char *base)
 {
 	char			*str;
