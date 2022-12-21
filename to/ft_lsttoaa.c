@@ -16,20 +16,20 @@ char	**ft_lsttoaa(t_list *lst)
 	char	**strlist;
 	int		y;
 
-	if (!lst)
-		return (0);
+	if (lst == NULL)
+		return (NULL);
 	strlist = malloc(sizeof(char *) * (ft_lstsize(lst) + 1));
-	if (!strlist)
-		return (0);
+	if (strlist == NULL)
+		return (NULL);
 	y = 0;
-	while (lst)
+	while (lst != NULL)
 	{
 		strlist[y] = ft_strdup(lst->content);
-		if (!strlist[y++])
+		if (strlist[y++] == NULL)
 			break ;
 		lst = lst->next;
 	}
-	strlist[y] = 0;
+	strlist[y] = NULL;
 	return (strlist);
 }
 
@@ -39,21 +39,21 @@ char	**ft_lsttoaa_clear(t_list **lst)
 	t_list	*tmp;
 	int		y;
 
-	if (!lst || !*lst)
-		return (0);
+	if (lst == NULL || *lst == NULL)
+		return (NULL);
 	strlist = malloc(sizeof(char *) * (ft_lstsize(*lst) + 1));
-	if (!strlist)
-		return (0);
+	if (strlist == NULL)
+		return (NULL);
 	y = 0;
-	while (*lst)
+	while (*lst != NULL)
 	{
 		tmp = *lst;
 		strlist[y] = tmp->content;
 		*lst = tmp->next;
 		free(tmp);
-		if (!strlist[y++])
+		if (strlist[y++] == NULL)
 			ft_lstclear(lst, free);
 	}
-	strlist[y] = 0;
+	strlist[y] = NULL;
 	return (strlist);
 }

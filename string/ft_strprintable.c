@@ -17,7 +17,7 @@ static int	ft_padsize(const char *base)
 	size_t	size;
 
 	nbr = ft_utoa_base(255, base);
-	if (!nbr)
+	if (nbr == 0)
 		return (0);
 	size = ft_strlen(nbr);
 	free(nbr);
@@ -30,7 +30,7 @@ static int	ft_setnpc(char *str, unsigned char npc,
 	char	*str_npc;
 
 	str_npc = ft_utoa_base(npc, base);
-	if (!str_npc)
+	if (str_npc == NULL)
 		return (0);
 	*str++ = '\\';
 	str_npc = ft_strcombine(ft_strcreate(*base, len_pad - ft_strlen(str_npc)),
@@ -49,21 +49,21 @@ char	*ft_strprintable(const char *src, const char *base)
 	int		len_pad;
 	size_t	len_printable;
 
-	if (!src || !base || !ft_validbase(base))
-		return (0);
+	if (src == NULL || base == NULL || !ft_validbase(base))
+		return (NULL);
 	len_pad = ft_padsize(base);
 	len_printable = ft_strchr_countis(src, ft_isprint);
 	str_main = malloc(len_printable
 			+ ((ft_strlen(src) - len_printable) * (len_pad + 1)) + 1);
-	if (!str_main)
-		return (0);
+	if (str_main == NULL)
+		return (NULL);
 	tmp = str_main;
-	while (*src)
+	while (*src != '\0')
 		if (ft_isprint(*src))
 			*str_main++ = *src++;
 	else
 		str_main += ft_setnpc(str_main, *src++, base, len_pad);
-	*str_main = 0;
+	*str_main = '\0';
 	return (tmp);
 }
 
@@ -73,7 +73,7 @@ static size_t	ft_memchr_countis(const void *src, int (ft_is)(int),
 	char	*ptr;
 	size_t	count;
 
-	if (!src || !ft_is)
+	if (src == NULL || ft_is == NULL )
 		return (0);
 	ptr = (char *)src;
 	count = 0;
@@ -96,14 +96,14 @@ char	*ft_memprintable(const void *src, const char *base, size_t bytes)
 	len_printable = ft_memchr_countis(src, ft_isprint, bytes);
 	str_main = malloc(len_printable + ((bytes - len_printable) * (len_pad + 1))
 			+ 1);
-	if (!str_main)
-		return (0);
+	if (str_main == NULL)
+		return (NULL);
 	tmp = str_main;
 	while (bytes--)
 		if (ft_isprint(*ptr_src))
 			*str_main++ = *ptr_src++;
 	else
 		str_main += ft_setnpc(str_main, *ptr_src++, base, len_pad);
-	*str_main = 0;
+	*str_main = '\0';
 	return (tmp);
 }

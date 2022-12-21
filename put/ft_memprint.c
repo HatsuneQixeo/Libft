@@ -16,7 +16,7 @@ static void	memprint_loop(const void **ptr, size_t bpl, int pad, size_t i_bytes)
 {
 	const unsigned char	*ptr_uc;
 
-	if (!bpl)
+	if (bpl == 0)
 		return ;
 	ptr_uc = *ptr;
 	ft_printf("len(%*d):", pad, i_bytes);
@@ -31,7 +31,7 @@ void	ft_memprint(const void *ptr, size_t bytes, size_t data_size)
 	int		pad;
 	size_t	i_bytes;
 
-	if (!data_size || !ptr)
+	if (data_size == 0 || ptr == NULL)
 		return ;
 	pad = ft_digit_count(bytes);
 	i_bytes = 1;

@@ -18,7 +18,7 @@ char	**ft_strlistdup(char **strlist)
 
 	i_str = ft_strcount(strlist);
 	strlist_main = malloc(sizeof(char *) * (i_str + 1));
-	strlist_main[i_str] = 0;
+	strlist_main[i_str] = NULL;
 	while (i_str--)
 		strlist_main[i_str] = ft_strdup(strlist[i_str]);
 	return (strlist_main);

@@ -16,7 +16,7 @@ void	*ft_calloc(size_t len, size_t size)
 	void	*ptr;
 
 	ptr = malloc(len * size);
-	if (ptr)
+	if (ptr != NULL)
 		ft_bzero(ptr, len * size);
 	return (ptr);
 }

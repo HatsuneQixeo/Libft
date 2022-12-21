@@ -15,12 +15,12 @@ char	*ft_strtrim(const char *src, const char *set)
 {
 	char	*end;
 
-	if (!src)
-		return (0);
-	else if (!set)
+	if (src == NULL)
+		return (NULL);
+	else if (set == NULL)
 		return (ft_strdup(src));
 	end = ft_strchr(src, '\0') - 1;
-	while (*src && ft_strchr(set, *src))
+	while (*src != '\0' && ft_strchr(set, *src))
 		src++;
 	while (end > src && ft_strchr(set, *end))
 		end--;

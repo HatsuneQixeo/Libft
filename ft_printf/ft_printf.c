@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 #include "../include/ft_printf.h"
 
+//Tester
+//https://github.com/gavinfielder/pft
 int	ft_printf_core(int fd, const char *str, va_list args,
 			int (ft_put)(const char *str, int fd))
 {
@@ -21,7 +23,7 @@ int	ft_printf_core(int fd, const char *str, va_list args,
 	len_total = 0;
 	flags.fd = fd;
 	str_conversion = ft_strchr(str, '%');
-	while (str_conversion)
+	while (str_conversion != NULL)
 	{
 		len_total += write(flags.fd, str, str_conversion - str);
 		str = ft_flagextract(str_conversion, &flags, args);

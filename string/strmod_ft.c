@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmod_ft.c                                     :+:      :+:    :+:   */
+/*   strmod_ft.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hqixeo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,15 +11,35 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-char	*ft_mod_realloc(const char *src, const char *str_void)
+//I'm lazy
+char	*strmod_clear(const char *str_clear, const char *str_void)
 {
+	return (NULL);
+	(void)str_clear;
 	(void)str_void;
+}
+
+char	*strmod_realloc(const char *src, const char *str_void)
+{
 	return (ft_strdup(src));
+	(void)str_void;
+}
+
+//Skip the starting part
+//ALT: ft_memmove
+//Note: experimental function, current usage is unclear
+//Find the string and duplicate it
+//, dedicated for strmodify
+//, but could be use individually as the way it is stated
+char	*strmod_strstrdup(const char *src, const char *find)
+{
+	return (ft_strdup(ft_strstr(src, find)));
 }
 
 //Limit the end part
 //BIGNOTE: This is an experimental function
 //Future Note: Making a substrfree is probably the most universal solution
+//, OR just null terminating the rest of the string duh
 //
 //errhandling1
 //	else if (src_end > ft_strchr(src, '\0'))
@@ -35,21 +55,29 @@ char	*ft_mod_realloc(const char *src, const char *str_void)
 //Note: Passing the same address will result in the src being emptied
 //, could be redifined to return the original string instead
 //, (off the original intention)
-char	*ft_mod_substr(const char *src, const char *src_end)
+char	*strmod_substr(const char *src, const char *src_end)
 {
-	if (!src)
-		return (0);
-	else if (!src_end || src_end < src || !ft_strstr(src, src_end))
+	if (src == NULL)
+		return (NULL);
+	else if (src_end == NULL || src_end < src || !ft_strstr(src, src_end))
 		return (ft_strdup(src));
 	return (ft_substr(src, 0, src_end - src));
 }
 
-//Skip the starting part
-//Note: experimental function, current usage is unclear
-//Find the string and duplicate it
-//, dedicated for strmodify
-//, but could be use individually as the way it is stated
-char	*ft_mod_strstrdup(const char *src, const char *find)
-{
-	return (ft_strdup(ft_strstr(src, find)));
-}
+//Alternative that doesn't require external function
+// {
+	// void	strformat_strstr(char *src, const char *find)
+	// {
+	// 	if (src && find)
+	// 		ft_memmove(src, ft_strstr(src, find), ft_strlen(find) + 1);
+	// }
+
+	// void	strformat_substr(char *src, const char *src_end)
+	// {
+	// 	if (!src)
+	// 		return ;
+	// 	else if (!src_end || src_end < src || !ft_strstr(src, src_end))
+	// 		return ;
+	// 	ft_bzero(src_end, ft_strlen(src_end));
+	// }
+// }

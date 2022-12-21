@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri_ft.c                                   :+:      :+:    :+:   */
+/*   striteri_ft.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hqixeo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_iteri_lower(unsigned int i, char *str)
+void	iteri_lower(unsigned int i, char *str)
 {
 	(void)i;
 	*str = ft_tolower(*str);
 }
 
-void	ft_iteri_upper(unsigned int i, char *str)
+void	iteri_upper(unsigned int i, char *str)
 {
 	(void)i;
 	*str = ft_toupper(*str);

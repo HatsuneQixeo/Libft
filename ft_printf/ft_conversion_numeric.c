@@ -43,15 +43,18 @@ static long long	ft_dlength(long long nbr, t_flags *flags)
 
 char	*ft_decimal(long long d, t_flags *flags)
 {
+	char	*nbr;
+
 	d = ft_dlength(d, flags);
+	nbr = ft_lltoa(d);
 	if (d < 0)
-		return (ft_lltoa(d));
+		return (nbr);
 	else if (flags->plus)
-		return (ft_strmodify(ft_lltoa(d), "+", ft_strrjoin));
+		return (ft_strmodify(nbr, "+", ft_strrjoin));
 	else if (flags->space)
-		return (ft_strmodify(ft_lltoa(d), " ", ft_strrjoin));
+		return (ft_strmodify(nbr, " ", ft_strrjoin));
 	else
-		return (ft_lltoa(d));
+		return (nbr);
 }
 
 char	*ft_unsigned(unsigned long long hex, t_flags *flags)

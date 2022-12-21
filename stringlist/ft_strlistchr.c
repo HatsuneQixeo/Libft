@@ -15,13 +15,13 @@ char	*ft_strlistchr(char **strlist, char c)
 {
 	char	*str;
 
-	if (!strlist)
-		return (0);
-	while (*strlist)
+	if (strlist == NULL)
+		return (NULL);
+	while (*strlist != NULL)
 	{
 		str = ft_strchr(*strlist++, c);
-		if (str)
+		if (str != NULL)
 			return (str);
 	}
-	return (0);
+	return (NULL);
 }

@@ -9,7 +9,7 @@
 /*   Updated: 2022/07/06 14:34:49 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include <stdlib.h>
 
 void	*ft_memchr(const void *ptr, int c, size_t bytes)
 {
@@ -18,9 +18,10 @@ void	*ft_memchr(const void *ptr, int c, size_t bytes)
 
 	str = (char *)ptr;
 	chr = c;
-	if (str)
-		while (bytes--)
-			if (*str++ == chr)
-				return ((void *)--str);
-	return (0);
+	if (str == NULL)
+		return (NULL);
+	while (bytes--)
+		if (*str++ == chr)
+			return ((void *)--str);
+	return (NULL);
 }

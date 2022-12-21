@@ -27,6 +27,6 @@ char	**ft_file_extract_lst(int fd)
 		str_part = get_next_line(fd);
 	}
 	strlist = ft_lsttoaa_clear(&lst);
-	ft_strlistiteri(strlist, "\n", ft_strtrim);
+	ft_strlistmod(strlist, "\n", ft_strtrim);
 	return (strlist);
 }

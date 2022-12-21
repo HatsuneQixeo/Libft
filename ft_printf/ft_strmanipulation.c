@@ -33,31 +33,21 @@ static int	ft_findsign(const char *str)
 // 		return (0);
 // }
 
-		// return (ft_strmodify(str, str + flags->precision, ft_mod_substr));
-static char	*ft_period_string(char *str, t_flags *flags)
-{
-	char	*tmp;
-
-	if ((int)ft_strlen(str) > flags->precision)
-	{
-		tmp = str;
-		str = ft_substr(str, 0, flags->precision);
-		free(tmp);
-	}
-	return (str);
-}
-
 static char	*ft_period(char *str, t_flags *flags)
 {
 	int	len_pad;
 	int	sign;
 
 	if (flags->format == 's' || flags->format == 'b')
-		return (ft_period_string(str, flags));
+	{
+		if ((int)ft_strlen(str) > flags->precision)
+			str[flags->precision] = '\0';
+		return (str);
+	}
 	sign = ft_findsign(str);
-	if (!flags->precision && !ft_strcmp(&str[sign], "0")
+	if (flags->precision == 0 && !ft_strcmp(&str[sign], "0")
 		&& !(flags->format == 'o' && flags->sharp))
-		str[sign] = 0;
+		str[sign] = '\0';
 	len_pad = flags->precision + sign - ft_strlen(str);
 	if (len_pad <= 0)
 		return (str);
@@ -88,6 +78,8 @@ char	*ft_strfinalize(char *str, t_flags *flags)
 
 	if (flags->period)
 		str = ft_period(str, flags);
+	if (flags->format == 'b')
+		str = ft_strmodify(str, HEXADECIMAL, ft_strprintable);
 	len_pad = flags->width - ft_strlen(str);
 	if (len_pad <= 0)
 		return (ft_setsign(str, flags));
@@ -97,10 +89,5 @@ char	*ft_strfinalize(char *str, t_flags *flags)
 		str = ft_strcombine(ft_strcreate('0', len_pad), str);
 	else if (flags->width)
 		str = ft_strcombine(ft_strcreate(' ', len_pad), str);
-	if (flags->format == 'b')
-	{
-		str = ft_strmodify(str, HEXADECIMAL, ft_strprintable);
-		str = ft_strmodify(str, "\\00", ft_strjoin);
-	}
 	return (ft_setsign(str, flags));
 }

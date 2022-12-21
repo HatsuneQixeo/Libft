@@ -15,11 +15,11 @@ char	*ft_strliststr(char **strlist, const char *str)
 {
 	char	*find;
 
-	while (*strlist)
+	while (*strlist != NULL)
 	{
 		find = ft_strstr(*strlist++, str);
-		if (find)
+		if (find != NULL)
 			return (find);
 	}
-	return (0);
+	return (NULL);
 }

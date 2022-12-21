@@ -28,17 +28,17 @@ char	*ft_strinsert(const char *first, const char *insert, const char *last)
 	char	*str;
 	size_t	len;
 
-	if (!first || !insert || !last)
-		return (0);
+	if (first == NULL || insert == NULL || last == NULL)
+		return (NULL);
 	else if (first == last
 		|| (first + ft_strlen(first) - ft_strlen(last)) != last)
 		return (ft_strmodify(ft_strjoin(first, insert), last, ft_strjoin));
 	else if (first > last)
-		return (0);
+		return (NULL);
 	len = ft_strlen(first) + ft_strlen(insert) + 1;
 	str = malloc(len);
-	if (!str)
-		return (0);
+	if (str == NULL)
+		return (NULL);
 	ft_strlcpy(str, first, last - first + 1);
 	ft_strlcat(str, insert, len);
 	ft_strlcat(str, last, len);

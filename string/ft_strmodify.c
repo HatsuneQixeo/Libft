@@ -17,7 +17,7 @@
 //, instead of returning NULL in given function
 //
 //Available function: join, join_rev, trim, printable
-char	*ft_strmodify(char *str, const char *mod, t_ftstr ft_str)
+char	*ft_strmodify(char *str, const char *mod, t_modifier ft_str)
 {
 	char	*str_main;
 

@@ -16,16 +16,16 @@ char	*ft_strjoin(const char *str1, const char *str2)
 	char	*str_main;
 	size_t	len;
 
-	if (!str1 && !str2)
-		return (0);
-	else if (!str1)
+	if (str1 == NULL && str2 == NULL)
+		return (NULL);
+	else if (str1 == NULL)
 		return (ft_strdup(str2));
-	else if (!str2)
+	else if (str2 == NULL)
 		return (ft_strdup(str1));
 	len = ft_strlen(str1) + ft_strlen(str2) + 1;
 	str_main = malloc(len);
-	if (!str_main)
-		return (0);
+	if (str_main == NULL)
+		return (NULL);
 	ft_strlcpy(str_main, str1, len);
 	ft_strlcat(str_main, str2, len);
 	return (str_main);

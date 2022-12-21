@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mapi_ft.c                                       :+:      :+:    :+:   */
+/*   strmapi_ft.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hqixeo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,19 +11,19 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-char	ft_mapi_upper(unsigned int i, char c)
+char	mapi_upper(unsigned int i, char c)
 {
-	(void) i;
 	return (ft_toupper(c));
+	(void)i;
 }
 
-char	ft_mapi_lower(unsigned int i, char c)
+char	mapi_lower(unsigned int i, char c)
 {
-	(void) i;
 	return (ft_tolower(c));
+	(void)i;
 }
 
-char	ft_mapi_capitalize(unsigned int i, char c)
+char	mapi_capitalize(unsigned int i, char c)
 {
 	static char	prev;
 
@@ -41,7 +41,7 @@ char	ft_mapi_capitalize(unsigned int i, char c)
 		return (ft_tolower(c));
 }
 
-char	ft_mapi_miku(unsigned int i, char c)
+char	mapi_miku(unsigned int i, char c)
 {
 	if (i == 0)
 		return ('H');

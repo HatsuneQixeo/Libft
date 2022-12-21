@@ -18,15 +18,15 @@ char	**ft_split(const char *str, char c)
 	char	**strlist;
 	size_t	len;
 
-	if (!str)
-		return (0);
-	lst = 0;
-	while (*str)
+	if (str == NULL)
+		return (NULL);
+	lst = NULL;
+	while (*str != '\0')
 	{
 		len = 0;
 		while (*str == c)
 			str++;
-		if (!*str)
+		if (*str == '\0')
 			break ;
 		while (str[len] && str[len] != c)
 			len++;

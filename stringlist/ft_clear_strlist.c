@@ -13,20 +13,20 @@
 
 void	ft_clear(char **str)
 {
-	if (!str)
+	if (str == NULL)
 		return ;
 	free(*str);
-	*str = 0;
+	*str = NULL;
 }
 
 void	ft_clear_strlist(char **strlist)
 {
 	int	y;
 
-	if (!strlist)
+	if (strlist == NULL)
 		return ;
 	y = 0;
-	while (strlist[y])
+	while (strlist[y] != NULL)
 		ft_clear(&strlist[y++]);
 	free(strlist);
 }

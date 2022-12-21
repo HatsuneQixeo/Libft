@@ -13,9 +13,9 @@
 
 char	*ft_strskipchr(const char *str, char c)
 {
-	if (!str)
-		return (0);
-	while (*str && *str == c)
+	if (str == NULL)
+		return (NULL);
+	while (*str != '\0' && *str == c)
 		str++;
 	return ((char *)str);
 }
@@ -24,10 +24,10 @@ char	*ft_strcreate(char set, size_t size)
 {
 	char	*str;
 
-	if (!size)
-		return (0);
+	if (size == 0)
+		return (NULL);
 	str = malloc(size + 1);
-	str[size] = 0;
+	str[size] = '\0';
 	return (ft_memset(str, set, size));
 }
 

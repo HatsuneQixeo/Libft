@@ -13,7 +13,7 @@
 
 int	ft_putendl_fd(const char *str, int fd)
 {
-	if (!str)
+	if (str == NULL)
 		return (0);
 	return (ft_strrelease_fd(ft_strjoin(str, "\n"), fd));
 }

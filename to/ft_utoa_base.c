@@ -31,13 +31,13 @@ char	*ft_utoa_base(uintptr_t un_n, const char *base)
 	size_t			len_base;
 
 	if (!ft_validbase(base))
-		return (0);
+		return (NULL);
 	len_base = ft_strlen(base);
 	array = ft_digit_count_base(un_n, len_base);
 	str = malloc(array + 1);
-	if (!str)
-		return (0);
-	str[array] = 0;
+	if (str == NULL)
+		return (NULL);
+	str[array] = '\0';
 	while (array--)
 	{
 		str[array] = base[un_n % len_base];

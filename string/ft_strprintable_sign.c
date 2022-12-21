@@ -38,14 +38,14 @@ char	*ft_strprintable_sign(const char *src)
 
 	len_printable = ft_strchr_countis(src, ft_isprint);
 	str_main = malloc(len_printable + (ft_strlen(src) - len_printable) * 2 + 1);
-	if (!str_main)
-		return (0);
+	if (str_main == NULL)
+		return (NULL);
 	tmp = str_main;
 	while (*src)
 		if (ft_isprint(*src))
 			*str_main++ = *src++;
 	else
 		str_main += ft_setnpc_sign(str_main, *src++);
-	*str_main = 0;
+	*str_main = '\0';
 	return (tmp);
 }

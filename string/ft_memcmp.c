@@ -9,7 +9,7 @@
 /*   Updated: 2022/07/06 14:34:57 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include <stdlib.h>
 
 int	ft_memcmp(const void *ptr1, const void *ptr2, size_t bytes)
 {
@@ -18,7 +18,7 @@ int	ft_memcmp(const void *ptr1, const void *ptr2, size_t bytes)
 
 	str1 = (unsigned char *)ptr1;
 	str2 = (unsigned char *)ptr2;
-	if (!bytes || !ptr1 || !ptr2)
+	if (bytes == 0 || ptr1 == NULL || ptr2 == NULL)
 		return (0);
 	while (*str1 == *str2 && --bytes)
 	{

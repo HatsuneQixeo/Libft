@@ -1,6 +1,6 @@
 NAME := libft.a
 
-SRCS := ${wildcard */ft_*.c}
+SRCS := ${wildcard */ft_*.c} ${wildcard */*_ft.c}
 
 CC := gcc
 
@@ -44,7 +44,10 @@ fclean : clean
 re : fclean all
 
 norm :
-	@norminette ${SRCS} | grep Error
+	@norminette ${SRCS} ${HEADER}
+
+norme :
+	@norminette ${SRCS} ${HEADER} | grep Error
 
 pft : ${NAME}
 	@cp $< libftprintf.a && cd pft && make && ./test

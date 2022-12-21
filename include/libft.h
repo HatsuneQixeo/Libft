@@ -20,7 +20,7 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 
-typedef char	*(*t_ftstr)(const char *str1, const char *str2);
+typedef char	*(*t_modifier)(const char *str1, const char *str2);
 
 typedef struct s_list
 {
@@ -41,16 +41,17 @@ int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
-int		ft_islower(char c);
+int		ft_islower(int c);
 int		ft_isprint(int c);
 int		ft_isspace(int c);
 int		ft_isupper(int c);
+int		ft_strisnumeric(const char *str);
 
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
-void	ft_lstiter(t_list *lst, void (*ft)(void *));
+void	ft_lstiter(t_list *lst, void (*ft)(int, void *));
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*ft)(void *), void (*del)(void *));
 t_list	*ft_lstnew(void *content);
@@ -89,7 +90,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *str);
 char	*ft_strmapi(const char *str, char (*ft)(unsigned int, char));
-char	*ft_strmodify(char *str, const char *mod, t_ftstr ft_str);
+char	*ft_strmodify(char *str, const char *mod, t_modifier ft_str);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
 char	*ft_strnstr(const char *str, const char *to_find, size_t len);
 char	*ft_strprintable_sign(const char *src);
@@ -103,7 +104,8 @@ void	ft_clear_strlist(char **strlist);
 int		ft_strcount(char **strlist);
 char	*ft_strlistchr(char **strlist, char c);
 char	**ft_strlistdup(char **strlist);
-void	ft_strlistiteri(char **strlist, const char *mod, t_ftstr ft_str);
+void	ft_strlistiteri(char **strlist, void (*iteristr)(int, char *));
+void	ft_strlistmod(char **strlist, const char *mod, t_modifier ft_str);
 char	*ft_strliststr(char **strlist, const char *str);
 
 void	ft_swapchar(char *sign, char *set);
@@ -121,15 +123,19 @@ int		ft_toupper(int c);
 char	*ft_utoa_base(uintptr_t un_n, const char *base);
 int		ft_validbase(const char *base);
 
-char	ft_mapi_capitalize(unsigned int i, char c);
-char	ft_mapi_lower(unsigned int i, char c);
-char	ft_mapi_miku(unsigned int i, char c);
-char	ft_mapi_upper(unsigned int i, char c);
+void	lstiter_showstr(int i, void *content);
+void	lstiter_showaddress(int i, void *content);
 
-void	ft_iteri_lower(unsigned int i, char *str);
-void	ft_iteri_upper(unsigned int i, char *str);
+char	mapi_capitalize(unsigned int i, char c);
+char	mapi_lower(unsigned int i, char c);
+char	mapi_miku(unsigned int i, char c);
+char	mapi_upper(unsigned int i, char c);
 
-char	*ft_mod_realloc(const char *src, const char *str_void);
-char	*ft_mod_substr(const char *src, const char *src_end);
-char	*ft_mod_strstrdup(const char *src, const char *find);
+void	iteri_lower(unsigned int i, char *str);
+void	iteri_upper(unsigned int i, char *str);
+
+char	*strmod_clear(const char *str_clear, const char *str_void);
+char	*strmod_realloc(const char *src, const char *str_void);
+char	*strmod_strstrdup(const char *src, const char *find);
+char	*strmod_substr(const char *src, const char *src_end);
 #endif

@@ -9,7 +9,7 @@
 /*   Updated: 2022/07/05 15:02:57 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include <stdlib.h>
 
 void	*ft_memmove(void *dst, const void *src, size_t bytes)
 {
@@ -18,8 +18,8 @@ void	*ft_memmove(void *dst, const void *src, size_t bytes)
 
 	ptr_src = (char *)src;
 	ptr_dst = (char *)dst;
-	if (!dst || !src)
-		return (0);
+	if (dst == NULL || src == NULL)
+		return (NULL);
 	if (dst > src)
 		while (bytes--)
 			ptr_dst[bytes] = ptr_src[bytes];

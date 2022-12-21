@@ -15,10 +15,11 @@ int	ft_putstrlist_fd(char **strlist, int fd)
 {
 	int	len;
 
+	if (strlist == NULL)
+		return (0);
 	len = 0;
-	if (strlist)
-		while (*strlist)
-			len += ft_putendl_fd(*strlist++, fd);
+	while (*strlist != NULL)
+		len += ft_putendl_fd(*strlist++, fd);
 	return (len);
 }
 

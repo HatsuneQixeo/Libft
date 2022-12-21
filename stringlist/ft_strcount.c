@@ -15,9 +15,10 @@ int	ft_strcount(char **strlist)
 {
 	int	i;
 
+	if (strlist == NULL)
+		return (0);
 	i = 0;
-	if (strlist)
-		while (strlist[i])
-			i++;
+	while (*strlist++ != NULL)
+		i++;
 	return (i);
 }

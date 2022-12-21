@@ -16,14 +16,14 @@ char	*ft_strmapi(const char *str, char (*ft)(unsigned int, char))
 	char	*str_main;
 	size_t	i;
 
-	if (!str || !ft)
-		return (0);
+	if (str == NULL || ft == NULL)
+		return (NULL);
 	str_main = malloc(ft_strlen(str) + 1);
-	if (!str_main)
-		return (0);
+	if (str_main == NULL)
+		return (NULL);
 	i = -1;
 	while (str[++i])
 		str_main[i] = ft(i, str[i]);
-	str_main[i] = 0;
+	str_main[i] = '\0';
 	return (str_main);
 }

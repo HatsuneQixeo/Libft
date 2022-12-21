@@ -15,9 +15,9 @@ void	ft_striteri(char *str, void (*ft)(unsigned int, char *))
 {
 	size_t	i;
 
-	if (!str || !ft)
+	if (str == NULL || ft == NULL)
 		return ;
 	i = -1;
-	while (str[++i])
+	while (str[++i] != '\0')
 		ft(i, &str[i]);
 }

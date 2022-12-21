@@ -18,7 +18,9 @@ static char	*itoa_core(unsigned long long nbr, char sign)
 
 	digit = ft_digit_count(nbr) + sign;
 	str = malloc(digit + 1);
-	str[digit] = 0;
+	if (str == NULL)
+		return (NULL);
+	str[digit] = '\0';
 	while (digit--)
 	{
 		str[digit] = nbr % 10 + '0';
@@ -32,7 +34,7 @@ static char	*itoa_core(unsigned long long nbr, char sign)
 char	*ft_itoa(int n)
 {
 	if (n < 0)
-		return (itoa_core(-n, 1));
+		return (itoa_core((unsigned int)-n, 1));
 	else
 		return (itoa_core(n, 0));
 }
@@ -40,7 +42,7 @@ char	*ft_itoa(int n)
 char	*ft_lltoa(long long n)
 {
 	if (n < 0)
-		return (itoa_core(-n, 1));
+		return (itoa_core((unsigned long long)-n, 1));
 	else
 		return (itoa_core(n, 0));
 }

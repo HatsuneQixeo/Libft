@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_valid_base.c                                    :+:      :+:    :+:   */
+/*   ft_strlistmod.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hqixeo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 08:16:58 by hqixeo            #+#    #+#             */
-/*   Updated: 2022/11/13 08:17:04 by hqixeo           ###   ########.fr       */
+/*   Created: 2022/11/13 08:16:55 by hqixeo            #+#    #+#             */
+/*   Updated: 2022/11/13 08:16:56 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-static int	ft_str_dupchr(const char *base)
+void	ft_strlistmod(char **strlist, const char *mod, t_modifier ft_mod)
 {
-	base--;
-	while (*++base)
-		if (ft_strchr(base + 1, *base))
-			return (*base);
-	return (0);
-}
-
-int	ft_validbase(const char *base)
-{
-	return (ft_strlen(base) >= 2 && !ft_str_dupchr(base)
-		&& !ft_strchr(base, '+') && !ft_strchr(base, '-'));
+	if (strlist == NULL || ft_mod == NULL)
+		return ;
+	strlist--;
+	while (*++strlist != NULL)
+	{
+		*strlist = ft_strmodify(*strlist, mod, ft_mod);
+		if (*strlist != NULL)
+			continue ;
+		while (*++strlist != NULL)
+			free(*strlist);
+	}
 }
