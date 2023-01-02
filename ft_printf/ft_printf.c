@@ -27,7 +27,7 @@ int	ft_printf_core(int fd, const char *str, va_list args,
 	{
 		len_total += write(flags.fd, str, str_conversion - str);
 		str = ft_flagextract(str_conversion, &flags, args);
-		if (!flags.format)
+		if (flags.format == '\0')
 			break ;
 		len_total += ft_conversion(args, &flags);
 		str_conversion = ft_strchr(++str, '%');

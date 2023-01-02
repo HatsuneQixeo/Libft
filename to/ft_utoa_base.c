@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-static int	ft_digit_count_base(uintptr_t un_n, int len_base)
+static int	ft_nbrsize_base(uintptr_t un_n, int len_base)
 {
 	int	digit;
 
@@ -33,7 +33,7 @@ char	*ft_utoa_base(uintptr_t un_n, const char *base)
 	if (!ft_validbase(base))
 		return (NULL);
 	len_base = ft_strlen(base);
-	array = ft_digit_count_base(un_n, len_base);
+	array = ft_nbrsize_base(un_n, len_base);
 	str = malloc(array + 1);
 	if (str == NULL)
 		return (NULL);

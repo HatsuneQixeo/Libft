@@ -19,7 +19,7 @@
 # define OCTAL			"01234567"
 # define DECIMAL		"0123456789"
 # define HEXADECIMAL	"0123456789abcdef"
-# define UPHEX			"0123456789ABCDEF"
+# define UPPERHEX		"0123456789ABCDEF"
 
 typedef struct flags
 {

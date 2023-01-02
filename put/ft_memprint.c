@@ -33,7 +33,7 @@ void	ft_memprint(const void *ptr, size_t bytes, size_t data_size)
 
 	if (data_size == 0 || ptr == NULL)
 		return ;
-	pad = ft_digit_count(bytes);
+	pad = ft_nbrsize(bytes);
 	i_bytes = 1;
 	while (bytes >= data_size)
 	{

@@ -56,10 +56,10 @@ void	ft_printn(int nbr, int n)
 	ft_putchar(nbr + '0');
 }
 
-int	ft_digit_count(int nbr)
+int	ft_nbrsize(int nbr)
 {
 	if (nbr / 10)
-		return (1 + ft_digit_count(nbr / 10));
+		return (1 + ft_nbrsize(nbr / 10));
 	return (1);
 }
 
@@ -70,7 +70,7 @@ void	ft_print_combn(int n)
 	if (!(n >= 1 && n <= 9))
 		return ;
 	nbr = 0;
-	while (ft_digit_count(nbr) <= n)
+	while (ft_nbrsize(nbr) <= n)
 	{
 		ft_printn(nbr++, n);
 		ft_putchar('\n');

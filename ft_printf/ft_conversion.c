@@ -51,7 +51,7 @@ int	ft_conversion(va_list args, t_flags *flags)
 		return (ft_character(flags->format, flags));
 	else
 		return (0);
-	if (!str)
+	if (str == NULL)
 		str = ft_strdup("(null)");
 	return (ft_strrelease_fd(ft_strfinalize(str, flags), flags->fd));
 }

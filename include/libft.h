@@ -32,7 +32,7 @@ char	*ft_file_extract(int fd);
 int		ft_file_format(const char *file, const char *format);
 int		ft_file_open(const char *file);
 
-int		ft_digit_count(size_t nbr);
+int		ft_nbrsize(size_t nbr);
 int		ft_max(int a, int b);
 int		ft_min(int a, int b);
 int		ft_within(int min, int nbr, int max);

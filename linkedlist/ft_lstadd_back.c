@@ -13,8 +13,8 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *node)
 {
-	if (*lst)
-		ft_lstlast(*lst)->next = node;
-	else
+	if (*lst == NULL)
 		*lst = node;
+	else
+		ft_lstlast(*lst)->next = node;
 }

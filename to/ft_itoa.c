@@ -16,7 +16,7 @@ static char	*itoa_core(unsigned long long nbr, char sign)
 	char	*str;
 	int		digit;
 
-	digit = ft_digit_count(nbr) + sign;
+	digit = ft_nbrsize(nbr) + sign;
 	str = malloc(digit + 1);
 	if (str == NULL)
 		return (NULL);

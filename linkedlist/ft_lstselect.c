@@ -13,7 +13,7 @@
 
 t_list	*ft_lstselect(t_list *lst, unsigned int select)
 {
-	while (lst && select--)
+	while (lst != NULL && select--)
 		lst = lst->next;
 	return (lst);
 }

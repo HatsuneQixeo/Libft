@@ -67,7 +67,7 @@ char	*ft_unsigned(unsigned long long hex, t_flags *flags)
 	else if (flags->format == 'x')
 		str = ft_utoa_base(hex, HEXADECIMAL);
 	else if (flags->format == 'X')
-		str = ft_utoa_base(hex, UPHEX);
+		str = ft_utoa_base(hex, UPPERHEX);
 	else if (flags->format == 'o')
 		str = ft_utoa_base(hex, OCTAL);
 	else
