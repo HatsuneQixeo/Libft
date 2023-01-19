@@ -5,7 +5,7 @@ INCLUDE	:=	include/
 HEADER	:=	${wildcard ${INCLUDE}*.h}
 CC		:=	gcc
 CFLAGS	:=	-Wall -Wextra -Werror
-RM		:=	rm -f
+RM		:=	rm -rf
 
 all : ${NAME}
 

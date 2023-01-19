@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strprintable.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hqixeo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 08:16:51 by hqixeo            #+#    #+#             */
-/*   Updated: 2022/11/13 08:16:52 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/01/10 22:43:17 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -16,7 +16,7 @@ static int	ft_padsize(const char *base)
 	char	*nbr;
 	size_t	size;
 
-	nbr = ft_utoa_base(255, base);
+	nbr = ft_utoa_base(__UINT8_MAX__, base);
 	if (nbr == 0)
 		return (0);
 	size = ft_strlen(nbr);
@@ -24,8 +24,7 @@ static int	ft_padsize(const char *base)
 	return (size);
 }
 
-static int	ft_setnpc(char *str, unsigned char npc,
-			const char *base, int len_pad)
+static int	ft_setnpc(char *str, uint8_t npc, const char *base, int len_pad)
 {
 	char	*str_npc;
 
@@ -40,8 +39,8 @@ static int	ft_setnpc(char *str, unsigned char npc,
 	return (1 + len_pad);
 }
 
-//Convert non printable character to number
-//This function does not support complex character ex:(”初音ミク“)
+// Convert non printable character to number
+// This function does not support complex character ex:(”初音ミク“)
 char	*ft_strprintable(const char *src, const char *base)
 {
 	char	*str_main;
@@ -67,8 +66,7 @@ char	*ft_strprintable(const char *src, const char *base)
 	return (tmp);
 }
 
-static size_t	ft_memchr_countis(const void *src, int (ft_is)(int),
-			size_t bytes)
+static size_t	ft_memchr_countis(const void *src, t_ftis ft_is, size_t bytes)
 {
 	char	*ptr;
 	size_t	count;

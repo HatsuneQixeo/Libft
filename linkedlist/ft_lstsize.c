@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hqixeo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:05:10 by hqixeo            #+#    #+#             */
-/*   Updated: 2022/07/13 17:05:12 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/01/10 22:43:18 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -17,7 +17,7 @@ int	ft_lstsize(t_list *lst)
 
 	i = 0;
 	if (lst == NULL)
-		return (NULL);
+		return (0);
 	while (lst != NULL)
 	{
 		i++;

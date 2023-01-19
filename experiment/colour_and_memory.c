@@ -135,7 +135,7 @@ int	main(void)
 	lst->next->content = 0;
 	strlist = ft_lsttoaa_clear(&lst);
 	ft_putstrlist_fd(strlist, 1);
-	ft_clear_strlist(strlist);
+	ft_strlistclear(strlist);
 	strlist = 0;
 	system("leaks -q test.miku");
 }

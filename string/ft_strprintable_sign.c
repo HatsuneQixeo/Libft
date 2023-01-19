@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strprintable_sign.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hqixeo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 08:18:04 by hqixeo            #+#    #+#             */
-/*   Updated: 2022/11/13 08:18:10 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/01/10 22:43:17 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-static int	ft_setnpc_sign(char *str, unsigned char npc)
+static int	ft_setnpc_sign(char *str, uint8_t npc)
 {
 	*str++ = '\\';
 	if (npc == '\b')
@@ -41,7 +41,7 @@ char	*ft_strprintable_sign(const char *src)
 	if (str_main == NULL)
 		return (NULL);
 	tmp = str_main;
-	while (*src)
+	while (*src != '\0')
 		if (ft_isprint(*src))
 			*str_main++ = *src++;
 	else

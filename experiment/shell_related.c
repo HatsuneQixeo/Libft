@@ -1,42 +1,25 @@
 #include "libft.h"
+#include "../../includes/pipex.h"
 // MAN BASH
 
-//Evaluated as reading variable
-//?Or the following expression becomes variable?
-//Cannot contain backslash or another opening curly brace
+static void	ft_unusedstatic(void)
+{
+
+}
+// Evaluated as reading variable
+// ?Or the following expression becomes variable?
+// Cannot contain backslash or another opening curly brace
 void	shell_curlybrace(const char *str)
 {
 
 }
 
-//Evaluated as running command
-//Second opening parenthesis will be evaluated as math expression?
+// Evaluated as running command
+// Second opening parenthesis will be evaluated as math expression?
 void	shell_parenthesis(const char *str)
 {
 
 
-}
-
-//Evaluated as connector between two lines
-//The next character after it is evaluated as a normal character
-//1/2cmb backslash == 1, 3/4cmb backslash == 2
-//after comfirming its 2 backslash together  n / 2 (if n % 2 nbr++)
-//Note: Currently mimicking the behaviour of echo '\\\\\\\\\\' 5 * 2
-void	shell_backslash_echo(const char *str)
-{
-	int	backslash_count;
-	int	repeat;
-
-	backslash_count = 1;
-	if (backslash_count % 2)
-		backslash_count--;
-	if (backslash_count >= 2)
-	{
-		char	*str_repeat;
-
-		repeat = ((backslash_count - 2) / 4) + 1;
-		ft_strrelease_fd(ft_strcreate('\\', repeat), 1);
-	}
 }
 
 void	shell_bracket(const char *str)
@@ -44,43 +27,39 @@ void	shell_bracket(const char *str)
 
 }
 
-//Evaluated as reading variable
+// Evaluated as reading variable
 void	shell_variable(const char *str)
 {
 
 }
 
-void	shell_command(const char *str)
-{
-
-}
-
-size_t	pipex_varname(const char *input)
+size_t	ms_varname_len(const char *input)
 {
 	size_t	i;
 
 	i = 0;
-
-	while (ft_isalnum(input[i]) || ft_strchr("_{}", input[i]))
+	if (ft_isdigit(input[0]))
+		return (1);
+	while (ft_isalnum(input[i]) || input[i] == '_')
 		i++;
 	return (i);
 }
 
-// char	*pipex_readvar(char **envp, const char *input, size_t len_var_name)
-// {
-// 	char	*var_name;
-// 	char	*str_var;
+char	*pipex_readvar(char **envp, const char *input, size_t len_var_name)
+{
+	char	*var_name;
+	char	*str_var;
 
-// 	var_name = ft_substr(input, 1, len_var_name);
-// 	var_name = ft_strmodify(var_name, "=", ft_strjoin);
-// 	str_var = ft_strliststr(envp, var_name);
-// 	if (str_var)
-// 		str_var = ft_strdup(str_var + ft_strlen(var_name));
-// 	else
-// 		str_var = ft_strdup("");
-// 	free(var_name);
-// 	return (str_var);
-// }
+	var_name = ft_substr(input, 1, len_var_name);
+	var_name = ft_strmodify(var_name, "=", ft_strjoin);
+	str_var = ft_strliststr(envp, var_name);
+	if (str_var == NULL)
+		str_var = ft_strdup("");
+	else
+		str_var = ft_strdup(str_var + ft_strlen(var_name));
+	free(var_name);
+	return (str_var);
+}
 
 // int	pipex_varandcmd(char **envp, const char *input, int fd_heredoc)
 // {
@@ -107,7 +86,7 @@ size_t	pipex_varname(const char *input)
 // 	}
 // 	else
 // 	{
-// 		len_var_name = pipex_varname(input + 1);
+// 		len_var_name = ms_varname_len(input + 1);
 // 		ft_strrelease_fd(pipex_readvar(envp, input, len_var_name), fd_heredoc);
 // 		return (len_var_name + 1);
 // 	}
@@ -115,7 +94,7 @@ size_t	pipex_varname(const char *input)
 
 // void	pipex_variable(char **envp, const char *input, int fd_heredoc)
 // {
-// 	while (*input)
+// 	while (*input != '\0')
 // 	{
 // 		if (!ft_strncmp(input, "$$", 2))
 // 		{
@@ -140,7 +119,7 @@ size_t	pipex_varname(const char *input)
 
 void	shell_backslash(char *str)
 {
-	if (*str != '\\')
+	if (str[0] != '\\' || str[1] == '\0')
 		return ;
 	else if (str[1] == '\n')
 		ft_memmove(str, str + 2, ft_strlen(str + 2) + 1);
@@ -153,18 +132,19 @@ static int	ft_bquote(char *src)
 	char	quote_start;
 	char	*end;
 
-	if (!src || !*src)
+	if (src == NULL || *src == '\0'  || !(*src == '\'' || *src == '\"'))
 		return (0);
 	quote_start = *src;
 	end = ft_memmove(src, src + 1, ft_strlen(src + 1) + 1);
-	while (*end && *end != quote_start)
+	while (*end != '\0' && *end != quote_start)
 	{
-		if (*end == '\\')
+		if (quote_start != '\'' && *end == '\\')
 			shell_backslash(end);
 		end++;
 	}
-	if (*end != quote_start)
-		return (!ft_dprintf(2, "zsh: parse error\n") - 1);
+	// if (*end != quote_start)
+	if (*end == '\0')
+		return (1 - !ft_dprintf(2, "zsh: parse error\n"));
 	ft_memmove(end, end + 1, ft_strlen(end + 1) + 1);
 	return (end - src);
 }
@@ -177,14 +157,17 @@ static char	*ft_parse(char **str)
 
 	str_ptr = *str;
 	start = str_ptr;
-	while (*str_ptr && !ft_isspace(*str_ptr))
+	while (*str_ptr != '\0' && !ft_isspace(*str_ptr))
 	{
-		if (*str_ptr == '\'' || *str_ptr == '"')
+		if (*str_ptr == '\'' || *str_ptr == '\"')
 		{
 			read = ft_bquote(str_ptr);
 			if (read == -1)
-				return (NULL + !ft_dprintf(2,
-					"Missing closing quote (%c) at (%s)\n", *str_ptr, str_ptr));
+			{
+				ft_dprintf(2, "Missing closing quote (%c) at (%s)\n",
+					*str_ptr, str_ptr);
+				return (NULL);
+			}
 			str_ptr += read - 1;
 		}
 		else if (*str_ptr == '\\')
@@ -200,18 +183,19 @@ static char	**ft_parsemove(char *src)
 	t_list	*lst;
 	char	*parse;
 
-	lst = 0;
-	while (*src)
+	lst = NULL;
+	while (*src != '\0')
 	{
-		while (ft_isspace(*src))
+		if (ft_isspace(*src))
+		{
 			src++;
-		if (!*src)
-			break ;
+			continue ;
+		}
 		parse = ft_parse(&src);
-		if (!parse)
+		if (parse == NULL)
 		{
 			ft_lstclear(&lst, free);
-			return (0);
+			return (NULL);
 		}
 		ft_lstadd_back(&lst, ft_lstnew(parse));
 	}
@@ -239,29 +223,41 @@ char	**ft_parsesplit(const char *src)
 #define nlgone	"Hatsune\\\nMiku\\\nis\\\ncute"
 //Parsing the user input
 //Note: Backslash enter will connect the line \'\10'
+
+char	*ft_prompt(const char *prompt)
+{
+	ft_putstr_fd(prompt, 1);
+	return (get_next_line(STDIN_FILENO));
+}
+
 int	main(void)
 {
-	char	*parse_miku;
-	char	**split;
+	char	*input;
 
-	parse_miku = ft_strdup(nlgone);
-	// parse_miku = ft_strinsert(bb, "       ", bquote);
-	ft_printf("src: %s\n", parse_miku);
-	split = ft_parsesplit(parse_miku);
-	ft_putstrlist_fd(split, 1);
-	ft_clear_strlist(split);
-	free(parse_miku);
+	input = ft_prompt("Parse test> ");
+	while (input != NULL)
+	{
+		char	**strlist;
+
+		// input = ft_strinsert(bb, "       ", bquote);
+		ft_printf("src: %s\n", input);
+		strlist = ft_parsesplit(input);
+		ft_putstrlist_fd(strlist, 1);
+		ft_strlistclear(strlist);
+		free(input);
+		input = ft_prompt("Parse test> ");
+	}
 	system("leaks -q shell_related.miku");
 }
 
-//Find envp
-	// if (**command == '.')
-	// {
-	// 	ft_memmove(*command, (*command) + 1, ft_strlen((*command) + 1) + 1);
-	// 	*command = ft_strmodify(*command, ft_findenvp(envp, "PWD"), ft_strrjoin);
-	// 	if (!access(*command, F_OK | X_OK))
-	// 		ft_dprintf(2, "access yes\n");
-	// 	else
-	// 		ft_dprintf(2, "access no\n");
-	// }
-	// else
+// Find envp
+// 	if (**command == '.')
+// 	{
+// 		ft_memmove(*command, (*command) + 1, ft_strlen((*command) + 1) + 1);
+// 		*command = ft_strmodify(*command, ft_findenvp(envp, "PWD"), ft_strrjoin);
+// 		if (!access(*command, F_OK | X_OK))
+// 			ft_dprintf(2, "access yes\n");
+// 		else
+// 			ft_dprintf(2, "access no\n");
+// 	}
+// 	else

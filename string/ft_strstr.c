@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hqixeo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 19:08:15 by hqixeo            #+#    #+#             */
-/*   Updated: 2022/10/07 19:08:15 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/01/10 22:43:18 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -17,7 +17,7 @@ char	*ft_strstr(const char *str, const char *to_find)
 	size_t	len_to_find;
 
 	if (str == NULL || to_find == NULL)
-		return (0);
+		return (NULL);
 	else if (*to_find == '\0')
 		return ((char *)str);
 	len = ft_strlen(str);

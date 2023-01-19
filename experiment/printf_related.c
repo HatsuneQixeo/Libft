@@ -244,3 +244,8 @@ int notinsubject_o_prec0val0_waflj_impl_bench(void){return printf("%#-5.o", 0);}
 // 	ft_printf("\nft_return: %d\n", ft_printf("(%#0-8.5o)", 0));
 	
 // }
+
+int	main(void)
+{
+	ft_printf("%d\n", ft_dprintf(3, "Hatsune Miku %s %s\n", "is", "cute"));
+}

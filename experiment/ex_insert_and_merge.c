@@ -146,3 +146,103 @@ static void	test_strmerge(char *src, ...)
 // 	// test_strmerge(asdmiku);
 // 	system("leaks -q ex_insert_and_merge.miku");
 // }
+// Cppinsert
+char	*ft_strinsert_re(const char *str, size_t pos, const char *insert);
+char	*ft_prompt(const char *prompt)
+{
+	ft_putstr_fd(prompt, 1);
+	return (ft_strmodify(get_next_line(STDIN_FILENO), "\n", ft_strtrim));
+}
+
+// int	insert_prompt(char **input, size_t *pos, char **insert)
+// {
+// 	char	*tmp;
+
+// 	*input = ft_prompt("CppInsert> ");
+// 	if (*input == NULL)
+// 		return (-1);
+// 	tmp = ft_prompt("Pos> ");
+// 	if (tmp == NULL)
+// 		return (-1);
+// 	*insert = ft_prompt("Insert> ");
+// 	if (*insert == NULL)
+// 		return (-1);
+// 	*pos = ft_atoi(tmp);
+// 	free(tmp);
+// 	return (0);
+// }
+
+// int	main(void)
+// {
+// 	char	*input;
+// 	char	*insert;
+// 	size_t	pos;
+
+// 	while (insert_prompt(&input, &pos, &insert) != -1)
+// 	{
+// 		char	*re = ft_strinsert_re(input, pos, insert);
+
+// 		ft_printf("insert_re: %s\n", re);
+// 		free(input);
+// 		free(insert);
+// 		free(re);
+// 	}
+// 	system("leaks -q ex_insert_and_merge.miku");
+// }
+
+char	*ft_strreplace(const char *src, const char *replace, size_t pos, size_t len_overwrite)
+{
+	char	*str;
+	size_t	len_src;
+	size_t	len_total;
+
+	if (src == NULL || replace == NULL)
+		return (NULL);
+	len_src = ft_strlen(src);
+	if (pos >= len_src)
+		return (ft_strjoin(src, replace));
+	len_overwrite = ft_min_sizet(len_overwrite, len_src - pos);
+	len_total = len_src + (ft_strlen(replace) - len_overwrite) + 1;
+	str = malloc(len_total);
+	if (str == NULL)
+		return (NULL);
+	ft_strlcpy(str, src, pos + 1);
+	ft_strlcat(str, replace, len_total);
+	ft_strlcat(str, src + pos + len_overwrite, len_total);
+	return (str);
+}
+
+#define PROMPT(ptr, prompt)	ptr = ft_prompt(prompt); if (ptr == NULL) return (-1);
+int	replace_prompt(char **input, char **replace, size_t *pos, size_t *len_overwrite)
+{
+	char	*tmp;
+
+	PROMPT(*input, "Cppreplace> ")
+	PROMPT(*replace, "replace> ");
+	PROMPT(tmp, "Pos> ")
+	*pos = ft_atoi(tmp);
+	free(tmp);
+	PROMPT(tmp, "Len_overwrite> ")
+	*len_overwrite = ft_atoi(tmp);
+	free(tmp);
+	return (0);
+}
+
+int	main(void)
+{
+	char	*input;
+	char	*insert;
+	size_t	pos;
+	size_t	len_overwrite;
+
+	while (replace_prompt(&input, &insert, &pos, &len_overwrite) != -1)
+	{
+		char	*re = ft_strreplace(input, insert, pos, len_overwrite);
+
+		ft_printf("replace: (%s)\n", re);
+		free(input);
+		free(insert);
+		free(re);
+	}
+	system("leaks -q ex_insert_and_merge.miku");
+}
