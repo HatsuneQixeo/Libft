@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 13:49:44 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/10 22:43:17 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/01/31 18:02:28 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -50,9 +50,9 @@ char	*ft_decimal(long long d, t_flags *flags)
 	if (d < 0)
 		return (nbr);
 	else if (flags->plus)
-		return (ft_strmodify(nbr, "+", ft_strrjoin));
+		return (ft_strmodify(ft_strrjoin, nbr, "+"));
 	else if (flags->space)
-		return (ft_strmodify(nbr, " ", ft_strrjoin));
+		return (ft_strmodify(ft_strrjoin, nbr, " "));
 	else
 		return (nbr);
 }
@@ -75,10 +75,10 @@ char	*ft_unsigned(unsigned long long hex, t_flags *flags)
 	if (*str == '0' || !flags->sharp)
 		return (str);
 	else if (flags->format == 'x')
-		return (ft_strmodify(str, "0x", ft_strrjoin));
+		return (ft_strmodify(ft_strrjoin, str, "0x"));
 	else if (flags->format == 'X')
-		return (ft_strmodify(str, "0X", ft_strrjoin));
+		return (ft_strmodify(ft_strrjoin, str, "0X"));
 	else if (flags->format == 'o')
-		return (ft_strmodify(str, "0", ft_strrjoin));
+		return (ft_strmodify(ft_strrjoin, str, "0"));
 	return (str);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   shell_related.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/28 10:04:01 by hqixeo            #+#    #+#             */
+/*   Updated: 2023/01/31 18:02:27 by hqixeo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "../../includes/pipex.h"
 // MAN BASH
@@ -51,7 +63,7 @@ char	*pipex_readvar(char **envp, const char *input, size_t len_var_name)
 	char	*str_var;
 
 	var_name = ft_substr(input, 1, len_var_name);
-	var_name = ft_strmodify(var_name, "=", ft_strjoin);
+	var_name = ft_strmodify(var_name, "=");
 	str_var = ft_strliststr(envp, var_name);
 	if (str_var == NULL)
 		str_var = ft_strdup("");
@@ -254,7 +266,7 @@ int	main(void)
 // 	if (**command == '.')
 // 	{
 // 		ft_memmove(*command, (*command) + 1, ft_strlen((*command) + 1) + 1);
-// 		*command = ft_strmodify(*command, ft_findenvp(envp, "PWD"), ft_strrjoin);
+// 		*command = ft_strmodify(*command, ft_getenv(envp, "PWD"), ft_strrjoin);
 // 		if (!access(*command, F_OK | X_OK))
 // 			ft_dprintf(2, "access yes\n");
 // 		else

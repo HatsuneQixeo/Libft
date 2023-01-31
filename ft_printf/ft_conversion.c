@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:04:44 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/10 22:43:17 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/01/31 18:02:28 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -40,8 +40,8 @@ int	ft_conversion(va_list args, t_flags *flags)
 	else if (flags->format == 'd' || flags->format == 'i')
 		str = ft_decimal(va_arg(args, long long), flags);
 	else if (flags->format == 'p')
-		str = ft_strmodify(ft_utoa_base(va_arg(args, uintptr_t), HEXADECIMAL),
-				"0x", ft_strrjoin);
+		str = ft_strmodify(ft_strrjoin,
+				ft_utoa_base(va_arg(args, uintptr_t), HEXADECIMAL), "0x");
 	else if (flags->format == 'u' || flags->format == 'o'
 		|| flags->format == 'x' || flags->format == 'X')
 		str = ft_unsigned(va_arg(args, unsigned long long), flags);

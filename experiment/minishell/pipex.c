@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/28 10:04:01 by hqixeo            #+#    #+#             */
+/*   Updated: 2023/01/31 18:02:27 by hqixeo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/pipex.h"
+#include <signal.h>
 
 void	ft_putstr_fd_report(const char *str, int fd)
 {
@@ -197,3 +210,34 @@ void	ft_putstr_fd_report(const char *str, int fd)
 // 	ft_printto(1);
 // 	ft_printto(fd_file);
 // }
+
+
+/// @brief Waitpid
+int	main(void)
+{
+	pid_t	pid;
+	int		status;
+
+	pid = fork();
+	if (pid == -1)
+		perror("fork");
+	else if (pid == 0)
+	{
+		printf("Miku and my child\n");
+		exit(39);
+	}
+	else
+	{
+		sleep(4);
+		/// @note Kill always return SUCESS if it is a valid pid
+		printf("kill return: %d\n", kill(pid, SIGINT));
+		printf("kill return: %d\n", kill(pid, SIGINT));
+		printf("kill return: %d\n", kill(pid, SIGINT));
+		printf("kill return: %d\n", kill(pid, SIGINT));
+		/// @note Waitpid don't
+		printf("waitpid return: %d\n", waitpid(-1, &status, 0));
+		printf("waitpid return: %d\n", waitpid(-1, &status, 0));
+		/// @note It doesn't fk up the status variable luckily
+		printf("status: %d\n", WEXITSTATUS(status));
+	}
+}

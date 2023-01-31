@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ex_insert_and_merge.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/28 10:04:01 by hqixeo            #+#    #+#             */
+/*   Updated: 2023/01/31 18:02:27 by hqixeo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #define MIKU	"Hatsune Miku"
 
@@ -86,7 +98,7 @@ char	*ft_strmerge(char *src, ...)
 	str_part = va_arg(args, char *);
 	while (str_part)
 	{
-		src = ft_strmodify(src, str_part, ft_strjoin);
+		src = ft_strmodify(ft_strjoin, src, str_part);
 		str_part = va_arg(args, char *);
 	}
 	va_end(args);
@@ -113,7 +125,7 @@ char	*testft_strmerge(char *src, va_list args)
 		// 	ft_printf("	str_part: (%s)\n", str_part);
 		// 	ft_printf("\n");
 		// }
-		src = ft_strmodify(src, str_part, ft_strjoin);
+		src = ft_strmodify(ft_strjoin, src, str_part);
 		str_part = va_arg(args, char *);
 	}
 	return (src);
@@ -150,8 +162,15 @@ static void	test_strmerge(char *src, ...)
 char	*ft_strinsert_re(const char *str, size_t pos, const char *insert);
 char	*ft_prompt(const char *prompt)
 {
+	char	*input;
+	char	*nl;
+
 	ft_putstr_fd(prompt, 1);
-	return (ft_strmodify(get_next_line(STDIN_FILENO), "\n", ft_strtrim));
+	input =  get_next_line(STDIN_FILENO);
+	nl = ft_strchr(input, '\n');
+	if (nl != NULL)
+		*nl = '\0';
+	return (input);
 }
 
 // int	insert_prompt(char **input, size_t *pos, char **insert)

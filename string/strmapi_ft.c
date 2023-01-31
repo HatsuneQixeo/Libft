@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:18:06 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/10 22:43:18 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/01/31 18:02:32 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -25,16 +25,16 @@ char	mapi_lower(unsigned int i, char c)
 
 char	mapi_capitalize(unsigned int i, char c)
 {
-	static char	prev;
+	static char	prev_isspace;
 
 	if (ft_isspace(c))
 	{
-		prev = 1;
+		prev_isspace = 1;
 		return (c);
 	}
-	else if (!i || prev)
+	else if (i == 0 || prev_isspace)
 	{
-		prev = 0;
+		prev_isspace = 0;
 		return (ft_toupper(c));
 	}
 	else
@@ -43,29 +43,8 @@ char	mapi_capitalize(unsigned int i, char c)
 
 char	mapi_miku(unsigned int i, char c)
 {
-	if (i == 0)
-		return ('H');
-	else if (i == 1)
-		return ('a');
-	else if (i == 2)
-		return ('t');
-	else if (i == 3)
-		return ('s');
-	else if (i == 4)
-		return ('u');
-	else if (i == 5)
-		return ('n');
-	else if (i == 6)
-		return ('e');
-	else if (i == 7)
-		return (' ');
-	else if (i == 8)
-		return ('M');
-	else if (i == 9)
-		return ('i');
-	else if (i == 10)
-		return ('k');
-	else if (i == 11)
-		return ('u');
-	return (c - c);
+	if (i > 12)
+		return (c - c);
+	else
+		return ("Hatsune Miku"[i]);
 }

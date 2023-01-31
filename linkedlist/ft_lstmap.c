@@ -6,31 +6,29 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:04:57 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/10 22:43:18 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/01/31 18:02:29 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, t_lstmapft ft, t_lstdel del)
+t_list	*ft_lstmap(t_list *lst_src, t_ftlstmap ft, t_ftlstdel del)
 {
-	int		i;
-	t_list	*lst_main;
-	t_list	*node;
+	t_list	*lst_map;
+	t_list	*node_map;
 
-	if (lst == NULL)
+	if (lst_src == NULL)
 		return (NULL);
-	i = 0;
-	lst_main = NULL;
-	while (lst != NULL)
+	lst_map = NULL;
+	while (lst_src != NULL)
 	{
-		node = ft_lstnew(ft(i++, lst->content));
-		if (node == NULL)
+		node_map = ft_lstnew(ft(lst_src->content));
+		if (node_map == NULL)
 		{
-			ft_lstclear(&node, del);
-			return (NULL);
+			ft_lstclear(&lst_map, del);
+			break ;
 		}
-		lst = lst->next;
-		ft_lstadd_back(&lst_main, node);
+		lst_src = lst_src->next;
+		ft_lstadd_back(&lst_map, node_map);
 	}
-	return (lst_main);
+	return (lst_map);
 }

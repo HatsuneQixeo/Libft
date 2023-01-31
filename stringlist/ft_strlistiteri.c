@@ -3,21 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlistiteri.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hqixeo <hqixeo@student.42kl.edu.my>               +#+  +:+       +#+        */
+/*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 22:43:17 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/10 22:43:17 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/01/31 18:02:32 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	iteristr_show_str(int i, char *str)
+void	iteristr_putendl(int i, char *str)
 {
-	ft_printf("strlist[%d]: %s\n", i, str);
+	ft_printf("%s\n", str);
+	(void)i;
 }
 
-void	iteristr_show_address(int i, char *str)
+void	iteristr_showstr(int i, char *str)
+{
+	ft_printf("strlist[%d]: [%s]\n", i, str);
+}
+
+void	iteristr_showaddress(int i, char *str)
 {
 	ft_printf("strlist[%d]: %p\n", i, str);
 }

@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 00:48:43 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/10 22:43:17 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/01/31 18:02:28 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/ft_printf.h"
@@ -55,25 +55,4 @@ int	ft_dprintf(int fd, const char *str, ...)
 		return (-1);
 	va_start(args, str);
 	return (ft_printf_core(fd, str, args, ft_putstr_fd));
-}
-
-//endl are somewhat useless for printf under normal condition
-//, since we usually specify what to print and the argument manually
-//, and removing \n is way easier than removing _endl
-int	ft_printf_endl(const char *str, ...)
-{
-	va_list	args;
-
-	va_start(args, str);
-	return (ft_printf_core(1, str, args, ft_putendl_fd));
-}
-
-int	ft_dprintf_endl(int fd, const char *str, ...)
-{
-	va_list	args;
-
-	if (fd < 0 || fd >= 1024)
-		return (-1);
-	va_start(args, str);
-	return (ft_printf_core(fd, str, args, ft_putendl_fd));
 }

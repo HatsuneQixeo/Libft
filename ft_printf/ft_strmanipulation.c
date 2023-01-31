@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:05:33 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/10 22:43:17 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/01/31 18:02:28 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -32,7 +32,6 @@ static int	ft_findsign(const char *str)
 // 	else
 // 		return (0);
 // }
-
 static char	*ft_period(char *str, t_flags *flags)
 {
 	int	len_pad;
@@ -62,8 +61,8 @@ static char	*ft_setsign(char *str, t_flags *flags)
 	if (flags->format == 'u' || flags->format == 'o'
 		|| flags->format == 's' || flags->format == 'b')
 		return (str);
-	c_set = ft_strskipchr(str, ' ');
-	c_sign = ft_strskipchr(c_set, '0');
+	c_set = ft_strskip_chr(str, ' ');
+	c_sign = ft_strskip_chr(c_set, '0');
 	if (*c_sign == '-' || *c_sign == '+'
 		|| (*c_sign == ' ' && ft_isdigit(*(c_sign + 1))))
 		ft_swapchar(c_set, c_sign);
@@ -79,7 +78,7 @@ char	*ft_strfinalize(char *str, t_flags *flags)
 	if (flags->period)
 		str = ft_period(str, flags);
 	if (flags->format == 'b')
-		str = ft_strmodify(str, HEXADECIMAL, ft_strprintable);
+		str = ft_strmodify(ft_strprintable, str, HEXADECIMAL);
 	len_pad = flags->width - ft_strlen(str);
 	if (len_pad <= 0)
 		return (ft_setsign(str, flags));

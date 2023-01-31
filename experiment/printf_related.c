@@ -1,7 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printf_related.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/28 10:04:01 by hqixeo            #+#    #+#             */
+/*   Updated: 2023/01/31 18:02:27 by hqixeo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include <limits.h>
 
-//float makes literally no sense
+/**
+ * @brief Float makes literally no sense
+ * @remark Consider creating a union for experimental purpose and incrementation
+ */
 // {
 	// int	main(void)
 	// {
@@ -32,7 +47,11 @@
 	// }
 // }
 
-//Star flag
+
+/**
+ * @brief Wildcard width
+ * 
+ */
 // {
 	// int	main(void)
 	// {
@@ -58,7 +77,10 @@
 	// }
 // }
 
-//Added b conversion
+/**
+ * @brief Printable conversion as 'b'
+ * 
+ */
 // int	main(void)
 // {
 // 	ft_printf("%b\n", "Hatsune Miku\n");
@@ -89,7 +111,7 @@ size_t	ft_lentotal(t_list *lst)
 	return (sum);
 }
 
-void	ft_freeprint(void *content)
+void	lstdel_print(void *content)
 {
 	free(((t_print *)content)->str);
 }
@@ -98,23 +120,27 @@ int	ft_printall(t_list *lst, int fd)
 {
 	char	*str_all;
 	size_t	len_all;
-	size_t	len_tmp;
+	t_print	*node_print;
 
 	len_all = ft_lentotal(lst);
 	str_all = malloc(len_all);
 	while (lst)
 	{
-		len_tmp = ((t_print *)lst->content)->len;
-		ft_memcpy(str_all, ((t_print *)lst->content)->str, len_tmp);
-		str_all += len_tmp;
+		node_print = lst->content;
+		ft_memcpy(str_all, node_print->str, node_print->len);
+		str_all += node_print->len;
 		lst = lst->next;
 	}
 	write(fd, str_all - len_all, len_all);
 	free(str_all);
-	ft_lstclear(&lst, ft_freeprint);
+	ft_lstclear(&lst, lstdel_print);
 	return (len_all);
 }
 
+/**
+ * @brief Long and short modifier priority and invert
+ * 
+ */
 // int	main(void)
 // {
 // 	// unsigned long	nbr;
@@ -154,7 +180,10 @@ int	ft_printall(t_list *lst, int fd)
 // 	printf("%zx\n", (size_t)-1);
 // }
 
-//Unsigned long and short
+/**
+ * @brief Unsigned long and short
+ * 
+ */
 // int	main(void)
 // {
 // 	ft_printf("H\n");
@@ -176,7 +205,11 @@ int	ft_printall(t_list *lst, int fd)
 // 	printf("%lllu\n", (unsigned long)-1);
 // 	ft_printf("%lllu\n", (unsigned long)-1);
 // }
-// Signed long and short
+
+/**
+ * @brief Signed long and short
+ * 
+ */
 // int	main(void)
 // {
 // 	ft_printf("H\n");
@@ -221,7 +254,10 @@ int notinsubject_o_prec0val0_waf_impl_bench(void){return printf("%#5.o", 0);}
 int notinsubject_o_prec0val0_waflj_bench(void){return printf("%#-5.0o", 0);}
 int notinsubject_o_prec0val0_waflj_impl_bench(void){return printf("%#-5.o", 0);}
 
-//octal
+/**
+ * @brief Octal
+ * 
+ */
 // int	main(void)
 // {
 // 	printf("\nreturn: %d\n", printf("//%#.0o//", 0));
@@ -242,9 +278,12 @@ int notinsubject_o_prec0val0_waflj_impl_bench(void){return printf("%#-5.o", 0);}
 // 	ft_printf("\nft_return: %d\n", ft_printf("ftprintf%02.7o", 3267));
 // 	printf("\nreturn: %d\n", printf("(%#0-8.5o)", 0));
 // 	ft_printf("\nft_return: %d\n", ft_printf("(%#0-8.5o)", 0));
-	
 // }
 
+/**
+ * @brief Invalid fd return value
+ * Found a bug too
+ */
 int	main(void)
 {
 	ft_printf("%d\n", ft_dprintf(3, "Hatsune Miku %s %s\n", "is", "cute"));

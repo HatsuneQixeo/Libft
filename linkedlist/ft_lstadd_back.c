@@ -6,14 +6,16 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:04:17 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/10 22:43:17 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/01/31 18:02:29 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 void	ft_lstadd_back(t_list **lst, t_list *node)
 {
-	if (*lst == NULL)
+	if (node == NULL)
+		return ;
+	else if (*lst == NULL)
 		*lst = node;
 	else
 		ft_lstlast(*lst)->next = node;

@@ -6,12 +6,25 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 21:54:44 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/10 22:43:18 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/01/31 18:02:32 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-// I'm lazy
+/**
+** Although wide usage of it is somewhat discouraged
+** due to extra context needed and improper function template,
+** but it can be serves as a backup plan against norminette.
+** ex:
+	if (condition)
+	{
+		free(str);
+		return (NULL);
+	}
+**	->
+	if (condition)
+		return (ft_strmodify(strmod_clear, str, NULL));
+*/
 char	*strmod_clear(const char *str_clear, const char *str_void)
 {
 	return (NULL);
@@ -19,6 +32,16 @@ char	*strmod_clear(const char *str_clear, const char *str_void)
 	(void)str_void;
 }
 
+char	*strmod_overwrite(const char *dst, const char *src)
+{
+	return (ft_strdup(src));
+	(void)dst;
+}
+
+/**
+** Primarily used for saving memory after shrinking the string
+** Function that could be used to shrink a string for example are memmove
+*/
 char	*strmod_realloc(const char *src, const char *str_void)
 {
 	return (ft_strdup(src));
@@ -33,7 +56,11 @@ char	*strmod_realloc(const char *src, const char *str_void)
 // , but could be use individually as the way it is stated
 char	*strmod_strstrdup(const char *src, const char *find)
 {
-	return (ft_strdup(ft_strstr(src, find)));
+	const char	*substr = ft_strstr(src, find);
+
+	if (substr == NULL)
+		return (NULL);
+	return (ft_strdup(substr));
 }
 
 // Limit the end part
@@ -80,4 +107,18 @@ char	*strmod_substr(const char *src, const char *src_end)
 // 			return ;
 // 		ft_bzero(src_end, ft_strlen(src_end));
 // 	}
+// }
+
+/**
+ * @brief I have no idea this was even possible in the first place
+ * 
+ * @param str1 
+ * @param str2 
+ * @return char* 
+ */
+// char	*strmod_free(const char *str1, const char *str2)
+// {
+// 	free((void *)str1);
+// 	free((void *)str2);
+// 	return (NULL);
 // }

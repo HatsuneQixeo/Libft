@@ -6,11 +6,10 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 08:16:49 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/10 22:43:17 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/01/31 18:02:31 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-
 
 // Error handling
 // If the last is in front of first and they are from the same string
@@ -41,7 +40,7 @@ char	*ft_strinsert(const char *first, const char *insert, const char *last)
 		return (NULL);
 	else if (first == last
 		|| (first + ft_strlen(first) - ft_strlen(last)) != last)
-		return (ft_strmodify(ft_strjoin(first, insert), last, ft_strjoin));
+		return (ft_strmodify(ft_strjoin, ft_strjoin(first, insert), last));
 	else if (first > last)
 		return (NULL);
 	len = ft_strlen(first) + ft_strlen(insert) + 1;
@@ -81,4 +80,5 @@ char	*ft_strinsert_cpp(const char *src, const char *insert, size_t pos)
 	return (str);
 }
 
-char	*ft_strinsert_replace(const char *src, const char *insert, size_t pos, size_t len_remove);
+char	*ft_strinsert_replace(const char *src, const char *insert,
+			size_t pos, size_t len_remove);

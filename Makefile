@@ -1,28 +1,38 @@
 NAME	:=	libft.a
-SRCS	:=	${wildcard */ft_*.c} ${wildcard */*_ft.c}
-OBJS	:=	${patsubst %.c, %.o, ${SRCS}}
-INCLUDE	:=	include/
-HEADER	:=	${wildcard ${INCLUDE}*.h}
 CC		:=	gcc
 CFLAGS	:=	-Wall -Wextra -Werror
+INCLUDE	:=	include/
+HEADER	:=	$(wildcard ${INCLUDE}*.h)
+SRC_DIR	:=	$(patsubst .%, %, $(patsubst ./%, %/, $(shell find . -type d)))
+SRCS	:=	$(wildcard $(foreach dir, ${SRC_DIR}, ${dir}ft_*.c) $(foreach dir, ${SRC_DIR}, ${dir}*_ft.c))
+OBJ_DIR	:=	~obj/
+OBJS	:=	$(addprefix ${OBJ_DIR}, $(patsubst %.c, %.o, ${SRCS}))
+TEST_DIR:=	experiment/
 RM		:=	rm -rf
 
 all : ${NAME}
 
-testdir :
-	@echo ${wildcard */}
+showinclude:
+	@for header in ${HEADER}; do echo $$header; done
+
+showobj:
+	@for obj in ${OBJS}; do echo $$obj; done
+
+showsrc:
+	@for src in ${SRCS}; do echo $$src; done
 
 ${NAME} : ${OBJS}
-	@ar rcs $@ $^
+	@ar rcs $@ $^ && echo Library Made: $@
 
-%.o : %.c ${HEADER}
+${OBJ_DIR}%.o : %.c ${HEADER}
+	@mkdir -p ${@D}
 	${CC} ${CFLAGS} -I ${INCLUDE} -c $< -o $@
 
 clean :
-	${RM} ${OBJS}
+	${RM} ${OBJ_DIR}
 
 fclean : clean
-	${RM} ${NAME} ${wildcard *.miku} ${wildcard *.dSYM}
+	${RM} ${NAME} ${wildcard ${TEST_DIR}*.miku} ${wildcard *.dSYM}
 
 re : fclean all
 
@@ -35,16 +45,5 @@ norme :
 pft : ${NAME}
 	@cp $< libftprintf.a && make -C $@ && $@/test
 	@${RM} libftprintf.a
-
-TEST_DIR	:=	experiment/
-SRCS_TEST	:=	${wildcard ${TEST_DIR}*.c}
-PRG_TEST	:=	${SRCS_TEST:${TEST_DIR}%.c=%.miku}
-
-test : ${NAME}
-	@sh eshperiment.sh test
-
-testsan : ${SRCS} ${TEST_DIR}test.c
-	@${CC} ${CFLAGS} -I ${INCLUDE} $^ -fsanitize=address -g3 -o test.miku 
-	@./test.miku
 
 .PHONY : test pft

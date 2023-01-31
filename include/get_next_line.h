@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 19:41:16 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/10 22:43:17 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/01/31 18:02:33 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef GET_NEXT_LINE_H
@@ -20,11 +20,5 @@
 # endif
 
 char	*get_next_line(int fd);
-
-void	*ft_calloc(size_t len, size_t size);
-char	*ft_strchr(const char *str, int c);
-size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char const *str1, char const *str2);
-char	*ft_substr(char const *str, unsigned int home, size_t len);
 
 #endif

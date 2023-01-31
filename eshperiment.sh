@@ -1,3 +1,4 @@
+# Compile flags
 cc="gcc"
 extra="-Wextra"
 error="-Werror"
@@ -5,14 +6,29 @@ cflags="-Wall $extra $error"
 unused="-Wno-unused"
 unused_set="$unused-parameter $unused-function"
 san="-fsanitize=address -g3"
-src="experiment/$1.c"
+
+# Files
+src="$1"
 libft="libft.a -Iinclude"
 prg="$1.miku"
 compile="$cc $cflags $src $libft -o $prg"
 
+function esh_echo()
+{
+	echo exp: $@
+}
+
 if [ $# -eq 0 ]
 then
-	echo 'Please provide a {name of the source file (without the .c) within the experiment directory} as argument'
+	esh_echo 'Please provide a source file with main for testing'
+	exit 1
+elif ! [[ -e "$src" ]]
+then
+	esh_echo "File not found: $src"
+	exit 1
+elif [[ -d "$src" ]]
+then
+	esh_echo "Is a directory: $src"
 	exit 1
 fi
 
@@ -21,7 +37,7 @@ for arg in "${@:2}"
 do
 	case "$arg" in
 	'nocom')
-		echo 'Skipped compilation'
+		esh_echo 'Skipped compilation'
 		compile=""
 		break
 	;;
@@ -54,7 +70,7 @@ do
 		fi
 	;;
 	*)
-		echo 'Unknown flag:' $arg
+		esh_echo "Unknown flag: $arg"
 		echo 'Available flag are:'
 		echo '	nocom:		Skip compilation'
 		echo "	san:		Compile with $san"
@@ -72,11 +88,11 @@ then
 fi
 
 for msg in "${messages[@]}"
-do	
+do
 	echo $msg
 done
 compile="$cc $cflags $src $libft -o $prg"
-echo 'Compiling with:' $compile
-make && $compile || exit 1 &&
-echo 'Compiled' || exit 1
-./$prg
+
+make && esh_echo $compile && $compile && esh_echo 'Compiled\n' &&
+./"$prg" && rm "$prg" ||
+exit 1

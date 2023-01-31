@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstrlist_fd.c                                 :+:      :+:    :+:   */
+/*   enum.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/01 17:18:20 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/10 22:43:17 by hqixeo           ###   ########.fr       */
+/*   Created: 2023/01/28 10:04:01 by hqixeo            #+#    #+#             */
+/*   Updated: 2023/01/31 18:02:27 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-int	ft_putstrlist_fd(char **strlist, int fd)
+typedef enum val
 {
-	int	len;
+	NUM1,
+	NUM2,
+	NUM3,
+	NUM4,
+	NUM5,
+	NUM6,
+}			e_num;
 
-	if (strlist == NULL)
-		return (0);
-	len = 0;
-	while (*strlist != NULL)
-		len += ft_putendl_fd(*strlist++, fd);
-	return (len);
+int	main(void)
+{
+	e_num	var;
+
+	var = NUM1;
+	printf("e_num size: %lu\n", sizeof(e_num));
+	for (int i = 0; i < 10; i++)
+		printf("var: %d\n", var++);
 }
-
-// int	ft_putstrlist_fd(char **strlist, int fd,
-// 			int (ft_put)(const char *, int))
-// {
-// 	int	len;
-
-// 	len = 0;
-// 	if (strlist)
-// 		while (*strlist)
-// 			len += ft_put(*strlist++, fd);
-// 	return (len);
-// }
