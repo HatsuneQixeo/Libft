@@ -20,6 +20,7 @@
 # include <limits.h>
 # include "ft_printf.h"
 # include "get_next_line.h"
+# include "ansi.h"
 
 typedef char	*(*t_modifier)(const char *str1, const char *str2);
 typedef int		(*t_ftis)(int c);
