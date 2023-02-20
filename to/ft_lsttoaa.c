@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 23:49:07 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/31 18:02:32 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/19 19:06:24 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -18,32 +18,60 @@
  * 			for linear time complexity
  */
 
-char	**ft_lsttoaa(t_list *lst, t_ftlstmap ft_map)
+void	**ft_lsttoaa(t_list *lst, t_ftmap ft_map)
 {
-	char	**strlist;
+	void	**aa;
 	int		y;
 
-	if (lst == NULL)
-		return (NULL);
-	strlist = malloc(sizeof(char *) * (ft_lstsize(lst) + 1));
-	if (strlist == NULL)
+	aa = malloc(sizeof(void *) * (ft_lstsize(lst) + 1));
+	if (aa == NULL)
 		return (NULL);
 	y = 0;
 	while (lst != NULL)
 	{
-		strlist[y] = ft_map(lst->content);
-		y += (strlist[y] != NULL);
+		aa[y] = ft_map(lst->content);
+		y += (aa[y] != NULL);
 		lst = lst->next;
 	}
-	strlist[y] = NULL;
-	return (strlist);
+	aa[y] = NULL;
+	return (aa);
 }
 
-char	**ft_lsttoaa_clear(t_list **lst)
+void	**ft_lsttoaa_clear(t_list **lst)
 {
-	char	**strlist;
+	void	**aa;
 
-	strlist = ft_lsttoaa(*lst, lstmap_copy);
+	aa = ft_lsttoaa(*lst, lstmap_copy);
 	ft_lstclear(lst, NULL);
-	return (strlist);
+	return (aa);
 }
+
+/**
+ * @brief Impossible,
+ * because there was no way to return a type that is not pointer from ft_map
+ * and still know the exact byte to dereference
+ * GUESS WHAT, IT WAS POSSIBLE HAHA
+ * @param lst 
+ * @param ft_map 
+ * @param sizeof_datatype 
+ * @return void* 
+//  */
+// void	*ft_lstto_anyarray(t_list *lst,
+// 			void (*ft_copy)(void *dst, void *src), size_t sizeof_datatype)
+// {
+// 	void	*array;
+// 	int		y;
+
+// 	array = malloc(sizeof_datatype * (ft_lstsize(lst) + 1));
+// 	if (array == NULL)
+// 		return (NULL);
+// 	y = 0;
+// 	while (lst != NULL)
+// 	{
+// 		ft_memcpy(array + y, lst->content, sizeof_datatype);
+// 		y += sizeof_datatype;
+// 		lst = lst->next;
+// 	}
+// 	ft_bzero(array + y, sizeof_datatype);
+// 	return (array);
+// }

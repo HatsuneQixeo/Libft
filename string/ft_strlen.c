@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 15:03:11 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/31 18:02:31 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/19 19:06:23 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -18,7 +18,7 @@ size_t	ft_strlen(const char *str)
 	if (str == NULL)
 		return (0);
 	i = 0;
-	while (*str++ != '\0')
+	while (str[i] != '\0')
 		i++;
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 10:04:01 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/31 18:02:27 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/19 19:06:20 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,9 @@ size_t	ft_lentotal(t_list *lst)
 	return (sum);
 }
 
-void	lstdel_print(void *content)
+void	del_print(void *content)
 {
-	free(((t_print *)content)->str);
+	free(((t_print *)content)->value);
 }
 
 int	ft_printall(t_list *lst, int fd)
@@ -127,13 +127,13 @@ int	ft_printall(t_list *lst, int fd)
 	while (lst)
 	{
 		node_print = lst->content;
-		ft_memcpy(str_all, node_print->str, node_print->len);
+		ft_memcpy(str_all, node_print->value, node_print->len);
 		str_all += node_print->len;
 		lst = lst->next;
 	}
 	write(fd, str_all - len_all, len_all);
 	free(str_all);
-	ft_lstclear(&lst, lstdel_print);
+	ft_lstclear(&lst, del_print);
 	return (len_all);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 00:48:43 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/31 18:02:28 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/19 19:06:21 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/ft_printf.h"
@@ -34,25 +34,29 @@ int	ft_printf_core(int fd, const char *str, va_list args,
 		len_total += ft_conversion(args, &flags);
 		ptr_conversion = ft_strchr(++str, '%');
 	}
-	len_total += ft_put(str, fd);
-	va_end(args);
-	return (len_total);
+	return (len_total + ft_put(str, fd));
 }
 
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
+	int		ret;
 
 	va_start(args, str);
-	return (ft_printf_core(1, str, args, ft_putstr_fd));
+	ret = ft_printf_core(1, str, args, ft_putstr_fd);
+	va_end(args);
+	return (ret);
 }
 
 int	ft_dprintf(int fd, const char *str, ...)
 {
 	va_list	args;
+	int		ret;
 
 	if ((unsigned int)fd >= 1024)
 		return (-1);
 	va_start(args, str);
-	return (ft_printf_core(fd, str, args, ft_putstr_fd));
+	ret = ft_printf_core(fd, str, args, ft_putstr_fd);
+	va_end(args);
+	return (ret);
 }

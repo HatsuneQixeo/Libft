@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 21:54:44 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/31 18:02:32 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/19 19:06:24 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -111,7 +111,7 @@ char	*strmod_substr(const char *src, const char *src_end)
 
 /**
  * @brief I have no idea this was even possible in the first place
- * 
+ * 		Yes, I tested it, no compile error at all
  * @param str1 
  * @param str2 
  * @return char* 

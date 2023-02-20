@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:02:28 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/31 18:02:28 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/19 19:06:20 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,32 +172,34 @@ int	main(void)
 	// printf("creat_ADDFRONT	");
 	// test_creat_clean(creat_addfront, clean_lst);
 
-	// printf("creat_ADDBACK	");
-	// test_creat_clean(creat_addback, clean_lst);
+	printf("creat_ADDBACK	");
+	test_creat_clean(creat_addback, clean_lst);
 
 	// printf("creat_RESIZE	");
 	// test_creat_clean(creat_resize, clean_arr);
+// Deep and shallow
+	{
+		// void	*data;
+		// void	*data_dup;
 
-	void	*data;
-	void	*data_dup;
+		// printf("creat_addfront");
+		// data = timetakes(creat_addfront, NULL);
+		// printf("shallow copy");
+		// data_dup = timetakes(lstdup_shallow, data);
+		// printf("clean shallow");
+		// timetakes(clean_lstnode, &data_dup);
+		// printf("clean deep");
+		// timetakes(clean_lst, &data);
 
-	printf("creat_addfront");
-	data = timetakes(creat_addfront, NULL);
-	printf("shallow copy");
-	data_dup = timetakes(lstdup_shallow, data);
-	printf("clean shallow");
-	timetakes(clean_lstnode, &data_dup);
-	printf("clean deep");
-	timetakes(clean_lst, &data);
-
-	printf("creat_addfront");
-	data = timetakes(creat_addfront, NULL);
-	printf("deep copy");
-	data_dup = timetakes(lstdup_deep, data);
-	printf("clean deep");
-	timetakes(clean_lst, &data_dup);
-	printf("clean deep");
-	timetakes(clean_lst, &data);
+		// printf("creat_addfront");
+		// data = timetakes(creat_addfront, NULL);
+		// printf("deep copy");
+		// data_dup = timetakes(lstdup_deep, data);
+		// printf("clean deep");
+		// timetakes(clean_lst, &data_dup);
+		// printf("clean deep");
+		// timetakes(clean_lst, &data);
+	}
 	char	buffer[1024];
 
 	snprintf(buffer, sizeof(buffer), "leaks -q %d >&2", getpid());

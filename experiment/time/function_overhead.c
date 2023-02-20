@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clear_strlist.c                                 :+:      :+:    :+:   */
+/*   function_overhead.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 21:40:42 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/31 18:02:32 by hqixeo           ###   ########.fr       */
+/*   Created: 2023/02/19 18:54:37 by hqixeo            #+#    #+#             */
+/*   Updated: 2023/02/19 19:06:20 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
+#include <sys/time.h>
 
-void	ft_clear(char **str)
+int	main(void)
 {
-	if (str == NULL)
-		return ;
-	free(*str);
-	*str = NULL;
-}
-
-void	ft_strlistclear(char **strlist)
-{
-	int	y;
-
-	if (strlist == NULL)
-		return ;
-	y = 0;
-	while (strlist[y] != NULL)
-		ft_clear(&strlist[y++]);
-	free(strlist);
+	
 }

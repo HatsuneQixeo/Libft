@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 00:38:28 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/31 18:02:28 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/19 19:06:21 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -26,7 +26,7 @@ char	**ft_file_extract_lst(int fd)
 		ft_lstadd_back(&lst, ft_lstnew(str_part));
 		str_part = get_next_line(fd);
 	}
-	strlist = ft_lsttoaa_clear(&lst);
+	strlist = (char **)ft_lsttoaa_clear(&lst);
 	ft_strlistmod(strlist, "\n", ft_strtrim);
 	return (strlist);
 }

@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 19:50:25 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/31 18:02:31 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/19 19:06:23 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -21,7 +21,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	if (size <= dst_len)
 		return (size + src_len);
 	dst += dst_len;
-	while (*src != '\0' && (dst_len < --size))
+	while (*src != '\0' && --size > dst_len)
 		*dst++ = *src++;
 	*dst = '\0';
 	return (src_len + dst_len);

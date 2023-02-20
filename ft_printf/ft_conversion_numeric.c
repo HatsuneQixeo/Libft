@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 13:49:44 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/31 18:02:28 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/19 19:06:21 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -71,7 +71,7 @@ char	*ft_unsigned(unsigned long long hex, t_flags *flags)
 	else if (flags->format == 'o')
 		str = ft_utoa_base(hex, OCTAL);
 	else
-		return (0);
+		return (NULL);
 	if (*str == '0' || !flags->sharp)
 		return (str);
 	else if (flags->format == 'x')
@@ -80,5 +80,6 @@ char	*ft_unsigned(unsigned long long hex, t_flags *flags)
 		return (ft_strmodify(ft_strrjoin, str, "0X"));
 	else if (flags->format == 'o')
 		return (ft_strmodify(ft_strrjoin, str, "0"));
-	return (str);
+	else
+		return (str);
 }

@@ -6,21 +6,21 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 18:40:45 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/31 18:02:31 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/19 19:06:23 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 char	*ft_strcombine(char *str1, char *str2)
 {
-	char	*str_main;
+	char	*str_combined;
 
 	if (str1 == NULL)
 		return (str2);
 	else if (str2 == NULL)
 		return (str1);
-	str_main = ft_strjoin(str1, str2);
+	str_combined = ft_strjoin(str1, str2);
 	free(str1);
 	free(str2);
-	return (str_main);
+	return (str_combined);
 }

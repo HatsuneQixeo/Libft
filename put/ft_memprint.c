@@ -6,39 +6,37 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 08:16:42 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/31 18:02:30 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/19 19:06:22 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 // ft_printf("is: %.*s\n", bpl, ptr_uc);
-static void	memprint_loop(const void **ptr, size_t bpl, int pad, size_t i_bytes)
+static void	memprint_loop(const void **ptr, size_t bpl, int pad, size_t i)
 {
-	const unsigned char	*ptr_uc;
+	const unsigned char	*ptr_uc = *ptr;
 
 	if (bpl == 0)
 		return ;
-	ptr_uc = *ptr;
-	ft_printf("len(%*d):", pad, i_bytes);
+	ft_printf("ptr[%*d]:", pad, i);
 	while (bpl--)
-		ft_printf(" [%3d]", *ptr_uc++);
+		ft_printf(" {%3d}", *ptr_uc++);
 	*ptr = ptr_uc;
 	ft_printf("\n");
 }
 
 void	ft_memprint(const void *ptr, size_t bytes, size_t data_size)
 {
-	int		pad;
-	size_t	i_bytes;
+	const int	pad = ft_nbrsize(bytes);
+	size_t		i;
 
 	if (data_size == 0 || ptr == NULL)
 		return ;
-	pad = ft_nbrsize(bytes);
-	i_bytes = 1;
+	i = 0;
 	while (bytes >= data_size)
 	{
-		memprint_loop(&ptr, data_size, pad, i_bytes++);
+		memprint_loop(&ptr, data_size, pad, i++);
 		bytes -= data_size;
 	}
-	memprint_loop(&ptr, bytes, pad, i_bytes);
+	memprint_loop(&ptr, bytes, pad, i);
 }

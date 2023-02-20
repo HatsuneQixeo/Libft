@@ -6,24 +6,31 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 10:04:01 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/31 18:02:29 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/19 19:06:22 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstremove(t_list **lst, t_list *node, t_ftlstdel del)
+/**
+ * @brief Delete the given node in linked list
+ * 
+ * @param lst 
+ * @param node 
+ * @param del 
+ */
+void	ft_lstremove(t_list **lst, t_list *node, t_ftdel del)
 {
 	t_list	*tmp;
 
 	if (*lst == NULL)
 		return ;
-	else if (*lst != node)
-		ft_lstremove(&(*lst)->next, node, del);
-	else
+	else if (*lst == node)
 	{
-		tmp = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = tmp;
+		tmp = *lst;
+		*lst = tmp->next;
+		ft_lstdelone(tmp, del);
 	}
+	else
+		ft_lstremove(&(*lst)->next, node, del);
 }

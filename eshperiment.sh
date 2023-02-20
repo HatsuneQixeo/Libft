@@ -4,13 +4,13 @@ extra="-Wextra"
 error="-Werror"
 cflags="-Wall $extra $error"
 unused="-Wno-unused"
-unused_set="$unused-parameter $unused-function"
+unused_set="$unused-parameter $unused-function $unused-variable"
 san="-fsanitize=address -g3"
 
 # Files
 src="$1"
-libft="libft.a -Iinclude"
-prg="$1.miku"
+libft="libft.a -Iinclude -I../include"
+prg="${1//.c/.miku}"
 compile="$cc $cflags $src $libft -o $prg"
 
 function esh_echo()
@@ -92,7 +92,9 @@ do
 	echo $msg
 done
 compile="$cc $cflags $src $libft -o $prg"
-
-make && esh_echo $compile && $compile && esh_echo 'Compiled\n' &&
-./"$prg" && rm "$prg" ||
+# BUG: make is interpreted in the cwd
+# so it could be running another make if not executed in this directory
+make && esh_echo $compile && $compile && esh_echo "Compiled: $prg\\n" &&
+./"$prg" ||
 exit 1
+#  && rm "$prg"

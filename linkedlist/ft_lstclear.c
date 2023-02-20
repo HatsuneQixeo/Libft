@@ -6,12 +6,12 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:04:29 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/01/31 18:02:29 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/19 19:06:22 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, t_ftlstdel del)
+void	ft_lstclear(t_list **lst, t_ftdel del)
 {
 	t_list	*node_next;
 
