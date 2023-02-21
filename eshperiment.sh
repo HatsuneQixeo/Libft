@@ -15,18 +15,18 @@ compile="$cc $cflags $src $libft -o $prg"
 
 function esh_echo()
 {
-	echo exp: $@
+	echo "exp: $@"
 }
 
 if [ $# -eq 0 ]
 then
 	esh_echo 'Please provide a source file with main for testing'
 	exit 1
-elif ! [[ -e "$src" ]]
+elif ! [ -e "$src" ]
 then
 	esh_echo "File not found: $src"
 	exit 1
-elif [[ -d "$src" ]]
+elif [ -d "$src" ]
 then
 	esh_echo "Is a directory: $src"
 	exit 1
@@ -71,12 +71,14 @@ do
 	;;
 	*)
 		esh_echo "Unknown flag: $arg"
-		echo 'Available flag are:'
-		echo '	nocom:		Skip compilation'
-		echo "	san:		Compile with $san"
-		echo "	noextra:	Compile without $extra"
-		echo "	noerror:	Compile without $error"
-		echo "	nounused:	Compile with $unused_set"
+		<< EOF cat
+Available flag are:
+	nocom:		Skip compilation
+	san:		Compile with $san
+	noextra:	Compile without $extra
+	noerror:	Compile without $error
+	nounused:	Compile with $unused_set
+EOF
 		exit 1
 	;;
 	esac
@@ -92,9 +94,8 @@ do
 	echo $msg
 done
 compile="$cc $cflags $src $libft -o $prg"
-# BUG: make is interpreted in the cwd
-# so it could be running another make if not executed in this directory
+# BUG: make is executed in the current working directory, where the bash script is ran
+# so it could be running another make if not executed it's own directory
 make && esh_echo $compile && $compile && esh_echo "Compiled: $prg\\n" &&
-./"$prg" ||
-exit 1
+./"$prg" || exit 1
 #  && rm "$prg"

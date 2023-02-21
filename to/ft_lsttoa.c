@@ -33,7 +33,7 @@ char	*ft_lsttostr(t_list *lst)
 	if (lst == NULL)
 		return (NULL);
 	len = ft_lsttotal_strlen(lst);
-	str = malloc(len) + 1;
+	str = malloc(len + 1);
 	if (str == NULL)
 		return (NULL);
 	str[0] = '\0';

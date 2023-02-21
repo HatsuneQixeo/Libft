@@ -28,6 +28,8 @@ typedef void	(*t_ftlstiter)(int i, void *content);
 typedef void	*(*t_ftmap)(void *content);
 typedef void	(*t_ftdel)(void *content);
 
+typedef const char	*(*t_ftsetname)(const char *name);
+
 typedef struct s_list
 {
 	void			*content;
@@ -61,6 +63,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, t_ftdel del);
 void	ft_lstdelone(t_list *lst, t_ftdel del);
+t_list	*ft_lstextract_front(t_list **lst);
 void	ft_lstiter(t_list *lst, t_ftlstiter ft);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, t_ftmap ft, t_ftdel del);
@@ -183,4 +186,8 @@ char	*strmod_clear(const char *str_clear, const char *str_void);
 char	*strmod_realloc(const char *src, const char *str_void);
 char	*strmod_strstrdup(const char *src, const char *find);
 char	*strmod_substr(const char *src, const char *src_end);
+
+
+void	debuglst_tmpname(t_list *lst, t_ftsetname ft_setname,
+			const char *tmpname,t_ftlstiter ft_debug);
 #endif

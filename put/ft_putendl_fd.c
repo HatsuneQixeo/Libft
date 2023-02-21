@@ -15,5 +15,5 @@ int	ft_putendl_fd(const char *str, int fd)
 {
 	if (str == NULL)
 		return (0);
-	return (ft_strrelease_fd(ft_strjoin(str, "\n"), fd));
+	return (ft_putstr_fd(str, fd) + ft_putchar_fd('\n', fd));
 }
