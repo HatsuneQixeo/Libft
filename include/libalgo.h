@@ -28,6 +28,6 @@ void		*map_copy(void *content);
 void		*map_strdup(void *content);
 
 void		sort_insertion(void *begin, size_t len, size_t data_size,
-			t_ftcmpis ft_swapif);
+				t_ftcmpis ft_swapif);
 
 #endif

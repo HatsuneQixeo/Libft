@@ -14,12 +14,10 @@
 
 # include <stdlib.h>
 
-/* Math */
 int		ft_nbrsize(size_t nbr);
 int		ft_max(int a, int b);
 int		ft_min(int a, int b);
 size_t	ft_min_sizet(size_t a, size_t b);
 int		ft_within(int min, int nbr, int max);
-
 
 #endif
