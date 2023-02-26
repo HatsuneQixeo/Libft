@@ -1,19 +1,26 @@
 NAME		:=	libft.a
+
 CC			:=	gcc
 CFLAGS		:=	-Wall -Wextra -Werror
-HEADER_DIR	:=	include/
-HEADER		:=	$(wildcard ${HEADER_DIR}*.h)
-INCLUDE		:=	-I${HEADER_DIR}
-SRC_DIR		:=	$(patsubst .%, %, $(patsubst ./%, %/, $(shell find . -type d)))
-SRCS		:=	$(wildcard $(foreach dir, ${SRC_DIR}, ${dir}ft_*.c) $(foreach dir, ${SRC_DIR}, ${dir}*_ft.c))
-OBJ_DIR		:=	~obj/
-OBJS		:=	$(patsubst %.c, ${OBJ_DIR}%.o, ${SRCS})
-TEST_DIR	:=	experiment/
+
+SRC_DIR		:=	srcs
+SRCS		:=	$(shell find ${SRC_DIR} -name "ft_*.c") $(shell find ${SRC_DIR} -name "*_ft.c")
+
+INCLUDE		:=	include
+HEADER		:=	$(wildcard ${INCLUDE}/*.h)
+
+OBJ_DIR		:=	~obj
+OBJS		:=	$(patsubst ${SRC_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRCS})
+
 RM			:=	rm -rf
+
+ifdef nohead
+HEADER :=
+endif
 
 all: ${NAME}
 
-showinclude:
+showheader:
 	@for header in ${HEADER}; do echo $$header; done
 
 showobj:
@@ -23,11 +30,11 @@ showsrc:
 	@for src in ${SRCS}; do echo $$src; done
 
 ${NAME}: ${OBJS}
-	@ar rcs $@ $^ && echo Library Made: $@
+	@ar -rcs $@ $^ && echo Library Made: $@
 
-${OBJ_DIR}%.o: %.c ${HEADER}
+${OBJ_DIR}/%.o: ${SRC_DIR}/%.c ${HEADER}
 	@mkdir -p ${@D}
-	${CC} ${CFLAGS} ${INCLUDE} -c $< -o $@
+	${CC} ${CFLAGS} -I${INCLUDE} -c $< -o $@
 
 clean:
 	${RM} ${OBJ_DIR}

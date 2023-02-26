@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 10:04:01 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/19 19:06:20 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/26 19:11:15 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,116 @@ typedef int (*t_ftput)(const char *, int);
 // 	execve("/bin/zsh", argv, envp);
 // }
 
+// int	main(void)
+// {
+// 	void	*ptr;
+
+// 	ptr = ft_strprintable_sign;
+// }
+
+/* Not tested just yet */
+void	ft_lstinsert(t_list **lst, t_list *insert)
+{
+	t_list	*second_half;
+
+	if (insert == NULL)
+		return ;
+	else if (*lst == NULL)
+	{
+		*lst = insert;
+		return ;
+	}
+	second_half = (*lst)->next;
+	(*lst)->next = insert;
+	ft_lstadd_back(lst, second_half);
+}
+
+/*
+	Only calling strlcat once per loop
+	but need extra space for storing joined delimiter and src
+*/
+char	*ft_strmultiply(const char *src, const char *delimiter, unsigned int amount)
+{
+	char			*str;
+	char			*str_joined;
+	const size_t	src_len = ft_strlen(src);
+	const size_t	total_len = src_len * amount
+				+ (ft_strlen(delimiter) * (amount - 1));
+
+	if (amount == 0 || total_len == 0)
+		return (ft_strdup(""));
+	else if (amount == 1)
+		return (ft_strdup(src));
+	str_joined = ft_strjoin(delimiter, src);
+	if (str_joined == NULL)
+		return (NULL);
+	str = malloc(total_len + 1);
+	if (str == NULL)
+	{
+		free(str_joined);
+		return (NULL);
+	}
+	ft_strlcpy(str, src, src_len + 1);
+	while (--amount)
+		ft_strlcat(str, str_joined, total_len + 1);
+	free(str_joined);
+	return (str);
+}
+/* Calling strlcat twice but without memory allocation for anything else */
+// char	*ft_strmultiply(const char *src, const char *delimiter, unsigned int amount)
+// {
+// 	char			*str;
+// 	const size_t	src_len = ft_strlen(src);
+// 	const size_t	total_len = src_len * amount
+// 				+ (ft_strlen(delimiter) * (amount - 1));
+
+// 	if (amount == 0 || total_len == 0)
+// 		return (ft_strdup(""));
+// 	else if (amount == 1)
+// 		return (ft_strdup(src));
+// 	str = malloc(total_len + 1);
+// 	if (str == NULL)
+// 		return (NULL);
+// 	ft_strlcpy(str, src, src_len + 1);
+// 	while (--amount)
+// 	{
+// 		ft_strlcat(str, delimiter, total_len + 1);
+// 		ft_strlcat(str, src, total_len + 1);
+// 	}
+// 	return (str);
+// }
+
+// int	main(void)
+// {
+// 	t_list	*lst;
+// 	char	**aa;
+
+// 	lst = NULL;
+// 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("Miku")));
+// 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("is")));
+// 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("cute")));
+// 	aa = (char **)ft_lsttoaa_clear(&lst);
+// 	ft_strlistiteri(aa, iteristr_showstr);
+// 	system("leaks -q test.miku");
+// }
+
 int	main(void)
 {
-	void	*ptr;
+	char	*arr_str[] = {
+		"Hatsune",
+		"Miku",
+		"is",
+		"cute",
+		NULL
+	};
+	char	**end = arr_str + (sizeof(arr_str) / sizeof(arr_str[0]));
 
-	ptr = ft_strprintable_sign;
+	for (char **it = arr_str; it < end; it++)
+		ft_printf("it: %s\n", *it);
+	sort_insertion(arr_str, end, sizeof(arr_str[0]), swapifstr_ascending);
+	for (char **it = arr_str; it < end; it++)
+		ft_printf("ascend: %s\n", *it);
+	sort_insertion(arr_str, end, sizeof(arr_str[0]), swapifstr_decending);
+	for (char **it = arr_str; it < end; it++)
+		ft_printf("decend: %s\n", *it);
 }

@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:02:28 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/19 19:06:20 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/26 19:11:15 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #ifndef SIZE
 # define SIZE	10000
 #endif
+
+/* Future Test:
+	* Time taken in iterating linked list and array
+*/
 
 typedef void *(*t_fttime)(void *arg);
 
@@ -140,7 +144,7 @@ void	*lstdup_shallow(void *arg)
 	lst_dup = NULL;
 	while (lst != NULL)
 	{
-		ft_lstadd_front(&lst_dup, ft_lstnew(lstmap_copy(lst->content)));
+		ft_lstadd_front(&lst_dup, ft_lstnew(map_copy(lst->content)));
 		lst = lst->next;
 	}
 	return (lst_dup);
@@ -155,7 +159,7 @@ void	*lstdup_deep(void *arg)
 	lst_dup = NULL;
 	while (lst != NULL)
 	{
-		ft_lstadd_front(&lst_dup, ft_lstnew(lstmap_strdup(lst->content)));
+		ft_lstadd_front(&lst_dup, ft_lstnew(map_strdup(lst->content)));
 		lst = lst->next;
 	}
 	return (lst_dup);

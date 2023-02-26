@@ -6,14 +6,16 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 01:03:19 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/19 19:06:25 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/26 19:11:20 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include <unistd.h>
+# include <stdio.h>
 # include <stdarg.h>
-# include "libft.h"
+# include "libto.h"
 
 # define BINARY			"01"
 # define OCTAL			"01234567"
@@ -38,8 +40,18 @@ typedef struct flags
 	int		precision;
 }			t_flags;
 
-int		ft_printf_core(int fd, const char *str, va_list args,
-			int (ft_put)(const char *str, int fd));
+/* ??, Currently in ft_printf/ft_str_utils.c*/
+void	ft_swapchar(char *sign, char *set);
+
+/* Put */
+void	ft_memprint(const void *ptr, size_t bytes, size_t data_size);
+int		ft_putchar_fd(const char c, int fd);
+int		ft_putendl_fd(const char *str, int fd);
+int		ft_putnbr_fd(int n, int fd);
+int		ft_putstr_fd(const char *str, int fd);
+int		ft_strrelease_fd(char *str, int fd);
+
+int		ft_printf_core(int fd, const char *str, va_list args);
 int		ft_printf(const char *str, ...);
 int		ft_dprintf(int fd, const char *str, ...);
 

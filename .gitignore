@@ -3,3 +3,4 @@
 *.o
 *.miku
 libft.a
+.vscode

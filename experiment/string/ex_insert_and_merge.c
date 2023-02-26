@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 10:04:01 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/19 19:06:20 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/26 19:11:15 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,81 +83,6 @@ static void	ft_printinsert(const char *first, const char *insert, const char *la
 // 	ft_printinsert("Hatsune", " ", "Miku");
 // }
 
-//This function takes in an allocated string as first argument
-// and keep joining the rest of the string to the back
-//Passing in only one argument is considered undefined behaviour
-//#Fragile
-char	*ft_strmerge(char *src, ...)
-{
-	va_list	args;
-	char	*str_part;
-
-	if (!src)
-		return (0);
-	va_start(args, src);
-	str_part = va_arg(args, char *);
-	while (str_part)
-	{
-		src = ft_strmodify(ft_strjoin, src, str_part);
-		str_part = va_arg(args, char *);
-	}
-	va_end(args);
-	return (src);
-}
-
-char	*testft_strmerge(char *src, va_list args)
-{
-	char	*str_part;
-
-	str_part = va_arg(args, char *);
-	if (!src)
-		return (0);
-	// ft_printf("add_src: %p\n", src);
-	// ft_printf("src: %s\n", src);
-	// ft_printf("\n");
-	while (str_part)
-	{
-		// if (str_part == MIKU)
-		// 	ft_printf("STR_PART FOUND MIKU NANI\n");
-		// else
-		// {
-		// 	ft_printf("	add_str_part: %p\n", str_part);
-		// 	ft_printf("	str_part: (%s)\n", str_part);
-		// 	ft_printf("\n");
-		// }
-		src = ft_strmodify(ft_strjoin, src, str_part);
-		str_part = va_arg(args, char *);
-	}
-	return (src);
-}
-
-static void	test_strmerge(char *src, ...)
-{
-	va_list	args;
-	char	*merged;
-
-	va_start(args, src);
-	merged = testft_strmerge(src, args);
-	ft_printf("strmerge: %s\n", merged);
-	free(merged);
-	va_end(args);
-}
-
-// int	main(void)
-// {
-// 	char	*asdmiku;
-
-// 	asdmiku = ft_strdup("Miku");
-// 	ft_printf("Hatsune Miku is now at: %p\n", MIKU);
-// 	test_strmerge(ft_strdup("Hatsune"), " ", "Miku", " ", "is", " ", "love", " ", "Hatsune", " ", "Miku", " ", "is", " ", "live");
-// 	test_strmerge(ft_strdup(MIKU));
-// 	test_strmerge(ft_strdup(MIKU), 0);
-// 	test_strmerge(ft_strdup("Hatsune"), " Miku");
-// 	test_strmerge(0);
-// 	//will crash
-// 	// test_strmerge(asdmiku);
-// 	system("leaks -q ex_insert_and_merge.miku");
-// }
 // Cppinsert
 char	*ft_strinsert_re(const char *str, size_t pos, const char *insert);
 char	*ft_prompt(const char *prompt)
@@ -247,21 +172,73 @@ int	replace_prompt(char **input, char **replace, size_t *pos, size_t *len_overwr
 	return (0);
 }
 
-int	main(void)
+// int	main(void)
+// {
+// 	char	*input;
+// 	char	*insert;
+// 	size_t	pos;
+// 	size_t	len_overwrite;
+
+// 	while (replace_prompt(&input, &insert, &pos, &len_overwrite) != -1)
+// 	{
+// 		char	*re = ft_strreplace(input, insert, pos, len_overwrite);
+
+// 		ft_printf("replace: (%s)\n", re);
+// 		free(input);
+// 		free(insert);
+// 		free(re);
+// 	}
+// 	system("leaks -q ex_insert_and_merge.miku");
+// }
+
+static int	merge_strcount(const char *str_action)
 {
-	char	*input;
-	char	*insert;
-	size_t	pos;
-	size_t	len_overwrite;
+	int	amount;
 
-	while (replace_prompt(&input, &insert, &pos, &len_overwrite) != -1)
+	amount = 0;
+	if (str_action == NULL)
+		return (0);
+	while (str_action[amount] != '\0' && ft_strchr("sf", str_action[amount]))
+		amount++;
+	if (str_action[amount] == '\0')
+		return (amount);
+	ft_dprintf(2, "strmerge: Invalid action specifier: %c\n",
+			str_action[amount]);
+	return (-1);
+}
+
+static void	merge_clear(t_list **lst_buffer, const char *str_action)
+{
+	t_list	*node_del;
+
+	str_action--;
+	while (*++str_action != '\0')
 	{
-		char	*re = ft_strreplace(input, insert, pos, len_overwrite);
-
-		ft_printf("replace: (%s)\n", re);
-		free(input);
-		free(insert);
-		free(re);
+		node_del = (*lst_buffer);
+		(*lst_buffer) = (*lst_buffer)->next;
+		if (*str_action == 'f')
+			free(node_del->content);
+		free(node_del);
 	}
-	system("leaks -q ex_insert_and_merge.miku");
+}
+
+/* An inferior version of sprintf I guess */
+char	*ft_strmerge(const char *str_action, ...)
+{
+	va_list	args;
+	t_list	*lst_buffer;
+	char	*str_total;
+	int		amount;
+
+	amount = merge_strcount(str_action);
+	if (amount <= 0)
+		return (NULL);
+	lst_buffer = NULL;
+	va_start(args, str_action);
+	while (amount--)
+		ft_lstadd_back(&lst_buffer, ft_lstnew(va_arg(args, char *)));
+	va_end(args);
+	str_total = ft_lsttostr(lst_buffer);
+	merge_clear(&lst_buffer, str_action);
+	return (str_total);
 }

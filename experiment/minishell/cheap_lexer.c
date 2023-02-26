@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:02:27 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/19 19:06:19 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/26 19:11:14 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**ft_savesplit_set(const char *src, const char *set)
 		ft_lstadd_back(&lst, ft_lstnew(ft_substr(src, 0, len)));
 		src += len;
 	}
-	ft_lstiter(lst, lstiter_showstr);
+	ft_lstiter(lst, show_str);
 	return (ft_lsttoaa_clear(&lst));
 }
 

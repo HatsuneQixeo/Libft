@@ -6,18 +6,21 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 19:41:16 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/19 19:06:25 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/26 19:11:20 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <fcntl.h>
-# include "libft.h"
-
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 39
 # endif
+
+# include <limits.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include "libstring.h"
 
 char	*get_next_line(int fd);
 
