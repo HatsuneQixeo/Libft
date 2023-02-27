@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   lstiter_ft.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 17:05:10 by hqixeo            #+#    #+#             */
+/*   Created: 2023/02/27 10:59:58 by hqixeo            #+#    #+#             */
 /*   Updated: 2023/02/27 10:59:58 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "liblinked_list.h"
+#include "ft_printf.h"
 
-int	ft_lstsize(t_list *lst)
+const char	*lstshow_name(const char *newname)
 {
-	int	i;
+	static const char	*name = "lst";
 
-	i = 0;
-	while (lst != NULL)
-	{
-		i++;
-		lst = lst->next;
-	}
-	return (i);
+	if (newname != NULL)
+		name = newname;
+	return (name);
+}
+
+void	lstshow_str(void *content)
+{
+	ft_dprintf(2, "%s: [%s]\n", lstshow_name(NULL), content);
 }

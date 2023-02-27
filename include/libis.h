@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:52:49 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/26 19:11:20 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/27 11:00:02 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBIS_H
@@ -25,9 +25,9 @@ int		ft_isupper(int c);
 int		ft_strisnumeric(const char *str);
 int		stris_only(const char *str, t_ftis ft_is);
 
-typedef int	(*t_ftcmpis)(const void *p_ref1, const void *p_ref2);
-int		cmpstr_islesser(const void *p_str1, const void *p_str2);
-int		cmpstr_isgreater(const void *p_str1, const void *p_str2);
-int		cmpstr_isprefix(const void *p_str, const void *p_prefix);
+typedef int	(*t_ftcmp)(const void *ref1, const void *ref2);
+int		cmp_strlesser(const void *str1, const void *str2);
+int		cmp_strgreater(const void *str1, const void *str2);
+int		cmp_strprefix(const void *str1, const void *str2);
 
 #endif

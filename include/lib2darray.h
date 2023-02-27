@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:52:49 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/26 19:11:20 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/27 11:00:01 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIB2DARRAY_H
@@ -23,10 +23,10 @@ void	ft_strlistclear(char **strlist);
 
 char	**ft_strlistcombine(char **srclist1, char **srclist2);
 
-void	**ft_aafind(void **aa, const void *ref, t_ftcmpis ft_cmp);
+void	**ft_aafind(void **aa, const void *ref, t_ftcmp ft_cmp);
 char	**ft_strlistfind_prefix(char **strlist, const char *prefix);
 
-void	ft_strlistiteri(char **strlist, t_ftiter ft_iter);
+void	ft_strlistiteri(char **strlist, t_ftiteri ft_iter);
 
 void	ft_strlistmod(char **strlist, const char *mod, t_modifier ft_str);
 

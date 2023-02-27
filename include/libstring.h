@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:52:49 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/26 19:11:20 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/27 11:00:02 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBSTRING_H
@@ -19,7 +19,8 @@
 
 typedef char	*(*t_modifier)(const char *str1, const char *str2);
 
-char	*ft_strcreate(char set, size_t size);
+size_t	ft_arrfind(const void *arr, size_t len,
+			t_ftfind ft_find, const void *ref);
 /* Mem */
 void	ft_bzero(void *str, size_t len);
 void	*ft_calloc(size_t len, size_t size);
@@ -53,6 +54,7 @@ char	*ft_strskip_is(const char *str, t_ftis ft_is);
 char	*ft_strskip_set(const char *str, const char *set);
 
 char	*ft_strdup(const char *str1);
+char	*ft_strcreate(char set, size_t len);
 char	*ft_substr(const char *str, unsigned int home, size_t len);
 char	*ft_strtrim(const char *src, const char *set);
 char	*ft_strinsert(const char *first, const char *insert, const char *last);
@@ -63,7 +65,7 @@ char	*ft_strmerge(const char *str_action, ...);
 char	*ft_strjoin(const char *str1, const char *str2);
 char	*ft_strrjoin(const char *str, const char *add);
 
-void	ft_striteri(char *str, void (*ft)(unsigned int, char *));
+void	ft_striteri(char *str, t_ftiteri ft_iteri);
 char	*ft_strmapi(const char *str, char (*ft)(unsigned int, char));
 
 char	*ft_strprintable(const char *src, const char *base);
@@ -76,5 +78,14 @@ char	*strmod_clear(const char *str_clear, const char *str_void);
 char	*strmod_realloc(const char *src, const char *str_void);
 char	*strmod_strstrdup(const char *src, const char *find);
 char	*strmod_substr(const char *src, const char *src_end);
+
+/* Callback Functions */
+char	mapi_capitalize(unsigned int i, char c);
+char	mapi_lower(unsigned int i, char c);
+char	mapi_miku(unsigned int i, char c);
+char	mapi_upper(unsigned int i, char c);
+
+void	iteri_tolower(unsigned int i, void *str);
+void	iteri_toupper(unsigned int i, void *str);
 
 #endif

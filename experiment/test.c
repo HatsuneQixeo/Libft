@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 10:04:01 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/26 19:11:15 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/27 10:59:56 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,24 +154,3 @@ char	*ft_strmultiply(const char *src, const char *delimiter, unsigned int amount
 // 	ft_strlistiteri(aa, iteristr_showstr);
 // 	system("leaks -q test.miku");
 // }
-
-int	main(void)
-{
-	char	*arr_str[] = {
-		"Hatsune",
-		"Miku",
-		"is",
-		"cute",
-		NULL
-	};
-	char	**end = arr_str + (sizeof(arr_str) / sizeof(arr_str[0]));
-
-	for (char **it = arr_str; it < end; it++)
-		ft_printf("it: %s\n", *it);
-	sort_insertion(arr_str, end, sizeof(arr_str[0]), swapifstr_ascending);
-	for (char **it = arr_str; it < end; it++)
-		ft_printf("ascend: %s\n", *it);
-	sort_insertion(arr_str, end, sizeof(arr_str[0]), swapifstr_decending);
-	for (char **it = arr_str; it < end; it++)
-		ft_printf("decend: %s\n", *it);
-}

@@ -6,39 +6,33 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:52:42 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/26 19:11:15 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/27 10:59:57 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libstring.h"
 
-int	cmpstr_islesser(const void *p_str1, const void *p_str2)
+int	cmp_strlesser(const void *str1, const void *str2)
 {
-	const char	*str1 = *(const char **)p_str1;
-	const char	*str2 = *(const char **)p_str2;
-
-	return (ft_strcmp(str1, str2) < 0);
+	return (ft_strcmp(str1, str2));
 }
 
-int	cmpstr_isgreater(const void *p_str1, const void *p_str2)
+int	cmp_strgreater(const void *str1, const void *str2)
 {
-	const char	*str1 = *(const char **)p_str1;
-	const char	*str2 = *(const char **)p_str2;
-
-	return (ft_strcmp(str1, str2) > 0);
+	return (ft_strcmp(str2, str1));
 }
 
-int	cmpstr_isprefix(const void *p_str, const void *p_prefix)
+int	cmp_strprefix(const void *str1, const void *str2)
 {
-	const char	*it_str = *(const char **)p_str;
-	const char	*it_prefix = *(const char **)p_prefix;
+	const char	*it_str1 = str1;
+	const char	*it_str2 = str2;
 	size_t		i;
 
 	i = 0;
-	while (it_str[i] != '\0' && it_prefix[i] != '\0')
-	{
-		if (it_str[i] != it_prefix[i])
-			return (0);
+	if (str1 == NULL || str2 == NULL)
+		return (0);
+	while (it_str1[i] == it_str2[i] && it_str1[i] != '\0')
 		i++;
-	}
-	return (1);
+	if (it_str1[i] == '\0' || it_str2[i] == '\0')
+		return (0);
+	return (it_str1[i] - it_str2[i]);
 }

@@ -6,21 +6,24 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:07:51 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/26 19:11:15 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/02/27 10:59:56 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lib2darray.h"
 
-void	**ft_aafind(void **aa, const void *ref, t_ftcmpis ft_cmp)
+void	**ft_aafind(void **aa, const void *ref, t_ftcmp ft_cmp)
 {
-	while (*aa != NULL && !ft_cmp(aa, &ref))
-		aa++;
-	if (*aa == NULL)
+	unsigned int	i;
+
+	i = 0;
+	while (aa[i] != NULL && ft_cmp(aa[i], ref))
+		i++;
+	if (aa[i] == NULL)
 		return (NULL);
-	return (aa);
+	return (&aa[i]);
 }
 
 char	**ft_strlistfind_prefix(char **strlist, const char *prefix)
 {
-	return ((char **)ft_aafind((void **)strlist, prefix, cmpstr_isprefix));
+	return ((char **)ft_aafind((void **)strlist, prefix, cmp_strprefix));
 }
