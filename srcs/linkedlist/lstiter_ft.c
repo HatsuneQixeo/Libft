@@ -15,7 +15,7 @@
 
 const char	*lstshow_name(const char *newname)
 {
-	static const char	*name = "lst";
+	static const char	*name = LSTNAME_DEFAULT;
 
 	if (newname != NULL)
 		name = newname;

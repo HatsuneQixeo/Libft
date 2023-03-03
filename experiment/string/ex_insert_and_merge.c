@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../include/libft.h"
 #define MIKU	"Hatsune Miku"
 
 static int	ft_stroverlap(const char *str1, const char *str2)
@@ -191,54 +191,69 @@ int	replace_prompt(char **input, char **replace, size_t *pos, size_t *len_overwr
 // 	system("leaks -q ex_insert_and_merge.miku");
 // }
 
-static int	merge_strcount(const char *str_action)
-{
-	int	amount;
+// static int	merge_strcount(const char *str_action)
+// {
+// 	int	amount;
 
-	amount = 0;
-	if (str_action == NULL)
-		return (0);
-	while (str_action[amount] != '\0' && ft_strchr("sf", str_action[amount]))
-		amount++;
-	if (str_action[amount] == '\0')
-		return (amount);
-	ft_dprintf(2, "strmerge: Invalid action specifier: %c\n",
-			str_action[amount]);
-	return (-1);
+// 	amount = 0;
+// 	if (str_action == NULL)
+// 		return (0);
+// 	while (str_action[amount] != '\0' && ft_strchr("sf", str_action[amount]))
+// 		amount++;
+// 	if (str_action[amount] == '\0')
+// 		return (amount);
+// 	ft_dprintf(2, "strmerge: Invalid action specifier: %c\n",
+// 			str_action[amount]);
+// 	return (-1);
+// }
+
+// static void	merge_clear(t_list **lst_buffer, const char *str_action)
+// {
+// 	t_list	*node_del;
+
+// 	str_action--;
+// 	while (*++str_action != '\0')
+// 	{
+// 		node_del = (*lst_buffer);
+// 		(*lst_buffer) = (*lst_buffer)->next;
+// 		if (*str_action == 'f')
+// 			free(node_del->content);
+// 		free(node_del);
+// 	}
+// }
+
+// /* An inferior version of sprintf I guess */
+// char	*ft_strmerge(const char *str_action, ...)
+// {
+// 	va_list	args;
+// 	t_list	*lst_buffer;
+// 	char	*str_total;
+// 	int		amount;
+
+// 	amount = merge_strcount(str_action);
+// 	if (amount <= 0)
+// 		return (NULL);
+// 	lst_buffer = NULL;
+// 	va_start(args, str_action);
+// 	while (amount--)
+// 		ft_lstadd_back(&lst_buffer, ft_lstnew(va_arg(args, char *)));
+// 	va_end(args);
+// 	str_total = ft_lsttostr(lst_buffer);
+// 	merge_clear(&lst_buffer, str_action);
+// 	return (str_total);
+// }
+
+void	testmerge(void)
+{
+	char	*str_merged;
+
+	str_merged = ft_strmerge("%F %f %%%  %f %f%n", ft_strdup("Hatsune"), ft_strdup("Miku"), ft_strdup("is"), ft_strdup("cute"));
+	ft_printf("merged: [%s]\n", str_merged);
+	free(str_merged);
 }
 
-static void	merge_clear(t_list **lst_buffer, const char *str_action)
+int	main(void)
 {
-	t_list	*node_del;
-
-	str_action--;
-	while (*++str_action != '\0')
-	{
-		node_del = (*lst_buffer);
-		(*lst_buffer) = (*lst_buffer)->next;
-		if (*str_action == 'f')
-			free(node_del->content);
-		free(node_del);
-	}
-}
-
-/* An inferior version of sprintf I guess */
-char	*ft_strmerge(const char *str_action, ...)
-{
-	va_list	args;
-	t_list	*lst_buffer;
-	char	*str_total;
-	int		amount;
-
-	amount = merge_strcount(str_action);
-	if (amount <= 0)
-		return (NULL);
-	lst_buffer = NULL;
-	va_start(args, str_action);
-	while (amount--)
-		ft_lstadd_back(&lst_buffer, ft_lstnew(va_arg(args, char *)));
-	va_end(args);
-	str_total = ft_lsttostr(lst_buffer);
-	merge_clear(&lst_buffer, str_action);
-	return (str_total);
+	testmerge();
+	system("leaks -q ex_insert_and_merge");
 }

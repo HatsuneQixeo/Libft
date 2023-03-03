@@ -27,20 +27,17 @@ size_t	ft_lsttotal_strlen(t_list *lst)
 
 char	*ft_lsttostr(t_list *lst)
 {
-	char	*str;
-	size_t	len;
+	char			*str;
+	const size_t	len = ft_lsttotal_strlen(lst) + 1;
 
-	if (lst == NULL)
-		return (NULL);
-	len = ft_lsttotal_strlen(lst);
-	str = malloc(len + 1);
+	str = malloc(len);
 	if (str == NULL)
 		return (NULL);
 	str[0] = '\0';
 	while (lst != NULL)
 	{
 		if (lst->content != NULL)
-			ft_strlcat(str, lst->content, len + 1);
+			ft_strlcat(str, lst->content, len);
 		lst = lst->next;
 	}
 	return (str);
@@ -53,7 +50,7 @@ char	*ft_lsttostr_delimiter(t_list *lst, const char *delimiter)
 		+ (ft_strlen(delimiter) * (ft_lstsize(lst) - 1)) + 1;
 
 	if (lst == NULL)
-		return (NULL);
+		return (ft_strdup(""));
 	str = malloc(size);
 	if (str == NULL)
 		return (NULL);

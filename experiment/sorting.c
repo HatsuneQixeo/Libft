@@ -26,7 +26,7 @@ void	iteri_strinsertion(unsigned int i, void *p_str)
 	char	**p_it;
 
 	p_it = p_str;
-	while (i-- && ft_strcmp(p_it[i], p_it[i + 1]) < 0)
+	while (i-- && ft_strcmp(p_it[i], p_it[i + 1]) > 0)
 		ft_memswap(&p_it[i], &p_it[i + 1], sizeof(char *));
 }
 

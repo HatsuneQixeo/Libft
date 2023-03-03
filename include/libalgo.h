@@ -15,16 +15,19 @@
 # include "libis.h"
 # include <stdlib.h>
 
+# define ITNAME_DEFAULT	"it"
+
 typedef const char	*(*t_ftsetname)(const char *name);
-typedef void		(*t_ftiteri)(unsigned int i, void *content);
-typedef void		*(*t_ftmap)(void *content);
+const char	*iteri_name(const char *newname);
+
 typedef void		(*t_ftdel)(void *content);
 
-const char	*iteri_name(const char *newname);
+typedef void		(*t_ftiteri)(unsigned int i, void *content);
 void		iteri_putendl(unsigned int i, void *p_str);
 void		iteri_showstr(unsigned int i, void *p_str);
 void		iteri_showaddress(unsigned int i, void *p_ptr);
 
+typedef void		*(*t_ftmap)(void *content);
 void		*map_copy(void *content);
 void		*map_strdup(void *content);
 

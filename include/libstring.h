@@ -60,7 +60,7 @@ char	*ft_strtrim(const char *src, const char *set);
 char	*ft_strinsert(const char *first, const char *insert, const char *last);
 char	*ft_strmodify(t_modifier ft_str, char *src, const char *mod);
 char	*ft_strcombine(char *str1, char *str2);
-char	*ft_strmerge(const char *str_action, ...);
+char	*ft_strmerge(const char *str_format, ...);
 
 char	*ft_strjoin(const char *str1, const char *str2);
 char	*ft_strrjoin(const char *str, const char *add);

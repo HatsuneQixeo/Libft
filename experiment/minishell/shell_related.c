@@ -266,7 +266,7 @@ int	main(void)
 // 	if (**command == '.')
 // 	{
 // 		ft_memmove(*command, (*command) + 1, ft_strlen((*command) + 1) + 1);
-// 		*command = ft_strmodify(*command, ft_getenv(envp, "PWD"), ft_strrjoin);
+// 		*command = ft_strmodify(*command, getvar_value(envp, "PWD"), ft_strrjoin);
 // 		if (!access(*command, F_OK | X_OK))
 // 			ft_dprintf(2, "access yes\n");
 // 		else

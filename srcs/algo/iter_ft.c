@@ -9,11 +9,12 @@
 /*   Updated: 2023/02/27 10:59:57 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libalgo.h"
 #include "ft_printf.h"
 
 const char	*iteri_name(const char *newname)
 {
-	static const char	*name = "it";
+	static const char	*name = ITNAME_DEFAULT;
 
 	if (newname != NULL)
 		name = newname;

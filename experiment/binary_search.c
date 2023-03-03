@@ -36,5 +36,6 @@ int	main(void)
 	int	arr[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11};
 	
 	// SHOW(123);
-	printf("%d\n", *ft_binary_test(arr, arr + 10, 5));
+	printf("target: %p\n", &arr[5]);
+	printf("find  : %p\n", ft_binary_test(arr, arr + 10, 5));
 }

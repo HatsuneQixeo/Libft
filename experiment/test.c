@@ -10,16 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <string.h>
 #include <stdio.h>
-// #include "../../pipex.h"
+#include <string.h>
+#include "libft.h"
 
 char	*ft_strprintable_sign(const char *src);
 typedef int (*t_ftput)(const char *, int);
 
 /* Index shenanigans
-** Think I found this too in a cpp tutorial
+	Think I found this too in a cpp tutorial
 */
 // int main(void)
 // {
@@ -35,7 +34,9 @@ typedef int (*t_ftput)(const char *, int);
 // }
 
 /* Envp
-** It is allocated on stack, meaning modification is allowed, but free is not
+	It is a 2d array allocated on stack
+	meaning modification is allowed toward every character and pointer
+	but not free for obvious reason
 */
 // int	main(int argc, char **argv, char **envp)
 // {
@@ -44,47 +45,6 @@ typedef int (*t_ftput)(const char *, int);
 // 	ft_strlistiteri(envp, iteristr_showstr);
 // 	free(*envp);
 // }
-
-/**
- * @brief perror
- * 
- */
-// int	main(void)
-// {
-// 	// open("Miku existence", O_RDONLY);
-// 	execve("ASD", NULL, NULL);
-// 	ft_dprintf(2, "bash: ");
-// 	perror("Miku existence");
-// }
-
-// int	main(int argc, char **argv, char **envp)
-// {
-// 	execve("/bin/zsh", argv, envp);
-// }
-
-// int	main(void)
-// {
-// 	void	*ptr;
-
-// 	ptr = ft_strprintable_sign;
-// }
-
-/* Not tested just yet */
-void	ft_lstinsert(t_list **lst, t_list *insert)
-{
-	t_list	*second_half;
-
-	if (insert == NULL)
-		return ;
-	else if (*lst == NULL)
-	{
-		*lst = insert;
-		return ;
-	}
-	second_half = (*lst)->next;
-	(*lst)->next = insert;
-	ft_lstadd_back(lst, second_half);
-}
 
 /*
 	Only calling strlcat once per loop
@@ -117,7 +77,8 @@ char	*ft_strmultiply(const char *src, const char *delimiter, unsigned int amount
 	free(str_joined);
 	return (str);
 }
-/* Calling strlcat twice but without memory allocation for anything else */
+
+/* No memory allocation for anything else but calling strlcat twice */
 // char	*ft_strmultiply(const char *src, const char *delimiter, unsigned int amount)
 // {
 // 	char			*str;
@@ -127,8 +88,6 @@ char	*ft_strmultiply(const char *src, const char *delimiter, unsigned int amount
 
 // 	if (amount == 0 || total_len == 0)
 // 		return (ft_strdup(""));
-// 	else if (amount == 1)
-// 		return (ft_strdup(src));
 // 	str = malloc(total_len + 1);
 // 	if (str == NULL)
 // 		return (NULL);
