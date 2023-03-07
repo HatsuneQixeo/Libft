@@ -40,13 +40,19 @@ int	cmp_strprefix(const void *str, const void *prefix)
 
 int	cmp_strsuffix(const void *str, const void *suffix)
 {
-	const char	*suffix_end = ft_strchr(suffix, '\0');
-	const char	*str_end = ft_strchr(str, '\0');
+	const char	*it_str = str;
+	const char	*it_suffix = suffix;
+	size_t		len_str;
+	size_t		len_suffix;
 
-	while (str_end != str && suffix_end != suffix
-		&& *--str_end == *--suffix_end)
-		;
-	if (suffix_end == suffix && *suffix_end == *str_end)
-		return (0);
-	return (*str_end - *suffix_end);
+	len_str = ft_strlen(it_str);
+	len_suffix = ft_strlen(it_suffix);
+	while ((len_str-- != 0) + (len_suffix-- != 0) == 2)
+	{
+		if (it_str[len_str] != it_suffix[len_suffix])
+			return (it_str[len_str] - it_suffix[len_suffix]);
+	}
+	if (len_str == SIZE_MAX && len_suffix != SIZE_MAX)
+		return (-it_suffix[len_suffix]);
+	return (0);
 }
