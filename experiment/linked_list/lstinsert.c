@@ -1,10 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lstinsert.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/06 22:23:58 by hqixeo            #+#    #+#             */
+/*   Updated: 2023/03/07 15:22:09 by hqixeo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 /* Not tested just yet */
-void	ft_lstinsert(t_list **lst, t_list *insert)
+void	ft_lstadd_next(t_list **lst, t_list *insert)
 {
-	t_list	*second_half;
-
 	if (insert == NULL)
 		return ;
 	else if (*lst == NULL)
@@ -12,7 +22,25 @@ void	ft_lstinsert(t_list **lst, t_list *insert)
 		*lst = insert;
 		return ;
 	}
-	second_half = (*lst)->next;
+	ft_lstadd_back(&insert, (*lst)->next);
 	(*lst)->next = insert;
-	ft_lstadd_back(lst, second_half);
+}
+
+int	main(void)
+{
+	t_list	*lst;
+
+	lst = NULL;
+	ft_lstadd_next(&lst, ft_lstnew("Hatsune"));
+	ft_lstiter(lst, lstshow_str);
+	ft_lstadd_front(&lst->next, ft_lstnew("cute"));
+	ft_lstiter(lst, lstshow_str);
+	ft_lstadd_front(&lst->next, ft_lstnew("is"));
+	ft_lstiter(lst, lstshow_str);
+	ft_lstadd_front(&lst->next, ft_lstnew("Miku"));
+	ft_lstiter(lst, lstshow_str);
+	// ft_lstadd_next(&lst, ft_lstnew("cute"));
+	// ft_lstadd_next(&lst, ft_lstnew("is"));
+	// ft_lstadd_next(&lst, ft_lstnew("Miku"));
+	ft_lstiter(lst, lstshow_str);
 }

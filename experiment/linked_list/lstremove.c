@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 10:04:01 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/27 10:59:55 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/03/07 15:22:09 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,42 @@ void	ft_lstremove(t_list **lst, t_list *node, t_ftdel del);
 // 	ft_lstdelone(pop, del);
 // }
 
+// int	main(void)
+// {
+// 	t_list	*lst;
+
+// 	lst = NULL;
+// 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("not")));
+// 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("Hatsune Miku")));
+// 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("not")));
+// 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("not")));
+// 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("is")));
+// 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("not")));
+// 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("cute")));
+// 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("not")));
+// 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("not")));
+// 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("not")));
+// 	ft_lstiter(lst, show_address);
+// 	for (t_list *it = lst; it != NULL; )
+// 	{
+// 		t_list	*next = it->next;
+// 		if (!ft_strcmp(it->content, "not"))
+// 			ft_lstremove(&lst, it, free);
+// 		it = next;
+// 	}
+// 	ft_printf("\n");
+// 	ft_lstremove(&lst, NULL, free);
+// 	ft_lstremove(&lst, (void *)1, free);
+// 	ft_lstiter(lst, show_str);
+// 	ft_lstiter(lst, show_address);
+// 	ft_lstclear(&lst, free);
+// }
+
+int	cmp_strcmp(const void *str1, const void *str2)
+{
+	return (ft_strcmp(str1, str2));
+}
+
 int	main(void)
 {
 	t_list	*lst;
@@ -38,18 +74,7 @@ int	main(void)
 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("not")));
 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("not")));
 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("not")));
-	ft_lstiter(lst, show_address);
-	for (t_list *it = lst; it != NULL; )
-	{
-		t_list	*next = it->next;
-		if (!ft_strcmp(it->content, "not"))
-			ft_lstremove(&lst, it, free);
-		it = next;
-	}
-	ft_printf("\n");
-	ft_lstremove(&lst, NULL, free);
-	ft_lstremove(&lst, (void *)1, free);
-	ft_lstiter(lst, show_str);
-	ft_lstiter(lst, show_address);
-	ft_lstclear(&lst, free);
+	ft_lstremoveif(&lst, "not", cmp_strcmp, free);
+	ft_lstiter(lst, lstshow_str);
+	system("leaks -q lstremove.miku");
 }

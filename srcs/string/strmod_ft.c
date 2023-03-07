@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 21:54:44 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/27 11:00:01 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/03/07 15:22:15 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -32,9 +32,29 @@ char	*strmod_clear(const char *str_clear, const char *str_void)
 	(void)str_void;
 }
 
-char	*strmod_overwrite(const char *dst, const char *src)
+char	*strmod_transfrom(const char *from, const char *to)
 {
-	return (ft_strdup(src));
+	return (ft_strdup(to));
+	(void)from;
+}
+
+/**
+ * char	*tmp;
+ * 
+ * tmp = newstr(str);
+ * free(str);
+ * str = tmp;
+ * 
+ * ->
+ * 
+ * str = ft_strmodify(strmod_replace, str, newstr(str));
+ * 
+ * 
+ * 
+ */
+char	*strmod_replace(const char *dst, const char *src)
+{
+	return ((char *)src);
 	(void)dst;
 }
 
@@ -54,14 +74,14 @@ char	*strmod_realloc(const char *src, const char *str_void)
 // Find the string and duplicate it
 // , dedicated for strmodify
 // , but could be use individually as the way it is stated
-char	*strmod_strstrdup(const char *src, const char *find)
-{
-	const char	*substr = ft_strstr(src, find);
+// char	*strmod_strstrdup(const char *src, const char *find)
+// {
+// 	const char	*substr = ft_strstr(src, find);
 
-	if (substr == NULL)
-		return (NULL);
-	return (ft_strdup(substr));
-}
+// 	if (substr == NULL)
+// 		return (NULL);
+// 	return (ft_strdup(substr));
+// }
 
 // Limit the end part
 // BIGNOTE: This is an experimental function
@@ -82,14 +102,14 @@ char	*strmod_strstrdup(const char *src, const char *find)
 // Note: Passing the same address will result in the src being emptied
 // , could be redifined to return the original string instead
 // , (off the original intention)
-char	*strmod_substr(const char *src, const char *src_end)
-{
-	if (src == NULL)
-		return (NULL);
-	else if (src_end == NULL || src_end < src || !ft_strstr(src, src_end))
-		return (ft_strdup(src));
-	return (ft_substr(src, 0, src_end - src));
-}
+// char	*strmod_substr(const char *src, const char *src_end)
+// {
+// 	if (src == NULL)
+// 		return (NULL);
+// 	else if (src_end == NULL || src_end < src || !ft_strstr(src, src_end))
+// 		return (ft_strdup(src));
+// 	return (ft_substr(src, 0, src_end - src));
+// }
 
 // Alternative that doesn't require external function
 // {

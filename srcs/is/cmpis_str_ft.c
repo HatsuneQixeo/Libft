@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:52:42 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/27 10:59:57 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/03/07 15:22:12 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libstring.h"
@@ -35,4 +35,15 @@ int	cmp_strprefix(const void *str1, const void *str2)
 	if (it_str1[i] == '\0' || it_str2[i] == '\0')
 		return (0);
 	return (it_str1[i] - it_str2[i]);
+}
+
+int	cmp_strsuffix(const void *str, const void *suffix)
+{
+	const char	*suffix_end = ft_strchr(suffix, '\0');
+	const char	*str_end = ft_strchr(str, '\0');
+
+	while (str_end != str && suffix_end != suffix
+		&& *--str_end == *--suffix_end)
+		;
+	return (*str_end - *suffix_end);
 }

@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 08:16:51 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/27 11:00:00 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/03/07 15:22:14 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libto.h"
@@ -51,7 +51,7 @@ char	*ft_strprintable(const char *src, const char *base)
 	if (src == NULL || base == NULL || !ft_validbase(base))
 		return (NULL);
 	len_pad = ft_padsize(base);
-	len_printable = ft_strchr_countis(src, ft_isprint);
+	len_printable = ft_strcount_chris(src, ft_isprint);
 	str_main = malloc(len_printable
 			+ ((ft_strlen(src) - len_printable) * (len_pad + 1)) + 1);
 	if (str_main == NULL)

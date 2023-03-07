@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:52:49 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/27 11:00:02 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/03/07 15:22:17 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBALGO_H
@@ -33,5 +33,8 @@ void		*map_strdup(void *content);
 
 typedef int			(*t_ftfind)(unsigned int i, const void *arr,
 			const void *ref);
+
+void		sort_insertion(void *begin, size_t len, size_t data_size,
+				t_ftcmp ft_swapif);
 
 #endif

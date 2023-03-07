@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:52:49 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/27 11:00:01 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/03/07 15:22:17 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIB2DARRAY_H
@@ -32,5 +32,7 @@ void	ft_strlistmod(char **strlist, const char *mod, t_modifier ft_str);
 
 void	**ft_aamap(void **src, t_ftmap ft_map);
 char	**ft_strlistdup(char **strlist);
+
+void	ft_aaremove(void **aa, t_ftcmp ft_cmp, const void *ref, t_ftdel ft_del);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:52:49 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/27 11:00:02 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/03/07 15:22:17 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBSTRING_H
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include "libis.h"
 # include "libalgo.h"
+
+# define NPOS	SIZE_T_MAX
 
 typedef char	*(*t_modifier)(const char *str1, const char *str2);
 
@@ -39,9 +41,11 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 
 char	*ft_strchr(const char *str, int c);
-size_t	ft_strchr_countis(const char *str, t_ftis ft_is);
-size_t	ft_strchr_countset(const char *str, const char *set);
+char	*ft_strchr_is(const char *str, t_ftis ft_is);
 char	*ft_strrchr(const char *str, int c);
+
+size_t	ft_strcount_chris(const char *str, t_ftis ft_is);
+size_t	ft_strcount_chrset(const char *str, const char *set);
 
 int		ft_strcmp(const char *str1, const char *str2);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
@@ -78,6 +82,7 @@ char	*strmod_clear(const char *str_clear, const char *str_void);
 char	*strmod_realloc(const char *src, const char *str_void);
 char	*strmod_strstrdup(const char *src, const char *find);
 char	*strmod_substr(const char *src, const char *src_end);
+char	*strmod_replace(const char *dst, const char *src);
 
 /* Callback Functions */
 char	mapi_capitalize(unsigned int i, char c);

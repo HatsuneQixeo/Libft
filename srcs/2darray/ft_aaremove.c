@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr_countis.c                                :+:      :+:    :+:   */
+/*   ft_aaremove.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 08:16:44 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/27 10:59:59 by hqixeo           ###   ########.fr       */
+/*   Created: 2023/03/06 22:24:00 by hqixeo            #+#    #+#             */
+/*   Updated: 2023/03/07 15:22:11 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libstring.h"
 
-size_t	ft_strchr_countis(const char *str, t_ftis ft_is)
+#include "libft.h"
+
+void	ft_aaremove(void **aa, t_ftcmp ft_cmp, const void *ref, t_ftdel ft_del)
 {
-	size_t	count;
+	unsigned int	i;
 
-	if (str == NULL || ft_is == NULL)
-		return (0);
-	count = 0;
-	str--;
-	while (*++str != '\0')
-		if (ft_is(*str))
-			count++;
-	return (count);
+	i = 0;
+	while (aa[i] != NULL)
+	{
+		if (!ft_cmp(aa[i], ref))
+		{
+			if (ft_del)
+				ft_del(aa[i]);
+			ft_memmove(aa, aa + 1, sizeof(void *) * (ft_aasize(aa + 1) + 1));
+		}
+		else
+			i++;
+	}
 }

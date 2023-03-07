@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mycat.c                                            :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 18:52:41 by hqixeo            #+#    #+#             */
+/*   Created: 2023/03/06 22:23:59 by hqixeo            #+#    #+#             */
 /*   Updated: 2023/03/07 15:22:10 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	main(void)
+char	*ft_patsubst(const char *str, const char *replace, const char *with)
 {
-	while (1)
-	{
-		char	*input = get_next_line(0);
+	t_list			*lst_buffer;
+	const char		*find = ft_strstr(str, replace);
+	const size_t	len_replace = ft_strlen(replace);
 
-		ft_dprintf(2, "input: ");
-		if (input == NULL)
-		{
-			ft_dprintf(2, "mycat: eof\n");
-			break ;
-		}
-		ft_dprintf(2, "writing: %s", input);
-		if (ft_printf("%s", input) < 0)
-			perror("mycat");
-		free(input);
+	lst_buffer = NULL;
+	while (find != NULL)
+	{
+		ft_lstadd_back(&lst_buffer, ft_lstnew(ft_substr(str, 0, find - str)));
+		str = find + len_replace;
+		find = ft_strstr(str, replace);
 	}
+	ft_lstadd_back(&lst_buffer, ft_lstnew(ft_strdup(str)));
+	return (ft_lsttostr_delimiter_clear(&lst_buffer, with));
 }
-// experiment/mycat.miku

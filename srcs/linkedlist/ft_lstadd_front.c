@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:04:23 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/27 10:59:58 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/03/07 15:22:12 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "liblinked_list.h"
@@ -15,6 +15,6 @@ void	ft_lstadd_front(t_list **lst, t_list *node)
 {
 	if (node == NULL)
 		return ;
-	node->next = *lst;
+	ft_lstadd_back(&node->next, *lst);
 	*lst = node;
 }

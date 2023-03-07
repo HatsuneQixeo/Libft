@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strmerge.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/06 22:24:04 by hqixeo            #+#    #+#             */
+/*   Updated: 2023/03/07 15:22:14 by hqixeo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdarg.h>
 #include "libstring.h"
 #include "liblinked_list.h"
@@ -32,7 +44,7 @@ char	*ft_strmerge(const char *str_format, ...)
 		ft_lstadd_back(&lst_buffer, ft_lstnew(
 				ft_substr(str_format, 0, format_specifier - str_format)));
 		ft_lstadd_back(&lst_buffer, ft_lstnew(
-			strmerge_format(args, format_specifier[1])));
+				strmerge_format(args, format_specifier[1])));
 		str_format = format_specifier + 2;
 		format_specifier = ft_strchr(str_format, '%');
 	}

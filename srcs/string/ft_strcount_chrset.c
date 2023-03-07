@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr_countset.c                               :+:      :+:    :+:   */
+/*   ft_strcount_chrset.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 08:16:47 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/27 10:59:59 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/03/07 15:22:13 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libstring.h"
 
-size_t	ft_strchr_countset(const char *str, const char *set)
+size_t	ft_strcount_chrset(const char *str, const char *set)
 {
 	size_t	count;
 

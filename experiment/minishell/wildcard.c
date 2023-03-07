@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wildcard.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/06 22:23:59 by hqixeo            #+#    #+#             */
+/*   Updated: 2023/03/07 15:22:10 by hqixeo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include <dirent.h>
-#include <libc.h>
 
 void	showdir(void *dirent)
 {
@@ -40,117 +51,99 @@ char	**dir_content(const char *path)
 	return ((char **)ft_lsttoaa_clear(&lst_buffer));
 }
 
-
-/*
-	*.*	: 
-	.*	: 
-	*.	: ignores .git .gitignore, basically ignores if nothing's in front
-	Change of plan, The list will be assumed to be like follow:
-	(str) || (wildcard str)
-	(wildcard str)
-	(wildcard str)
-	(wildcard str)
-
-	Or maybe?: This is better, the lexing will be easier too
-	(wildcard nothing str) || (wildcard something str)
-	(wildcard str)
-	(wildcard str)
-	(wildcard str)
-*/
-int	it_match(t_list *lst_pattern, const char *str)
+int	wildcard_substitution(t_list *lst_pattern, const char *str)
 {
-	const char	*str_content = lst_pattern->content;
-	const char	*find = ft_strstr(str, str_content);
+	const char	*find;
 
-	if ((find == str && str_content[0] != '\0') || find == NULL)
+	if (cmp_strprefix(str, lst_pattern->content))
 		return (-1);
-	while (lst_pattern != NULL && find != NULL)
+	if (lst_pattern->next == NULL)
+		return (0);
+	find = &str[ft_strlen(lst_pattern->content)];
+	lst_pattern = lst_pattern->next;
+	while (lst_pattern->next != NULL)
 	{
-		str_content = lst_pattern->content;
-		find = ft_strstr(find, str_content);
+		find = ft_strstr(find, lst_pattern->content);
 		if (find == NULL)
 			return (-1);
-		find += ft_strlen(str_content);
+		find += ft_strlen(lst_pattern->content);
 		lst_pattern = lst_pattern->next;
 	}
+	if (cmp_strsuffix(find, lst_pattern->content))
+		return (-1);
 	return (0);
 }
-
-// int	pattern_matching(t_list *lst_pattern, const char *str)
-// {
-// 	const char	*str_content;
-
-// 	if (str == NULL)
-// 		return (-1);
-// 	else if (lst_pattern == NULL)
-// 	{
-
-// 		return (0);
-// 	}
-// 	str_content = lst_pattern->content;
-// 	/*
-// 		Need a more reliable way of differenciating
-// 			asterisk character and wildcard operator
-// 	*/
-// 	if (!ft_strcmp(str_content, "*"))
-// 	{
-// 		if (lst_pattern->next == NULL)
-// 			return (0);
-// 		const char	*next_content = lst_pattern->next->content;
-// 		/*
-// 			Might need a while loop to discard all duplicate wildcard operator
-// 			if the given list is not unique
-// 		*/
-
-// 		return (pattern_matching(lst_pattern->next->next, ft_strstr(str, next_content)));
-// 	}
-// 	else
-// 	{
-// 		if (cmp_strprefix(str, str_content))
-// 			return (-1);
-// 		printf("str: %s\n", str);
-// 		printf("str_content: %s\n", str_content);
-// 		return (pattern_matching(lst_pattern->next, str + ft_strlen(str_content)));
-// 	}
-// }
 
 char	**wildcard(t_list *lst_pattern)
 {
 	char	**strlist_content;
 
 	strlist_content = dir_content(".");
-	ft_strlistiteri(strlist_content, iteri_showstr);
+	if (lst_pattern == NULL)
+		return (strlist_content);
+	if (((const char *)lst_pattern->content)[0] != '.')
+		ft_aaremove((void **)strlist_content, cmp_strprefix, ".", NULL);
 	for (unsigned int i = 0; strlist_content[i] != NULL; i++)
 	{
-		const char	*msg;
+		const char	*colour;
 
-		if (it_match(lst_pattern, strlist_content[i]) == -1)
-			msg = RED"Not Matched"DEF;
+		if (wildcard_substitution(lst_pattern, strlist_content[i]) == -1)
+			colour = RED;
 		else
-			msg = GREEN"Matched"DEF;
-		ft_printf("%-18s is %s\n", strlist_content[i], msg);
+			colour = GREEN;
+		ft_printf("%s%-18s\n"DEF, colour, strlist_content[i]);
 	}
 	free(strlist_content);
 	return (NULL);
-	(void)lst_pattern;
 }
 
-int	main(void)
+t_list	*wildcard_lexer(const char *str)
+{
+	const char	*wildcard = ft_strchr(str, '*');
+	t_list		*lst_pattern;
+
+	lst_pattern = NULL;
+	while (wildcard != NULL)
+	{
+		ft_lstadd_back(&lst_pattern, ft_lstnew(ft_substr(str, 0, wildcard - str)));
+		str = wildcard + 1;
+		wildcard = ft_strchr(str, '*');
+	}
+	ft_lstadd_back(&lst_pattern, ft_lstnew(ft_strdup(str)));
+	return (lst_pattern);
+}
+
+int	main(int argc, char **argv)
 {
 	char	**strlist_matched;
 	t_list	*lst_pattern;
 
 	lst_pattern = NULL;
-	ft_lstadd_back(&lst_pattern, ft_lstnew(""));
-	ft_lstadd_back(&lst_pattern, ft_lstnew("."));
-	// ft_lstadd_back(&lst_pattern, ft_lstnew("."));
-	strlist_matched = wildcard(lst_pattern);
-	if (strlist_matched == NULL)
+	if (argc == 1)
 	{
-		system("leaks -q wildcard.miku");
-		return (1);
+		/* Any (non hidden) */
+		ft_lstadd_back(&lst_pattern, ft_lstnew(""));
+
+		/* with . prefix only (include hidden) */
+		// ft_lstadd_back(&lst_pattern, ft_lstnew("."));
+
+		/* . suffix */
+		// ft_lstadd_back(&lst_pattern, ft_lstnew(""));
+		// ft_lstadd_back(&lst_pattern, ft_lstnew("."));
+
+		/* Same, prefix */
+		// ft_lstadd_back(&lst_pattern, ft_lstnew("."));
+		// ft_lstadd_back(&lst_pattern, ft_lstnew(""));
 	}
-	ft_strlistiteri(strlist_matched, iteri_showstr);
-	ft_lstclear(&lst_pattern, NULL);
+	else
+	{
+		// while (*++argv != NULL)
+		// 	ft_lstadd_back(&lst_pattern, ft_lstnew(*argv));
+		lst_pattern = wildcard_lexer(argv[1]);
+		ft_lstiter(lst_pattern, lstshow_str);
+	}
+	strlist_matched = wildcard(lst_pattern);
+	if (strlist_matched != NULL)
+		ft_strlistiteri(strlist_matched, iteri_showstr);
 	system("leaks -q wildcard.miku");
 }

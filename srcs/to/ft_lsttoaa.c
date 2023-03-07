@@ -6,16 +6,20 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 23:49:07 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/02/27 11:00:01 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/03/07 15:22:15 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libto.h"
 
 /**
  * @brief Maybe a ft_lsttoaa_reverse for a reversed linked list?
- * 	Example where there would be reversed linked list:
- * 		Used ft_lstadd_front instead of ft_lstadd_back in loop
- * 			for linear time complexity
+ * Example where there would be reversed linked list:
+ * Used ft_lstadd_front instead of ft_lstadd_back in loop
+ * for linear time complexity
+ *
+ * Not sure about that idea,
+ * I probably need to move the whole array
+ * if the map function return NULL somewhere
  */
 
 void	**ft_lsttoaa(t_list *lst, t_ftmap ft_map)

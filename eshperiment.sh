@@ -84,18 +84,24 @@ EOF
 	esac
 done
 
-if [ -z "$compile" ]
+if [ -n "$compile" ]
 then
-	exit 1
+	compile="$cc $cflags $src $libft -o $prg"
+	for msg in "${messages[@]}"
+	do
+		echo $msg
+	done
+	make &&
+	esh_echo $compile &&
+	$compile &&
+	esh_echo "Compiled: $prg"'\n' &&
+	mv "$prg" .
 fi
 
-for msg in "${messages[@]}"
-do
-	echo $msg
-done
-compile="$cc $cflags $src $libft -o $prg"
+[ $? -ne 0 ] && exit 1
+
+./"$(basename "$prg")"
+
 # BUG: make is executed in the current working directory, where the bash script is ran
 # so it could be running another make if not executed it's own directory
-make && esh_echo $compile && $compile && esh_echo "Compiled: $prg\\n" &&
-./"$prg" || exit 1
 #  && rm "$prg"
