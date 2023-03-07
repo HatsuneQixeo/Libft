@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libstring.h"
+#include "ft_printf.h"
 
 int	cmp_strlesser(const void *str1, const void *str2)
 {
@@ -21,20 +22,20 @@ int	cmp_strgreater(const void *str1, const void *str2)
 	return (ft_strcmp(str2, str1));
 }
 
-int	cmp_strprefix(const void *str1, const void *str2)
+int	cmp_strprefix(const void *str, const void *prefix)
 {
-	const char	*it_str1 = str1;
-	const char	*it_str2 = str2;
+	const char	*it_str = str;
+	const char	*it_prefix = prefix;
 	size_t		i;
 
 	i = 0;
-	if (str1 == NULL || str2 == NULL)
+	if (str == NULL || prefix == NULL)
 		return (0);
-	while (it_str1[i] == it_str2[i] && it_str1[i] != '\0')
+	while (it_str[i] == it_prefix[i] && it_str[i] != '\0')
 		i++;
-	if (it_str1[i] == '\0' || it_str2[i] == '\0')
+	if (it_prefix[i] == '\0')
 		return (0);
-	return (it_str1[i] - it_str2[i]);
+	return (it_str[i] - it_prefix[i]);
 }
 
 int	cmp_strsuffix(const void *str, const void *suffix)
@@ -45,5 +46,7 @@ int	cmp_strsuffix(const void *str, const void *suffix)
 	while (str_end != str && suffix_end != suffix
 		&& *--str_end == *--suffix_end)
 		;
+	if (suffix_end == suffix && *suffix_end == *str_end)
+		return (0);
 	return (*str_end - *suffix_end);
 }

@@ -28,7 +28,7 @@ int		stris_only(const char *str, t_ftis ft_is);
 typedef int	(*t_ftcmp)(const void *ref1, const void *ref2);
 int		cmp_strlesser(const void *str1, const void *str2);
 int		cmp_strgreater(const void *str1, const void *str2);
-int		cmp_strprefix(const void *str1, const void *str2);
+int		cmp_strprefix(const void *str, const void *prefix);
 int		cmp_strsuffix(const void *str, const void *suffix);
 
 #endif
