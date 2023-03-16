@@ -30,7 +30,12 @@
 
 int	main(int argc, char **argv)
 {
-	if (access(argv[0], F_OK) == -1)
-		perror(argv[0]);
+	const char	*path = argv[1];
+
+	printf("path: %s\n", path);
+	if (access(path, F_OK) == -1)
+		perror(path);
+	if (access(path, F_OK | X_OK) == -1)
+		perror(path);
 	(void)argc;
 }

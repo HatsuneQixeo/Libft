@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 10:20:59 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/03/07 15:22:08 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/03/16 09:26:39 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,15 @@ int main(void)
 
 	// grid(background_colour);
 	// grid(text_colour);
-	for (int i = 0; i < 256; i++)
+	for (int i = 0; i <= 255; i++)
 	{
 		char	buffer[1024];
 
-		snprintf(buffer, sizeof(buffer), "%d;5;", i);
-		// snprintf(buffer, sizeof(buffer), "%d;", i);
 		printf("i: %d\n", i);
+		snprintf(buffer, sizeof(buffer), "%d;", i);
+		// snprintf(buffer, sizeof(buffer), "%d;5;", i);
+		// snprintf(buffer, sizeof(buffer), "%d;", i);
+		printf("buffer: %s\n", buffer);
 		grid(buffer);
 		free(get_next_line(0));
 	}

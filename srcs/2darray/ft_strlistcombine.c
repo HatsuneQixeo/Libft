@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:07:51 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/03/07 15:22:11 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/03/16 09:26:42 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lib2darray.h"
@@ -20,18 +20,18 @@
  */
 char	**ft_strlistcombine(char **srclist1, char **srclist2)
 {
-	char		**strlist_tmp;
+	char		**strlist;
 	const int	len_srclist1 = ft_strcount(srclist1);
 	const int	len_srclist2 = ft_strcount(srclist2);
 
-	strlist_tmp = malloc(sizeof(char *) * (len_srclist1 + len_srclist2 + 1));
-	if (strlist_tmp == NULL)
+	strlist = malloc(sizeof(char *) * (len_srclist1 + len_srclist2 + 1));
+	if (strlist == NULL)
 		return (NULL);
-	ft_memcpy(strlist_tmp, srclist1, sizeof(char *) * len_srclist1);
-	ft_memcpy(&strlist_tmp[len_srclist1], srclist2,
+	ft_memcpy(strlist, srclist1, sizeof(char *) * len_srclist1);
+	ft_memcpy(&strlist[len_srclist1], srclist2,
 		sizeof(char *) * len_srclist2);
-	strlist_tmp[len_srclist1 + len_srclist2] = NULL;
+	strlist[len_srclist1 + len_srclist2] = NULL;
 	free(srclist1);
 	free(srclist2);
-	return (strlist_tmp);
+	return (strlist);
 }

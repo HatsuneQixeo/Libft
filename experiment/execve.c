@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 18:54:36 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/03/07 15:22:08 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/03/16 09:26:39 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	iteristr_name("argv");
-	ft_strlistiteri(argv, iteristr_showstr);
-	iteristr_name("envp");
-	ft_strlistiteri(envp, iteristr_showstr);
+	iteri_name("argv");
+	ft_strlistiteri(argv, iteri_showstr);
+	iteri_name("envp");
+	ft_strlistiteri(envp, iteri_showstr);
+	(void)argc;
 }
