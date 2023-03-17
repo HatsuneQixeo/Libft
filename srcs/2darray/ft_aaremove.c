@@ -23,7 +23,8 @@ void	ft_aaremove(void **aa, t_ftcmp ft_cmp, const void *ref, t_ftdel ft_del)
 		{
 			if (ft_del)
 				ft_del(aa[i]);
-			ft_memmove(aa, aa + 1, sizeof(void *) * (ft_aasize(aa + 1) + 1));
+			ft_memmove(&aa[i], &aa[i + 1],
+				sizeof(void *) * (ft_aasize(&aa[i + 1]) + 1));
 		}
 		else
 			i++;
