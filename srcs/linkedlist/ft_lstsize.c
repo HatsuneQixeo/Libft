@@ -6,14 +6,14 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:05:10 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/03/16 09:26:44 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/04/10 02:27:52 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "liblinked_list.h"
 
-int	ft_lstsize(t_list *lst)
+int	ft_lstsize(const t_list *lst)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (lst != NULL)

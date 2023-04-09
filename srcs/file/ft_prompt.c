@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isupper.c                                       :+:      :+:    :+:   */
+/*   ft_prompt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 13:40:02 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/04/10 02:27:51 by hqixeo           ###   ########.fr       */
+/*   Created: 2023/04/10 02:27:50 by hqixeo            #+#    #+#             */
+/*   Updated: 2023/04/10 02:27:50 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isupper(int c)
+#include "libft.h"
+
+char	*ft_prompt(const char *prompt)
 {
-	return (c >= 'A' && c <= 'Z');
+	char	*line;
+	char	*nl;
+
+	ft_putstr_fd(prompt, 2);
+	line = get_next_line(0);
+	nl = ft_strchr(line, '\n');
+	if (nl)
+		*nl = '\0';
+	return (line);
 }

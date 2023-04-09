@@ -1,16 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstfind_most.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 13:40:02 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/04/10 02:27:51 by hqixeo           ###   ########.fr       */
+/*   Created: 2023/04/10 02:27:52 by hqixeo            #+#    #+#             */
+/*   Updated: 2023/04/10 02:27:52 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isupper(int c)
+#include "liblinked_list.h"
+
+t_list	*ft_lstfind_most(const t_list *lst, t_ftcmp cmp)
 {
-	return (c >= 'A' && c <= 'Z');
+	const t_list	*most = lst;
+	const t_list	*node;
+
+	if (lst == NULL)
+		return (NULL);
+	node = most->next;
+	while (node != NULL)
+	{
+		if (cmp(most->content, node->content) < 0)
+			most = node;
+		node = node->next;
+	}
+	return ((t_list *)most);
 }

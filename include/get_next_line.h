@@ -6,7 +6,7 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 19:41:16 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/03/07 15:22:17 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/04/10 02:27:56 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef GET_NEXT_LINE_H
@@ -23,5 +23,6 @@
 # include "libstring.h"
 
 char	*get_next_line(int fd);
+char	*ft_prompt(const char *prompt);
 
 #endif

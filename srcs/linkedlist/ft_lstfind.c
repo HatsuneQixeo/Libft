@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstfind.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/27 13:40:02 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/04/10 02:27:51 by hqixeo           ###   ########.fr       */
+/*   Created: 2023/04/10 02:27:52 by hqixeo            #+#    #+#             */
+/*   Updated: 2023/04/10 02:27:52 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isupper(int c)
+#include "liblinked_list.h"
+
+t_list	*ft_lstfind(const t_list *lst, const void *ref, t_ftcmp cmp)
 {
-	return (c >= 'A' && c <= 'Z');
+	while (lst != NULL)
+	{
+		if (!cmp(lst->content, ref))
+			return ((t_list *)lst);
+		lst = lst->next;
+	}
+	return (NULL);
 }

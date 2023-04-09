@@ -6,16 +6,16 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:04:48 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/03/16 09:26:43 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/04/10 02:27:52 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "liblinked_list.h"
 
-t_list	*ft_lstlast(t_list *lst)
+t_list	*ft_lstlast(const t_list *lst)
 {
 	if (lst == NULL)
 		return (NULL);
 	while (lst->next != NULL)
 		lst = lst->next;
-	return (lst);
+	return ((t_list *)lst);
 }

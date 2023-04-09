@@ -6,14 +6,14 @@
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:13:52 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/03/16 09:26:44 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/04/10 02:27:52 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "liblinked_list.h"
 
-t_list	*ft_lstselect(t_list *lst, unsigned int select)
+t_list	*ft_lstselect(const t_list *lst, unsigned int select)
 {
 	while (lst != NULL && select--)
 		lst = lst->next;
-	return (lst);
+	return ((t_list *)lst);
 }
