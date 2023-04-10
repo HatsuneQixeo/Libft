@@ -16,6 +16,7 @@
 # include <stdlib.h>
 
 # define ITNAME_DEFAULT	"it"
+# define NOTFOUND		SIZE_T_MAX
 
 typedef const char	*(*t_ftsetname)(const char *name);
 const char	*iteri_name(const char *newname);

@@ -22,4 +22,6 @@
 # include "liblinked_list.h"
 # include "lib2darray.h"
 
+void	ft_assert(const int condition, const char *message);
+
 #endif

@@ -11,10 +11,26 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-// Tester
-// https://github.com/gavinfielder/pft
-/// @bug Return -(1 + (number_of_conversions * 2)) if the given fd is invalid
-//	I do not want to know how to handle if the given fd is closed while printing
+/**
+ * @brief 
+ * 
+ * Tester
+ * https://github.com/gavinfielder/pft
+ * 
+ * @param fd 
+ * @param str 
+ * @param args 
+ * @return int 
+ * 
+ * @bug Return -(1 + (number_of_conversions * 2)) if the given fd is invalid
+ * I do not want to know how to handle if the given fd is closed while printing
+ * 
+ * IDEA:
+ * Maybe I can store everything in a buffer
+ * and flush it at the end of the function?
+ * It will be more efficient too
+ * Will I do it? (lol no, like I'm ever using this garbage again)
+ */
 int	ft_printf_core(int fd, const char *str, va_list args)
 {
 	int		len_total;

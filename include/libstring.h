@@ -17,7 +17,6 @@
 # include "libis.h"
 # include "libalgo.h"
 
-# define NPOS	SIZE_T_MAX
 
 typedef char	*(*t_modifier)(const char *str1, const char *str2);
 
