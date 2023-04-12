@@ -17,7 +17,6 @@
 # include "libis.h"
 # include "libalgo.h"
 
-
 typedef char	*(*t_modifier)(const char *str1, const char *str2);
 
 size_t	ft_arrfind(const void *arr, size_t len,

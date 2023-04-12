@@ -23,6 +23,10 @@
 # include "lib2darray.h"
 # include <assert.h>
 
+# ifndef SAN
+#  define SAN	1
+# endif
+
 char	*ft_prompt(const char *prompt);
 void	ft_assert(const int condition, const char *message);
 

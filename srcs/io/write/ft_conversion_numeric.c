@@ -11,14 +11,16 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-static unsigned long long	ft_ulength(unsigned long long nbr, const t_flags *flags)
+typedef unsigned long long	t_too_long;
+
+static t_too_long	ft_ulength(t_too_long nbr, const t_flags *flags)
 {
 	if (flags->mod_z)
 		return ((size_t)nbr);
 	else if (flags->mod_long & 0b1)
 		return ((unsigned long)nbr);
 	else if (flags->mod_long)
-		return ((unsigned long long)nbr);
+		return ((t_too_long)nbr);
 	else if (flags->mod_short & 0b1)
 		return ((unsigned short)nbr);
 	else if (flags->mod_short)
