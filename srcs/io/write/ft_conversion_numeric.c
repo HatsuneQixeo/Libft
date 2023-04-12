@@ -11,15 +11,15 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-static unsigned long long	ft_ulength(unsigned long long nbr, t_flags *flags)
+static unsigned long long	ft_ulength(unsigned long long nbr, const t_flags *flags)
 {
 	if (flags->mod_z)
 		return ((size_t)nbr);
-	else if (flags->mod_long % 2)
+	else if (flags->mod_long & 0b1)
 		return ((unsigned long)nbr);
 	else if (flags->mod_long)
 		return ((unsigned long long)nbr);
-	else if (flags->mod_short % 2)
+	else if (flags->mod_short & 0b1)
 		return ((unsigned short)nbr);
 	else if (flags->mod_short)
 		return ((unsigned char)nbr);
@@ -27,13 +27,13 @@ static unsigned long long	ft_ulength(unsigned long long nbr, t_flags *flags)
 		return ((unsigned int)nbr);
 }
 
-static long long	ft_dlength(long long nbr, t_flags *flags)
+static long long	ft_dlength(long long nbr, const t_flags *flags)
 {
-	if (flags->mod_long % 2)
+	if (flags->mod_long & 0b1)
 		return ((long)nbr);
 	else if (flags->mod_long)
 		return ((long long)nbr);
-	else if (flags->mod_short % 2)
+	else if (flags->mod_short & 0b1)
 		return ((short)nbr);
 	else if (flags->mod_short)
 		return ((char)nbr);
@@ -41,7 +41,7 @@ static long long	ft_dlength(long long nbr, t_flags *flags)
 		return ((int)nbr);
 }
 
-char	*ft_decimal(long long d, t_flags *flags)
+char	*ft_decimal(long long d, const t_flags *flags)
 {
 	char	*nbr;
 
@@ -57,7 +57,7 @@ char	*ft_decimal(long long d, t_flags *flags)
 		return (nbr);
 }
 
-char	*ft_unsigned(unsigned long long hex, t_flags *flags)
+char	*ft_unsigned(unsigned long long hex, const t_flags *flags)
 {
 	char	*str;
 

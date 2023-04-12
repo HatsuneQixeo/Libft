@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-//This is sufficient for this project
-//, since you are doing precision before any other padding
 static int	ft_findsign(const char *str)
 {
 	if (ft_strchr("-+ ", *str))
@@ -23,23 +21,14 @@ static int	ft_findsign(const char *str)
 		return (0);
 }
 
-// static int	ft_findsign(char *str)
-// {
-// 	if (ft_strchr(str, '-') || ft_strchr(str, '+') || ft_strchr(str, ' '))
-// 		return (1);
-// 	else if (ft_strstr(str, "0x") || ft_strstr(str, "0X"))
-// 		return (2);
-// 	else
-// 		return (0);
-// }
-static char	*ft_period(char *str, t_flags *flags)
+static char	*ft_period(char *str, const t_flags *flags)
 {
 	int	len_pad;
 	int	sign;
 
 	if (flags->format == 's' || flags->format == 'b')
 	{
-		if ((int)ft_strlen(str) > flags->precision)
+		if (ft_strlen(str) > (unsigned int)flags->precision)
 			str[flags->precision] = '\0';
 		return (str);
 	}
@@ -53,7 +42,7 @@ static char	*ft_period(char *str, t_flags *flags)
 	return (ft_strcombine(ft_strcreate('0', len_pad), str));
 }
 
-static char	*ft_setsign(char *str, t_flags *flags)
+static char	*ft_setsign(char *str, const t_flags *flags)
 {
 	char	*c_set;
 	char	*c_sign;
@@ -71,10 +60,12 @@ static char	*ft_setsign(char *str, t_flags *flags)
 	return (str);
 }
 
-char	*ft_strfinalize(char *str, t_flags *flags)
+char	*ft_strfinalize(char *str, const t_flags *flags)
 {
 	int	len_pad;
 
+	if (flags->format == 'f')
+		return (str);
 	if (flags->period)
 		str = ft_period(str, flags);
 	if (flags->format == 'b')

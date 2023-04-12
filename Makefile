@@ -51,7 +51,7 @@ norme:
 	@norminette ${SRCS} ${HEADER} | grep Error
 
 pft: ${NAME}
-	@cp $< libftprintf.a && make -C $@ && $@/test
+	@cp $< libftprintf.a && cd $@ && make && ./test
 	@${RM} libftprintf.a
 
 .PHONY: test pft

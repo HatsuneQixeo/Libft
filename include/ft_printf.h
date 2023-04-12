@@ -25,7 +25,6 @@
 
 typedef struct flags
 {
-	int		fd;
 	char	format;
 	char	plus;
 	char	space;
@@ -56,9 +55,9 @@ int		ft_printf(const char *str, ...);
 int		ft_dprintf(int fd, const char *str, ...);
 
 char	*ft_flagextract(const char *str, t_flags *flags, va_list args);
-char	*ft_decimal(long long d, t_flags *flags);
-char	*ft_unsigned(unsigned long long hex, t_flags *flags);
-int		ft_conversion(va_list args, t_flags *flags);
-char	*ft_strfinalize(char *str, t_flags *flags);
+char	*ft_decimal(long long d, const t_flags *flags);
+char	*ft_unsigned(unsigned long long hex, const t_flags *flags);
+int		ft_conversion(const int fd, va_list args, const t_flags *flags);
+char	*ft_strfinalize(char *str, const t_flags *flags);
 
 #endif

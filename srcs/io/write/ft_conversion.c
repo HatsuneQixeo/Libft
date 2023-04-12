@@ -16,22 +16,22 @@ static int	ft_printwidth(char c, int width, int fd)
 	return (ft_strrelease_fd(ft_strcreate(c, width), fd));
 }
 
-static int	ft_character(char c, t_flags *flags)
+static int	ft_character(int fd, char c, const t_flags *flags)
 {
 	if (!flags->width || flags->width == 1)
-		return (ft_putchar_fd(c, flags->fd));
+		return (ft_putchar_fd(c, fd));
 	else if (flags->negative_field)
-		return (ft_putchar_fd(c, flags->fd)
-			+ ft_printwidth(' ', flags->width - 1, flags->fd));
+		return (ft_putchar_fd(c, fd)
+			+ ft_printwidth(' ', flags->width - 1, fd));
 	else if (flags->zero)
-		return (ft_printwidth('0', flags->width - 1, flags->fd)
-			+ ft_putchar_fd(c, flags->fd));
+		return (ft_printwidth('0', flags->width - 1, fd)
+			+ ft_putchar_fd(c, fd));
 	else
-		return (ft_printwidth(' ', flags->width - 1, flags->fd)
-			+ ft_putchar_fd(c, flags->fd));
+		return (ft_printwidth(' ', flags->width - 1, fd)
+			+ ft_putchar_fd(c, fd));
 }
 
-int	ft_conversion(va_list args, t_flags *flags)
+int	ft_conversion(const int fd, va_list args, const t_flags *flags)
 {
 	char	*str;
 
@@ -46,12 +46,12 @@ int	ft_conversion(va_list args, t_flags *flags)
 		|| flags->format == 'x' || flags->format == 'X')
 		str = ft_unsigned(va_arg(args, unsigned long long), flags);
 	else if (flags->format == 'c')
-		return (ft_character(va_arg(args, int), flags));
+		return (ft_character(fd, va_arg(args, int), flags));
 	else if (flags->format)
-		return (ft_character(flags->format, flags));
+		return (ft_character(fd, flags->format, flags));
 	else
 		return (0);
 	if (str == NULL)
 		str = ft_strdup("(null)");
-	return (ft_strrelease_fd(ft_strfinalize(str, flags), flags->fd));
+	return (ft_strrelease_fd(ft_strfinalize(str, flags), fd));
 }

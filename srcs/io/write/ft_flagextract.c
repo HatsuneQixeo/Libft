@@ -11,22 +11,6 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-static void	flags_init(t_flags *flags)
-{
-	flags->format = 0;
-	flags->plus = 0;
-	flags->space = 0;
-	flags->sharp = 0;
-	flags->mod_long = 0;
-	flags->mod_short = 0;
-	flags->mod_z = 0;
-	flags->negative_field = 0;
-	flags->zero = 0;
-	flags->period = 0;
-	flags->width = 0;
-	flags->precision = 0;
-}
-
 static int	ft_atoflag(const char **str, char *flag, int saved, va_list args)
 {
 	int	value;
@@ -74,7 +58,7 @@ static void	ft_length_modifier(char c, t_flags *flags)
 
 char	*ft_flagextract(const char *str, t_flags *flags, va_list args)
 {
-	flags_init(flags);
+	ft_bzero(flags, sizeof(t_flags));
 	while (*++str != '\0'
 		&& (ft_strchr("-+ #.*,;:_zlh", *str) || ft_isdigit(*str)))
 	{
@@ -99,32 +83,3 @@ char	*ft_flagextract(const char *str, t_flags *flags, va_list args)
 	flags->format = *str;
 	return ((char *)str);
 }
-
-//An alternative of atoflag with 2 separate function
-// static int atoflag_core(const char **str)
-// {
-// 	const char	*str_tmp;
-// 	int			value;
-
-// 	value = 0;
-// 	str_tmp = *str;
-// 	while (ft_isdigit(*str_tmp))
-// 		value = (value * 10) + (*str_tmp++ - '0');
-// 	*str = --str_tmp;
-// 	return (value);
-// }
-
-// static int ft_atoflag(const char **str, char *flag, int saved, va_list args)
-// {
-// 	int	value;
-
-// 	if (flag)
-// 		*flag = 1;
-// 	if (*(++*str) == '*')
-// 		return (va_arg(args, int));
-// 	value = atoflag_core(str);
-// 	if (value)
-// 		return (value);
-// 	else
-// 		return (saved);
-// }

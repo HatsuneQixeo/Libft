@@ -38,15 +38,14 @@ int	ft_printf_core(int fd, const char *str, va_list args)
 	t_flags	flags;
 
 	len_total = 0;
-	flags.fd = fd;
 	ptr_conversion = ft_strchr(str, '%');
 	while (ptr_conversion != NULL)
 	{
-		len_total += write(flags.fd, str, ptr_conversion - str);
+		len_total += write(fd, str, ptr_conversion - str);
 		str = ft_flagextract(ptr_conversion, &flags, args);
 		if (flags.format == '\0')
 			break ;
-		len_total += ft_conversion(args, &flags);
+		len_total += ft_conversion(fd, args, &flags);
 		ptr_conversion = ft_strchr(++str, '%');
 	}
 	return (len_total + ft_putstr_fd(str, fd));

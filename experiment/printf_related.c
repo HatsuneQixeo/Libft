@@ -113,7 +113,7 @@ size_t	ft_lentotal(t_list *lst)
 
 void	del_print(void *content)
 {
-	free(((t_print *)content)->value);
+	free(((t_print *)content)->str);
 }
 
 int	ft_printall(t_list *lst, int fd)
@@ -127,7 +127,7 @@ int	ft_printall(t_list *lst, int fd)
 	while (lst)
 	{
 		node_print = lst->content;
-		ft_memcpy(str_all, node_print->value, node_print->len);
+		ft_memcpy(str_all, node_print->str, node_print->len);
 		str_all += node_print->len;
 		lst = lst->next;
 	}
@@ -284,7 +284,61 @@ int notinsubject_o_prec0val0_waflj_impl_bench(void){return printf("%#-5.o", 0);}
  * @brief Invalid fd return value
  * Found a bug too
  */
+// int	main(void)
+// {
+// 	printf("%f\n", 0.0);
+// 	printf("%8f\n", 0.0);
+// 	printf("%.8f\n", 0.0);
+// 	printf("%10.1f\n", 0.0);
+// 	printf("%f\n", 0.0);
+// 	printf("%#f\n", 0.0);
+// 	// ft_printf("%d\n", ft_dprintf(1, "Hatsune Miku %s %s\n", "is", "cute"));
+// }
+
+char	*ft_ftoa(double n, unsigned int precision)
+{
+	char			*str;
+	char			*decimal;
+	unsigned int	i;
+
+	if (n != n)
+		return (ft_strdup("nan"));
+	else if (n < 0)
+		return (ft_strmodify(ft_strrjoin, ft_ftoa(-n, precision), "-"));
+	else if (precision == 0)
+		return (ft_utoa_base(round(n), DECIMAL));
+	str = ft_utoa_base(n, DECIMAL);
+	decimal = malloc(sizeof(char) * (precision + 1));
+	decimal[precision] = '\0';
+	i = -1;
+	while (++i < precision)
+	{
+		n = (n - (long long)n) * 10;
+		decimal[i] = (int)n + '0';
+	}
+	return (ft_strmerge("%f.%f", str, decimal));
+}
+
+char	*ft_float(long double n, const t_flags *flags)
+{
+	char	*str;
+	int		precision;
+
+	if (flags->period)
+		precision = flags->precision;
+	else
+		precision = 6;
+	str = ft_ftoa(n, precision);
+	return (str);
+}
+
 int	main(void)
 {
-	ft_printf("%d\n", ft_dprintf(3, "Hatsune Miku %s %s\n", "is", "cute"));
+	double	n = 1.23456789;
+	char	*str;
+
+	str = ft_ftoa(n, 10);
+	ft_printf("%s\n", str);
+	free(str);
+	system("leaks -q printf_related.miku");
 }
