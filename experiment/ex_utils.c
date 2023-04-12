@@ -24,7 +24,22 @@ char	*ft_strchr_set(const char *str, const char *set)
 
 void	ft_strdelchr(char *str, char c)
 {
-	while (*str)
+	char	*it;
+
+	it = --str;
+	while (*++str != '\0')
+	{
+		if (*str != c)
+			*++it = *str;
+	}
+}
+
+void	ft_strdelchr(char *str, char c)
+{
+	char	*it;
+
+	it = str;
+	while (*str != '\0')
 	{
 		if (*str == c)
 		/*

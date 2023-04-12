@@ -17,22 +17,6 @@
 char	*ft_strprintable_sign(const char *src);
 typedef int (*t_ftput)(const char *, int);
 
-/* Index shenanigans
-	Think I found this too in a cpp tutorial
-*/
-// int main(void)
-// {
-// 	char *str = strdup("1bcde");
-
-// 	printf("%c\n", str[2]);
-// 	printf("%c\n", *(str + 2));
-// 	printf("%c\n", *(2 + str));
-// 	printf("%c\n", 2[str]);
-// 	printf("%c\n", 3[str]);
-// 	printf("%c\n", 4[str]);
-// 	printf("%c\n", *str + 2);
-// }
-
 /* Envp
 	It is a 2d array allocated on stack
 	meaning modification is allowed toward every character and pointer
@@ -113,3 +97,79 @@ char	*ft_strmultiply(const char *src, const char *delimiter, unsigned int amount
 // 	ft_strlistiteri(aa, iteristr_showstr);
 // 	system("leaks -q test.miku");
 // }
+
+int	ft_strcmp_void(const void *s1, const void *s2)
+{
+	return (ft_strcmp(s1, s2));
+}
+
+size_t	ft_aacountif(void **arr, size_t len, t_ftcmp cmp, const void *ref)
+{
+	size_t	i;
+	size_t	count;
+
+	i = 0;
+	count = 0;
+	while (i < len)
+	{
+		if (cmp(arr[i], ref) == 0)
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+void	test_remove(void **strlist, const char *ref, t_ftdel del)
+{
+	char			**strlist_copy = (char **)ft_aamap(strlist, map_copy);
+	const size_t	length_before = ft_aasize(strlist);
+	const size_t	to_remove = ft_aacountif(strlist, ft_aasize(strlist), ft_strcmp_void, ref);
+	
+	ft_aaremove(strlist, ft_strcmp_void, ref, del);
+	const size_t	leftover = ft_aacountif(strlist, ft_aasize(strlist), ft_strcmp_void, ref);
+	const size_t	length_after = ft_aasize(strlist);
+
+	if (leftover != 0)
+		printf("Error: %zu leftover after remove\n", leftover);
+	else if (length_after > length_before - to_remove)
+		printf("Error: Did not removed every reference to remove\n");
+	else if (length_before - to_remove > length_after)
+		printf("Error: Removed unrelated element\n");
+	else
+	{
+		free(strlist);
+		free(strlist_copy);
+		return ;
+	}
+	iteri_name("Before remove");
+	ft_strlistiteri(strlist_copy, iteri_showstr);
+	ft_printf("\n");
+	iteri_name("After remove");
+	ft_strlistiteri((char **)strlist, iteri_showstr);
+	ft_printf("\n");
+	free(strlist);
+	free(strlist_copy);
+}
+
+int	main(void)
+{
+	t_list	*lst;
+
+	lst = NULL;
+	ft_lstadd_back(&lst, ft_lstnew("Miku"));
+	ft_lstadd_back(&lst, ft_lstnew("is"));
+	ft_lstadd_back(&lst, ft_lstnew("cute"));
+
+	test_remove(ft_lsttoaa(lst, map_copy), "not", NULL);
+	ft_lstadd_front(&lst, ft_lstnew("not"));
+
+	test_remove(ft_lsttoaa(lst, map_copy), "not", NULL);
+	ft_lstadd_front(&lst, ft_lstnew("not"));
+
+	test_remove(ft_lsttoaa(lst, map_copy), "not", NULL);
+	ft_lstadd_back(&lst, ft_lstnew("not"));
+
+	test_remove(ft_lsttoaa(lst, map_copy), "not", NULL);
+	ft_lstclear(&lst, NULL);
+	system("leaks -q test.miku");
+}

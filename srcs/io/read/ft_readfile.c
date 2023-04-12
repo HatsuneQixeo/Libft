@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-//Convert the file content in given file to 2d array(malloc)
-//Note: This function trim away every '\n', while keeping empty lines
+/**
+ * @brief 
+ * @note This function trim away every '\n', while preserving empty lines
+ */
 char	**ft_readfile(int fd)
 {
 	t_list	*lst;
@@ -21,7 +23,7 @@ char	**ft_readfile(int fd)
 
 	lst = NULL;
 	str_part = get_next_line(fd);
-	while (str_part)
+	while (str_part != NULL)
 	{
 		ft_lstadd_back(&lst, ft_lstnew(str_part));
 		str_part = get_next_line(fd);

@@ -14,19 +14,15 @@
 
 void	ft_aaremove(void **aa, t_ftcmp ft_cmp, const void *ref, t_ftdel ft_del)
 {
-	unsigned int	i;
+	void	**it;
 
-	i = 0;
-	while (aa[i] != NULL)
+	it = aa - 1;
+	while (*++it != NULL)
 	{
-		if (!ft_cmp(aa[i], ref))
-		{
-			if (ft_del)
-				ft_del(aa[i]);
-			ft_memmove(&aa[i], &aa[i + 1],
-				sizeof(void *) * (ft_aasize(&aa[i + 1]) + 1));
-		}
-		else
-			i++;
+		if (ft_cmp(*it, ref))
+			*aa++ = *it;
+		else if (ft_del)
+			ft_del(*it);
 	}
+	*aa = NULL;
 }

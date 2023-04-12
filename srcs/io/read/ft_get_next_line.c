@@ -22,7 +22,7 @@ static char	*read_line(int fd, char *str_saved)
 		len_read = read(fd, str_part, BUFFER_SIZE);
 		if (len_read == SIZE_T_MAX)
 		{
-			perror("get_next_line");
+			perror("get_next_line: ");
 			break ;
 		}
 		str_part[len_read] = '\0';

@@ -5,7 +5,7 @@ error="-Werror"
 cflags="-Wall $extra $error"
 unused="-Wno-unused"
 unused_set="$unused-parameter $unused-function $unused-variable"
-san="-fsanitize=address -g3"
+san="-fsanitize=address -g3 -D SAN"
 
 # Files
 src="$1"

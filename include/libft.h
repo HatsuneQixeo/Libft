@@ -21,7 +21,9 @@
 # include "ft_printf.h"
 # include "liblinked_list.h"
 # include "lib2darray.h"
+# include <assert.h>
 
+char	*ft_prompt(const char *prompt);
 void	ft_assert(const int condition, const char *message);
 
 #endif

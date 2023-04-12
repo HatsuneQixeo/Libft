@@ -44,35 +44,37 @@ char	*strmod_rmstr(const char *str, const char *str_rm)
 /// @param str The string to remove the substring
 /// @param str_rm The substring to be removed
 /// @return The string which does not contain any substr of str_rm
-char	*strmod_rmsubstr(const char *str, const char *str_rm)
-{
-	char	*substr;
-	char	*str_new;
-	size_t	len_rm;
+// char	*strmod_rmsubstr(const char *str, const char *str_rm)
+// {
+// 	char	*substr;
+// 	char	*str_new;
+// 	size_t	len_rm;
 
-	str_new = ft_strdup(str);
-	substr = ft_strstr(str_new, str_rm);
-	if (substr == NULL)
-		return (str_new);
-	len_rm = ft_strlen(str_rm);
-	while (substr != NULL)
-	{
-		ft_memmove(substr, substr + len_rm, ft_strlen(substr + len_rm) + 1);
-		substr = ft_strstr(substr, str_rm);
-	}
-	return (ft_strmodify(strmod_realloc, str_new, NULL));
-}
+// 	str_new = ft_strdup(str);
+// 	if (str_new == NULL)
+// 		return (NULL);
+// 	substr = ft_strstr(str_new, str_rm);
+// 	if (substr == NULL)
+// 		return (str_new);
+// 	len_rm = ft_strlen(str_rm);
+// 	while (substr != NULL)
+// 	{
+// 		ft_memmove(substr, substr + len_rm, ft_strlen(substr + len_rm) + 1);
+// 		substr = ft_strstr(substr, str_rm);
+// 	}
+// 	return (ft_strmodify(strmod_realloc, str_new, NULL));
+// }
 
-void	strformat_rmsubstr(char *str, const char *str_rm)
-{
-	char	*find;
-	size_t	len_rm;
+// void	strformat_rmsubstr(char *str, const char *str_rm)
+// {
+// 	const char		*find;
+// 	const size_t	len_rm = ft_strlen(str_rm);
 
-	len_rm = ft_strlen(str_rm);
-	find = ft_strstr(str, str_rm);
-	while (find != NULL)
-	{
-		ft_memmove(find, find + len_rm, ft_strlen(find + len_rm) + 1);
-		find = ft_strstr(find, str_rm);
-	}
-}
+// 	while (1)
+// 	{
+// 		find = ft_strstr(str, str_rm);
+// 		if (find == NULL)
+// 			break ;
+// 		ft_memmove(find, find + len_rm, ft_strlen(find + len_rm) + 1);
+// 	}
+// }

@@ -32,3 +32,8 @@ int	stris_numeric(const char *str)
 	free(trimmed);
 	return (ret);
 }
+
+int	stris_empty(const char *str)
+{
+	return (str[0] == '\0');
+}
