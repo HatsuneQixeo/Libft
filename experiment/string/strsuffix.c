@@ -31,9 +31,7 @@ void	ft_strreverse(char *str)
 	char	*str_end = ft_strchr(str, '\0') - 1;
 
 	while (str_end > str)
-	{
-		ft_swapchar(str++, str_end--);
-	}
+		ft_swapbyte(str++, str_end--);
 }
 
 int	reversed_strcmp(const char *str1, const char *str2)

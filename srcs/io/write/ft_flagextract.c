@@ -15,11 +15,11 @@ static int	ft_atoflag(const char **str, char *flag, int saved, va_list args)
 {
 	int	value;
 
-	value = 0;
 	if (flag != NULL)
 		*flag = 1;
 	if (*++(*str) == '*')
 		return (va_arg(args, int));
+	value = 0;
 	while (ft_isdigit(**str))
 		value = (value * 10) + (*(*str)++ - '0');
 	(*str)--;

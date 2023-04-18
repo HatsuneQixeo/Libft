@@ -36,7 +36,7 @@ static char	*ft_period(char *str, const t_flags *flags)
 	if (flags->precision == 0 && !ft_strcmp(&str[sign], "0")
 		&& !(flags->format == 'o' && flags->sharp))
 		str[sign] = '\0';
-	len_pad = flags->precision + sign - ft_strlen(str);
+	len_pad = (flags->precision + sign) - ft_strlen(str);
 	if (len_pad <= 0)
 		return (str);
 	return (ft_strcombine(ft_strcreate('0', len_pad), str));
@@ -54,9 +54,9 @@ static char	*ft_setsign(char *str, const t_flags *flags)
 	c_sign = ft_strskip_chr(c_set, '0');
 	if (*c_sign == '-' || *c_sign == '+'
 		|| (*c_sign == ' ' && ft_isdigit(*(c_sign + 1))))
-		ft_swapchar(c_set, c_sign);
+		ft_swapbyte(c_set, c_sign);
 	else if (*c_sign == 'x' || *c_sign == 'X')
-		ft_swapchar(++c_set, c_sign);
+		ft_swapbyte(++c_set, c_sign);
 	return (str);
 }
 

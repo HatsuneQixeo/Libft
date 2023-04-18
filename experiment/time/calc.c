@@ -94,6 +94,8 @@ size_t	ft_size_invert_math(size_t size)
 
 size_t	ft_size_centered_math(size_t size)
 {
+	if (size == 0)
+		return (0);
 	return (1 + (size / (PIXEL * 2) + (size % (PIXEL * 2) > PIXEL)) * 2);
 }
 

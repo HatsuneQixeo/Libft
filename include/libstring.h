@@ -28,7 +28,7 @@ int		ft_memcmp(const void *str1, const void *str2, size_t bytes);
 void	*ft_memcpy(void *dst, const void *src, size_t bytes);
 void	*ft_memmove(void *dst, const void *src, size_t bytes);
 void	*ft_memset(void *str, int c, size_t bytes);
-void	ft_swapchar(char *sign, char *set);
+void	ft_swapbyte(void *a, void *b);
 void	ft_memswap(void *ptr1, void *ptr2, size_t bytes);
 char	*ft_memprintable(const void *src, const char *base, size_t bytes);
 

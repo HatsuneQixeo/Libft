@@ -67,8 +67,6 @@ int	ft_dprintf(int fd, const char *str, ...)
 	va_list	args;
 	int		ret;
 
-	if ((unsigned int)fd >= 1024)
-		return (-1);
 	va_start(args, str);
 	ret = ft_printf_core(fd, str, args);
 	va_end(args);

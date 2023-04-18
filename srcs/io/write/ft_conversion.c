@@ -47,7 +47,7 @@ int	ft_conversion(const int fd, va_list args, const t_flags *flags)
 		str = ft_unsigned(va_arg(args, unsigned long long), flags);
 	else if (flags->format == 'c')
 		return (ft_character(fd, va_arg(args, int), flags));
-	else if (flags->format)
+	else if (flags->format != '\0')
 		return (ft_character(fd, flags->format, flags));
 	else
 		return (0);

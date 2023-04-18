@@ -13,9 +13,8 @@
 
 int	ft_strrelease_fd(char *str, int fd)
 {
-	int	len;
+	const int	len = ft_putstr_fd(str, fd);
 
-	len = ft_putstr_fd(str, fd);
 	free(str);
 	return (len);
 }

@@ -18,6 +18,8 @@ char	*ft_patsubst(const char *str, const char *replace, const char *with)
 	const char		*find = ft_strstr(str, replace);
 	const size_t	len_replace = ft_strlen(replace);
 
+	if (len_replace == 0)
+		return (ft_strdup(str));
 	lst_buffer = NULL;
 	while (find != NULL)
 	{

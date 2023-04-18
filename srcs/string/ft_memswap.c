@@ -11,17 +11,18 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_swapchar(char *sign, char *set)
+void	ft_swapbyte(void *p_a, void *p_b)
 {
-	char	tmp;
+	char *const	a = p_a;
+	char *const	b = p_b;
+	const char	tmp = *a;
 
-	tmp = *sign;
-	*sign = *set;
-	*set = tmp;
+	*a = *b;
+	*b = tmp;
 }
 
 void	ft_memswap(void *ptr1, void *ptr2, size_t bytes)
 {
 	while (bytes--)
-		ft_swapchar(ptr1++, ptr2++);
+		ft_swapbyte(ptr1++, ptr2++);
 }

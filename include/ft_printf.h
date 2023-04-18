@@ -39,9 +39,6 @@ typedef struct flags
 	int		precision;
 }			t_flags;
 
-/* ??, Currently in ft_printf/ft_str_utils.c*/
-void	ft_swapchar(char *sign, char *set);
-
 /* Put */
 void	ft_memprint(const void *ptr, size_t bytes, size_t data_size);
 int		ft_putchar_fd(const char c, int fd);
