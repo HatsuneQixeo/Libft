@@ -1,3 +1,4 @@
+#!/bin/bash
 # Compile flags
 cc="gcc"
 extra="-Wextra"
@@ -5,11 +6,11 @@ error="-Werror"
 cflags="-Wall $extra $error"
 unused="-Wno-unused"
 unused_set="$unused-parameter $unused-function $unused-variable"
-san="-fsanitize=address -g3 -D SAN"
+san="-fsanitize=address -g3 -D SAN=1"
 
 # Files
 src="$1"
-libft="libft.a -Iinclude -I../include"
+libft="libft.a -Iinclude"
 prg="${1//.c/.miku}"
 compile="$cc $cflags $src $libft -o $prg"
 
@@ -29,6 +30,10 @@ then
 elif [ -d "$src" ]
 then
 	esh_echo "Is a directory: $src"
+	exit 1
+elif [[ "$src" != *".c" ]]
+then
+	esh_echo "Not a C Source file: $src"
 	exit 1
 fi
 
@@ -94,14 +99,14 @@ then
 	make &&
 	esh_echo $compile &&
 	$compile &&
-	esh_echo "Compiled: $prg"'\n' &&
-	mv "$prg" .
+	mv "$prg" . &&
+	prg="./$(basename $prg)" &&
+	esh_echo "Compiled: $prg"
 fi
 
 [ $? -ne 0 ] && exit 1
 
-./"$(basename "$prg")"
+"$prg"
 
 # BUG: make is executed in the current working directory, where the bash script is ran
 # so it could be running another make if not executed it's own directory
-#  && rm "$prg"

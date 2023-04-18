@@ -17,11 +17,11 @@ void	showdir(void *dirent)
 {
 	const struct dirent	*pdirent = dirent;
 
-	printf("ino: %llu\n", (__uint64_t)pdirent->d_ino);			/* file number of entry */
-	printf("seekoff: %llu\n", (__uint64_t)pdirent->d_seekoff);	/* seek offset (optional, used by servers) */
-	printf("reclen: %u\n", (__uint16_t)pdirent->d_reclen);		/* length of this record */
-	printf("namelen: %u\n", (__uint16_t)pdirent->d_namlen);		/* length of string in d_name */
-	printf("type: %u\n", (__uint8_t)pdirent->d_type);			/* file type, see below */
+	printf("ino: %llu\n", (uint64_t)pdirent->d_ino);			/* file number of entry */
+	printf("seekoff: %llu\n", (uint64_t)pdirent->d_seekoff);	/* seek offset (optional, used by servers) */
+	printf("reclen: %u\n", (uint16_t)pdirent->d_reclen);		/* length of this record */
+	printf("namelen: %u\n", (uint16_t)pdirent->d_namlen);		/* length of string in d_name */
+	printf("type: %u\n", (uint8_t)pdirent->d_type);			/* file type, see below */
 	printf("name: %s\n", (char *)pdirent->d_name);				/* entry name (up to MAXPATHLEN{1024 (+1 depends on os?)} bytes) */
 	printf("\n");
 }

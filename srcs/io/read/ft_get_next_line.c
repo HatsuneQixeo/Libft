@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 #include "get_next_line.h"
 #include <stdio.h>
+#include <assert.h>
 
 static char	*read_line(int fd, char *str_saved)
 {
@@ -63,7 +64,8 @@ char	*get_next_line(int fd)
 {
 	static char	*str_saved[1024];
 
-	if ((unsigned int)fd >= 1024 || BUFFER_SIZE <= 0)
+	static_assert(BUFFER_SIZE >= 1, "Invalid Buffer Size");
+	if ((unsigned int)fd >= 1024)
 		return (NULL);
 	if (str_saved[fd] == NULL)
 		str_saved[fd] = ft_strdup("");

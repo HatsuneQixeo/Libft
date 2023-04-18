@@ -14,11 +14,12 @@
 
 char	*ft_strchr_set(const char *str, const char *set)
 {
-	if (!*set)
+	if (*set ==  '\0')
 		return ((char *)str);
-	while (*str)
-		if (ft_strchr(set, *str++))
-			return ((char *)--str);
+	str--;
+	while (*++str != '\0')
+		if (ft_strchr(set, *str))
+			return ((char *)str);
 	return (0);
 }
 
@@ -32,36 +33,7 @@ void	ft_strdelchr(char *str, char c)
 		if (*str != c)
 			*++it = *str;
 	}
-}
-
-void	ft_strdelchr(char *str, char c)
-{
-	char	*it;
-
-	it = str;
-	while (*str != '\0')
-	{
-		if (*str == c)
-		/*
-			Time complexity go boom,
-			this shit is copying everything behind the character
-			everytime it encounters the delchr
-		*/
-			ft_memmove(str, str + 1, ft_strlen(str + 1) + 1);
-		else
-			str++;
-	}
-}
-
-char	*ft_strdup_delchr(const char *src, char c)
-{
-	char	*str;
-
-	str = ft_strdup(src);
-	if (!str)
-		return (0);
-	ft_strdelchr(str, c);
-	return (str);
+	*it = '\0';
 }
 
 char	*ft_strfilter(const char *src, char c)

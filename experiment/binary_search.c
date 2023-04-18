@@ -21,9 +21,9 @@ int	*ft_binary_test(int *start, int *end, int find)
 	while (start <= end)
 	{
 		mid = (end - start) / (2 * sizeof(int));
-		if (start[mid] == find)
-			return (&start[mid]);
-		else if (start[mid] < find)
+		if (*(start + mid) == find)
+			return (start + mid);
+		else if (*(start + mid) < find)
 			start += mid + 1;
 		else
 			end -= mid + 1;

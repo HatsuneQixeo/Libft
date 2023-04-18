@@ -14,10 +14,6 @@
 #include "../../includes/pipex.h"
 // MAN BASH
 
-static void	ft_unusedstatic(void)
-{
-
-}
 // Evaluated as reading variable
 // ?Or the following expression becomes variable?
 // Cannot contain backslash or another opening curly brace
@@ -35,12 +31,6 @@ void	shell_parenthesis(const char *str)
 }
 
 void	shell_bracket(const char *str)
-{
-
-}
-
-// Evaluated as reading variable
-void	shell_variable(const char *str)
 {
 
 }

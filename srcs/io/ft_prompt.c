@@ -15,12 +15,12 @@
 char	*ft_prompt(const char *prompt)
 {
 	char	*line;
-	char	*nl;
 
-	ft_putstr_fd(prompt, 2);
-	line = get_next_line(0);
-	nl = ft_strchr(line, '\n');
-	if (nl)
-		*nl = '\0';
+	ft_putstr_fd(prompt, STDERR_FILENO);
+	line = get_next_line(STDIN_FILENO);
+	if (line == NULL)
+		return (NULL);
+	else if (ft_strchr(line, '\n'))
+		line = ft_strmodify(ft_strtrim, line, "\n");
 	return (line);
 }

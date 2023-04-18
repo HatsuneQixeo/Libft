@@ -18,7 +18,7 @@
  * @return int*
  */
 
-static int	*ft_int(void)
+int	*ft_int(void)
 {
 	static int	ptr[1];
 

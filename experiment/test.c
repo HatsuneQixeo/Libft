@@ -103,10 +103,10 @@ int	ft_strcmp_void(const void *s1, const void *s2)
 	return (ft_strcmp(s1, s2));
 }
 
-size_t	ft_aacountif(void **arr, size_t len, t_ftcmp cmp, const void *ref)
+unsigned int	ft_aacountif(void **arr, unsigned int len, t_ftcmp cmp, const void *ref)
 {
-	size_t	i;
-	size_t	count;
+	unsigned int	i;
+	unsigned int	count;
 
 	i = 0;
 	count = 0;
@@ -121,13 +121,13 @@ size_t	ft_aacountif(void **arr, size_t len, t_ftcmp cmp, const void *ref)
 
 void	test_remove(void **strlist, const char *ref, t_ftdel del)
 {
-	char			**strlist_copy = (char **)ft_aamap(strlist, map_copy);
-	const size_t	length_before = ft_aasize(strlist);
-	const size_t	to_remove = ft_aacountif(strlist, ft_aasize(strlist), ft_strcmp_void, ref);
+	char **const		strlist_copy = (char **)ft_aamap(strlist, map_copy);
+	const unsigned int	length_before = ft_aasize(strlist);
+	const unsigned int	to_remove = ft_aacountif(strlist, ft_aasize(strlist), ft_strcmp_void, ref);
 	
 	ft_aaremove(strlist, ft_strcmp_void, ref, del);
-	const size_t	leftover = ft_aacountif(strlist, ft_aasize(strlist), ft_strcmp_void, ref);
-	const size_t	length_after = ft_aasize(strlist);
+	const unsigned int	leftover = ft_aacountif(strlist, ft_aasize(strlist), ft_strcmp_void, ref);
+	const unsigned int	length_after = ft_aasize(strlist);
 
 	if (leftover != 0)
 		printf("Error: %zu leftover after remove\n", leftover);

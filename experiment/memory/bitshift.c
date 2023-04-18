@@ -34,7 +34,7 @@ void	ft_bitprint(unsigned int nbr)
 	char	*str;
 
 	str = ft_utoa_base(nbr, "01");
-	str = ft_strcombine(ft_strcreate('0', (sizeof(int) * 8) - ft_strlen(str)), str);
+	str = ft_strcombine(ft_strcreate('0', (sizeof(nbr) * 8) - ft_strlen(str)), str);
 	ft_printf("bit(%d): %s\n", nbr, str);
 	free(str);
 }
