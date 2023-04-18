@@ -13,10 +13,9 @@
 # define LIBALGO_H
 
 # include "libis.h"
-# include <stdlib.h>
 
 # define ITNAME_DEFAULT	"it"
-# define NOTFOUND		SIZE_T_MAX
+# define NOTFOUND		SIZE_MAX
 
 typedef const char	*(*t_ftsetname)(const char *name);
 const char	*iteri_name(const char *newname);
@@ -34,8 +33,5 @@ void		*map_strdup(void *content);
 
 typedef int			(*t_ftfind)(unsigned int i, const void *arr,
 			const void *ref);
-
-void		sort_insertion(void *begin, size_t len, size_t data_size,
-				t_ftcmp ft_swapif);
 
 #endif

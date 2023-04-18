@@ -11,20 +11,20 @@
 /* ************************************************************************** */
 #include "libto.h"
 
-static int	ft_nbrsize_base(uintptr_t un_n, int len_base)
+static int	ft_nbrsize_base(size_t n, int len_base)
 {
 	int	digit;
 
 	digit = 1;
-	while (un_n / len_base)
+	while (n / len_base)
 	{
-		un_n /= len_base;
+		n /= len_base;
 		digit++;
 	}
 	return (digit);
 }
 
-char	*ft_utoa_base(uintptr_t un_n, const char *base)
+char	*ft_utoa_base(size_t n, const char *base)
 {
 	char			*str;
 	size_t			array;
@@ -33,15 +33,15 @@ char	*ft_utoa_base(uintptr_t un_n, const char *base)
 	if (!ft_validbase(base))
 		return (NULL);
 	len_base = ft_strlen(base);
-	array = ft_nbrsize_base(un_n, len_base);
+	array = ft_nbrsize_base(n, len_base);
 	str = malloc(array + 1);
 	if (str == NULL)
 		return (NULL);
 	str[array] = '\0';
 	while (array--)
 	{
-		str[array] = base[un_n % len_base];
-		un_n /= len_base;
+		str[array] = base[n % len_base];
+		n /= len_base;
 	}
 	return (str);
 }

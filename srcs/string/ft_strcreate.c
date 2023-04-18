@@ -14,9 +14,8 @@
 
 char	*ft_strcreate(char set, size_t len)
 {
-	char	*str;
+	char *const	str = malloc(len + 1);
 
-	str = malloc(len + 1);
 	if (str == NULL)
 		return (NULL);
 	str[len] = '\0';

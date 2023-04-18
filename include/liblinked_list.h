@@ -54,7 +54,4 @@ t_list		*ft_lstfind_most(const t_list *lst, t_ftcmp cmp);
 const char	*lstshow_name(const char *newname);
 void		lstshow_str(void *content);
 
-void		ft_lstsort_merge(t_list *const begin, t_list *const end,
-				t_ftcmp cmp);
-
 #endif

@@ -13,13 +13,9 @@
 
 char	*ft_strdup(const char *src)
 {
-	char	*str;
-	size_t	len;
+	const size_t	len = ft_strlen(src) + 1;
+	char *const		str = malloc(len);
 
-	if (src == NULL)
-		return (NULL);
-	len = ft_strlen(src) + 1;
-	str = malloc(len);
 	if (str == NULL)
 		return (NULL);
 	ft_strlcpy(str, src, len);

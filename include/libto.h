@@ -34,7 +34,7 @@ void	**ft_lsttoaa(t_list *lst, t_ftmap ft_map);
 void	**ft_lsttoaa_clear(t_list **lst);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
-char	*ft_utoa_base(uintptr_t un_n, const char *base);
+char	*ft_utoa_base(size_t n, const char *base);
 int		ft_validbase(const char *base);
 
 #endif

@@ -13,16 +13,14 @@
 
 void	ft_aaclear(void **aa, t_ftdel del)
 {
-	int	y;
+	unsigned int	y;
 
 	if (aa == NULL)
 		return ;
 	y = -1;
 	while (aa[++y] != NULL)
-	{
 		del(aa[y]);
-		aa[y] = NULL;
-	}
+	ft_bzero(aa, sizeof(*aa) * y);
 	free(aa);
 }
 

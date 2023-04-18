@@ -15,13 +15,12 @@ int	ft_memcmp(const void *ptr1, const void *ptr2, size_t bytes)
 {
 	const unsigned char	*it1 = ptr1;
 	const unsigned char	*it2 = ptr2;
+	size_t				i;
 
-	if (bytes == 0 || ptr1 == NULL || ptr2 == NULL)
+	if (bytes == 0)
 		return (0);
-	while (*it1 == *it2 && --bytes)
-	{
-		it1++;
-		it2++;
-	}
-	return (*it1 - *it2);
+	i = 0;
+	while (it1[i] == it2[i] && i < bytes)
+		i++;
+	return (it1[i] - it2[i]);
 }

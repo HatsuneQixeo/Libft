@@ -13,13 +13,10 @@
 
 char	*ft_strchr(const char *str, int c)
 {
-	const char	chr = c;
-
-	if (str == NULL)
-		return (NULL);
-	while (*str != '\0' && *str != chr)
+	c = (char)c;
+	while (*str != '\0' && *str != c)
 		str++;
-	if (*str == chr)
+	if (*str == c)
 		return ((char *)str);
 	return (NULL);
 }

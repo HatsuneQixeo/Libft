@@ -27,24 +27,19 @@ char	mapi_capitalize(unsigned int i, char c)
 {
 	static char	prev_isspace;
 
-	if (ft_isspace(c))
-	{
-		prev_isspace = 1;
-		return (c);
-	}
-	else if (i == 0 || prev_isspace)
-	{
-		prev_isspace = 0;
-		return (ft_toupper(c));
-	}
+	if (i == 0 || prev_isspace)
+		c = ft_toupper(c);
 	else
-		return (ft_tolower(c));
+		c = ft_tolower(c);
+	prev_isspace = ft_isspace(c);
+	return (c);
 }
 
 char	mapi_miku(unsigned int i, char c)
 {
 	if (i > 12)
-		return (c - c);
+		return ('\0');
 	else
 		return ("Hatsune Miku"[i]);
+	(void)c;
 }

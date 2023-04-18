@@ -12,6 +12,8 @@
 #ifndef LIBIS_H
 # define LIBIS_H
 
+# include <stdint.h>
+
 typedef int	(*t_ftis)(int c);
 /* Is */
 int		ft_isalnum(int c);

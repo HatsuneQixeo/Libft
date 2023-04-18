@@ -12,5 +12,5 @@
 
 int	ft_within(int min, int nbr, int max)
 {
-	return (nbr >= min && nbr <= max);
+	return (min <= nbr && nbr <= max);
 }

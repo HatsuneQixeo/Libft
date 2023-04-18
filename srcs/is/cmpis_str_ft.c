@@ -38,37 +38,17 @@ int	cmp_strprefix(const void *str, const void *prefix)
 	return (it_str[i] - it_prefix[i]);
 }
 
-/* Index version  */
-// int	cmp_strsuffix(const void *str, const void *suffix)
-// {
-// 	const char	*it_str = str;
-// 	const char	*it_suffix = suffix;
-// 	size_t		len_str;
-// 	size_t		len_suffix;
-
-// 	len_str = ft_strlen(it_str);
-// 	len_suffix = ft_strlen(it_suffix);
-// 	while ((len_str-- != 0) + (len_suffix-- != 0) == 2)
-// 	{
-// 		if (it_str[len_str] != it_suffix[len_suffix])
-// 			return (it_str[len_str] - it_suffix[len_suffix]);
-// 	}
-// 	if (len_str == SIZE_MAX && len_suffix != SIZE_MAX)
-// 		return (-it_suffix[len_suffix]);
-// 	return (0);
-// }
-
 int	cmp_strsuffix(const void *str, const void *suffix)
 {
-	const char	*it_str = ft_strchr(str, '\0');
-	const char	*it_suffix = ft_strchr(suffix, '\0');
+	const char	*it_str = ft_strchr(str--, '\0');
+	const char	*it_suffix = ft_strchr(suffix--, '\0');
 
-	while ((it_str-- != str) + (it_suffix-- != suffix) == 2)
+	while ((--it_str != str) + (--it_suffix != suffix) == 2)
 	{
 		if (*it_str != *it_suffix)
 			return (*it_str - *it_suffix);
 	}
-	if (it_str + 1 == str && it_suffix + 1 != suffix)
-		return (-*it_suffix);
-	return (0);
+	if (it_suffix + 1 == suffix)
+		return (0);
+	return (-*it_suffix);
 }

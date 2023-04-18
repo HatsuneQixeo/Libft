@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
+#include <stdio.h>
 
 static char	*read_line(int fd, char *str_saved)
 {
@@ -20,7 +21,7 @@ static char	*read_line(int fd, char *str_saved)
 	while (!ft_strchr(str_saved, '\n') && len_read == BUFFER_SIZE)
 	{
 		len_read = read(fd, str_part, BUFFER_SIZE);
-		if (len_read == SIZE_T_MAX)
+		if (len_read == SIZE_MAX)
 		{
 			perror("get_next_line: ");
 			break ;

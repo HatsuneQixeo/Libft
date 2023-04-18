@@ -13,7 +13,7 @@
 
 void	ft_strlistiteri(char **strlist, t_ftiteri ft_iteri)
 {
-	int	y;
+	unsigned int	y;
 
 	if (strlist == NULL || ft_iteri == NULL)
 		return ;

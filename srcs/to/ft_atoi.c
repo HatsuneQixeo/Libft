@@ -16,13 +16,13 @@ int	ft_atoi(const char *str)
 	int	sign;
 	int	nbr;
 
-	sign = 1;
-	nbr = 0;
 	while (ft_isspace(*str))
 		str++;
+	sign = 1;
 	if (*str == '-' || *str == '+')
 		if (*str++ == '-')
 			sign = -1;
+	nbr = 0;
 	while (ft_isdigit(*str))
 		nbr = (nbr * 10) + (*str++ - '0');
 	return (nbr * sign);
@@ -33,13 +33,13 @@ long	ft_atol(const char *str)
 	long	nbr;
 	int		sign;
 
-	nbr = 0;
-	sign = 1;
 	while (ft_isspace(*str))
 		str++;
+	sign = 1;
 	if (*str == '-' || *str == '+')
 		if (*str++ == '-')
 			sign = -1;
+	nbr = 0;
 	while (ft_isdigit(*str))
 		nbr = (nbr * 10) + (*str++ - '0');
 	return (nbr * sign);

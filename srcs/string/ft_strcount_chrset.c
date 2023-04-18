@@ -16,12 +16,10 @@ size_t	ft_strcount_chrset(const char *str, const char *set)
 	size_t	count;
 
 	count = 0;
-	if (str == NULL || set == NULL)
-		return (0);
-	else if (*set == '\0')
+	if (*set == '\0')
 		return (1);
 	while (*str != '\0')
-		if (ft_strchr(set, *str++) != NULL)
+		if (ft_strchr(set, *str++))
 			count++;
 	return (count);
 }

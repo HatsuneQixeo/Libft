@@ -16,10 +16,8 @@
 #  define BUFFER_SIZE 39
 # endif
 
-# include <limits.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include "libstring.h"
 
 char	*get_next_line(int fd);

@@ -16,8 +16,6 @@ char	*ft_strmapi(const char *src, char (*ft)(unsigned int, char))
 	char	*strmap;
 	size_t	i;
 
-	if (src == NULL || ft == NULL)
-		return (NULL);
 	strmap = malloc(ft_strlen(src) + 1);
 	if (strmap == NULL)
 		return (NULL);

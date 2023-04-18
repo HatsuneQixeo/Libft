@@ -14,13 +14,11 @@
 void	*ft_memchr(const void *ptr, int c, size_t bytes)
 {
 	const char	*str = ptr;
-	const char	chr = c;
 
-	if (str == NULL)
-		return (NULL);
+	c = (char)c;
 	while (bytes--)
 	{
-		if (*str == chr)
+		if (*str == c)
 			return ((void *)str);
 		str++;
 	}

@@ -16,8 +16,8 @@ static int	ft_padsize(const char *base)
 	char	*nbr;
 	size_t	size;
 
-	nbr = ft_utoa_base(__UINT8_MAX__, base);
-	if (nbr == 0)
+	nbr = ft_utoa_base(UINT8_MAX, base);
+	if (nbr == NULL)
 		return (0);
 	size = ft_strlen(nbr);
 	free(nbr);

@@ -19,8 +19,6 @@ void	*ft_memset(void *ptr, int c, size_t bytes)
 	char	*it;
 
 	it = ptr;
-	if (it == NULL)
-		return (NULL);
 	while (bytes--)
 		*it++ = c;
 	return (ptr);

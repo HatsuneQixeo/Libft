@@ -12,7 +12,6 @@
 #ifndef LIBSTRING_H
 # define LIBSTRING_H
 
-# include <string.h>
 # include <stdlib.h>
 # include "libis.h"
 # include "libalgo.h"
