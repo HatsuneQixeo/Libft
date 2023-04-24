@@ -11,30 +11,59 @@ san="-fsanitize=address -g3 -D SAN=1"
 # Files
 src="$1"
 libft="libft.a -Iinclude"
-prg="${1//.c/.miku}"
-compile="$cc $cflags $src $libft -o $prg"
+exlib="experiment/exlib/exlib.a -Iexperiment/exlib/include"
+prg="$(basename ${src//.c/.miku})"
+compile=true
 
 function esh_echo()
 {
 	echo "exp: $@"
 }
 
+function esh_errorexit()
+{
+	esh_echo "$@" >&2
+	exit 1
+}
+
+function removeflag()
+{
+	local	flag="$1"
+	
+	if [[ "$cflags" =~ "$flag" ]]
+	then
+		cflags="${cflags//"$flag"/}"
+		return 0
+	else
+		return 1
+	fi
+}
+
+function addflag()
+{
+	local	flag="$1"
+	
+	if ! [[ "$cflags" =~ "$flag" ]]
+	then
+		cflags+=" $flag"
+		return 0
+	else
+		return 1
+	fi
+}
+
 if [ $# -eq 0 ]
 then
-	esh_echo 'Please provide a source file with main for testing'
-	exit 1
+	esh_errorexit 'Please provide a source file with main for testing'
 elif ! [ -e "$src" ]
 then
-	esh_echo "File not found: $src"
-	exit 1
+	esh_errorexit "File not found: $src"
 elif [ -d "$src" ]
 then
-	esh_echo "Is a directory: $src"
-	exit 1
+	esh_errorexit "Is a directory: $src"
 elif [[ "$src" != *".c" ]]
 then
-	esh_echo "Not a C Source file: $src"
-	exit 1
+	esh_errorexit "Not a C Source file: $src"
 fi
 
 messages=()
@@ -43,36 +72,23 @@ do
 	case "$arg" in
 	'nocom')
 		esh_echo 'Skipped compilation'
-		compile=""
+		compile=false
 		break
 	;;
 	"san")
-		if ! [[ "$cflags" =~ "$san" ]]
-		then
-			messages+=('Sanitizer: ON')
-			cflags+=" $san"
-		fi
+		addflag "$san" && messages+=('Sanitizer: ON')
 	;;
 	'noextra')
-		if [[ "$cflags" =~ "$extra" ]]
-		then
-			messages+=("Excluding $extra flag")
-			cflags="${cflags//"$extra"/}"
-		fi
+		removeflag "$extra" && messages+=("Excluding $extra flag")
 	;;
 	'noerror')
-		if [[ "$cflags" =~ "$error" ]]
-		then
-			messages+=("Excluding $error flag")
-			cflags="${cflags//"$error"/}"
-		fi
+		removeflag "$error" && messages+=("Excluding $error flag")
 	;;
 	'nounused')
-		if ! [[ "$cflags" =~ "$unused_set" ]]
-		then
-			messages+=('Ignoring unused parameter')
-			cflags+=" $unused_set"
-		fi
+		addflag "$unused_set" && messages+=("Including $unused_set flag")
+	;;
+	'noopti')
+		addflag "-O0" && messages+=('No optimization')
 	;;
 	*)
 		esh_echo "Unknown flag: $arg"
@@ -83,30 +99,29 @@ Available flag are:
 	noextra:	Compile without $extra
 	noerror:	Compile without $error
 	nounused:	Compile with $unused_set
+	noopti:		Compile with optimisation off
 EOF
 		exit 1
 	;;
 	esac
 done
 
-if [ -n "$compile" ]
+if [ $compile != false ]
 then
-	compile="$cc $cflags $src $libft -o $prg"
+	compile="$cc $cflags $src $libft $exlib -o $prg"
 	for msg in "${messages[@]}"
 	do
-		echo $msg
+		echo "$msg"
 	done
-	make &&
+	make && make -C experiment/exlib &&
 	esh_echo $compile &&
 	$compile &&
-	mv "$prg" . &&
-	prg="./$(basename $prg)" &&
-	esh_echo "Compiled: $prg"
+	esh_echo "Compiled: $(basename $prg)"
 fi
 
 [ $? -ne 0 ] && exit 1
 
-"$prg"
+"./$prg"
 
 # BUG: make is executed in the current working directory, where the bash script is ran
 # so it could be running another make if not executed it's own directory

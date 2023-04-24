@@ -130,10 +130,10 @@ void	test_remove(void **strlist, const char *ref, t_ftdel del)
 	const unsigned int	length_after = ft_aasize(strlist);
 
 	if (leftover != 0)
-		printf("Error: %zu leftover after remove\n", leftover);
+		printf("Error: %u leftover after remove\n", leftover);
 	else if (length_after > length_before - to_remove)
 		printf("Error: Did not removed every reference to remove\n");
-	else if (length_before - to_remove > length_after)
+	else if (length_after < length_before - to_remove)
 		printf("Error: Removed unrelated element\n");
 	else
 	{
@@ -151,25 +151,30 @@ void	test_remove(void **strlist, const char *ref, t_ftdel del)
 	free(strlist_copy);
 }
 
+// int	main(void)
+// {
+// 	t_list	*lst;
+
+// 	lst = NULL;
+// 	ft_lstadd_back(&lst, ft_lstnew("Miku"));
+// 	ft_lstadd_back(&lst, ft_lstnew("is"));
+// 	ft_lstadd_back(&lst, ft_lstnew("cute"));
+
+// 	test_remove(ft_lsttoaa(lst, map_copy), "not", NULL);
+// 	ft_lstadd_front(&lst, ft_lstnew("not"));
+
+// 	test_remove(ft_lsttoaa(lst, map_copy), "not", NULL);
+// 	ft_lstadd_front(&lst, ft_lstnew("not"));
+
+// 	test_remove(ft_lsttoaa(lst, map_copy), "not", NULL);
+// 	ft_lstadd_back(&lst, ft_lstnew("not"));
+
+// 	test_remove(ft_lsttoaa(lst, map_copy), "not", NULL);
+// 	ft_lstclear(&lst, NULL);
+// 	system("leaks -q test.miku");
+// }
+
 int	main(void)
 {
-	t_list	*lst;
-
-	lst = NULL;
-	ft_lstadd_back(&lst, ft_lstnew("Miku"));
-	ft_lstadd_back(&lst, ft_lstnew("is"));
-	ft_lstadd_back(&lst, ft_lstnew("cute"));
-
-	test_remove(ft_lsttoaa(lst, map_copy), "not", NULL);
-	ft_lstadd_front(&lst, ft_lstnew("not"));
-
-	test_remove(ft_lsttoaa(lst, map_copy), "not", NULL);
-	ft_lstadd_front(&lst, ft_lstnew("not"));
-
-	test_remove(ft_lsttoaa(lst, map_copy), "not", NULL);
-	ft_lstadd_back(&lst, ft_lstnew("not"));
-
-	test_remove(ft_lsttoaa(lst, map_copy), "not", NULL);
-	ft_lstclear(&lst, NULL);
-	system("leaks -q test.miku");
+	ft_printf("upper: %c lower: %c\n", ft_toupper('a'), ft_tolower('A'));
 }
