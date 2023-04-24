@@ -39,7 +39,8 @@ void	sort_insertion(void *begin, size_t len, size_t data_size,
 	while (len--)
 	{
 		it_insert = element;
-		while (begin < it_insert && ft_cmp(it_insert - data_size, it_insert) > 0)
+		while (begin < it_insert
+			&& ft_cmp(it_insert - data_size, it_insert) > 0)
 		{
 			ft_memswap(it_insert - data_size, it_insert, data_size);
 			it_insert -= data_size;

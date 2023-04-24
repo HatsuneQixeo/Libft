@@ -24,17 +24,15 @@
 # include <assert.h>
 
 # ifndef SAN
-#  define SAN	1
+#  define SAN	0
 # endif
 
 /* Sorting */
-void    sort_insertion(void *begin, size_t len, size_t data_size,
-			t_ftcmp ft_cmp);
-void    ft_lstsort_merge(t_list *const begin, t_list *const end,
-			t_ftcmp ft_cmp);
+void	sort_insertion(void *begin, size_t len, size_t data_size, t_ftcmp cmp);
+void	ft_lstsort_merge(t_list *begin, t_list *end, t_ftcmp cmp);
 
 /* Io with certain side effect */
 char	*ft_prompt(const char *prompt);
-void	ft_assert(const int condition, const char *message);
+void	ft_assert(int condition, const char *message);
 
 #endif

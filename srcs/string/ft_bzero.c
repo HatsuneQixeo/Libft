@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libstring.h"
 
-void	ft_bzero(void *str, size_t len)
+void	ft_bzero(void *ptr, size_t len)
 {
-	ft_memset(str, 0b0, len);
+	ft_memset(ptr, 0b0, len);
 }

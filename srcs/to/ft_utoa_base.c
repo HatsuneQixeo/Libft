@@ -26,9 +26,9 @@ static int	ft_nbrsize_base(size_t n, int len_base)
 
 char	*ft_utoa_base(size_t n, const char *base)
 {
-	char			*str;
-	size_t			array;
-	size_t			len_base;
+	char	*str;
+	size_t	array;
+	size_t	len_base;
 
 	if (!ft_validbase(base))
 		return (NULL);
