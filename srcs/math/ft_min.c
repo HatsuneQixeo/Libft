@@ -34,3 +34,11 @@ size_t	ft_min_sizet(size_t a, size_t b)
 	else
 		return (a);
 }
+
+double	ft_dmin(double a, double b)
+{
+	if (a < b)
+		return (a);
+	else
+		return (b);
+}

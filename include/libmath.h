@@ -15,9 +15,15 @@
 # include <stdlib.h>
 
 int		ft_nbrsize(size_t nbr);
+
 int		ft_max(int a, int b);
 int		ft_min(int a, int b);
+
+double	ft_dmax(double a, double b);
+double	ft_dmin(double a, double b);
+
 size_t	ft_min_sizet(size_t a, size_t b);
+
 int		ft_within(int min, int nbr, int max);
 
 #endif

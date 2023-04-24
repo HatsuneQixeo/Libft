@@ -17,3 +17,11 @@ int	ft_max(int a, int b)
 	else
 		return (b);
 }
+
+double	ft_dmax(double a, double b)
+{
+	if (a > b)
+		return (a);
+	else
+		return (b);
+}
