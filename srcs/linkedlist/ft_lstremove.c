@@ -34,17 +34,43 @@ void	ft_lstremove(t_list **lst, t_list *node, t_ftdel del)
 		ft_lstremove(&(*lst)->next, node, del);
 }
 
+// void	ft_lstremoveif(t_list **lst, const void *ref,
+// 			t_ftcmp ft_cmp, t_ftdel ft_del)
+// {
+// 	t_list	*tmp;
+
+// 	while (*lst != NULL && !ft_cmp((*lst)->content, ref))
+// 	{
+// 		tmp = *lst;
+// 		*lst = (*lst)->next;
+// 		ft_lstdelone(tmp, ft_del);
+// 	}
+// 	if (*lst != NULL)
+// 		ft_lstremoveif(&(*lst)->next, ref, ft_cmp, ft_del);
+// }
+
 void	ft_lstremoveif(t_list **lst, const void *ref,
 			t_ftcmp ft_cmp, t_ftdel ft_del)
 {
-	t_list	*tmp;
+	t_list	*it;
+	t_list	*prev;
+	t_list	*node;
 
-	while (*lst != NULL && !ft_cmp((*lst)->content, ref))
+	prev = NULL;
+	it = *lst;
+	while (it != NULL)
 	{
-		tmp = *lst;
-		*lst = (*lst)->next;
-		ft_lstdelone(tmp, ft_del);
+		node = it;
+		it = it->next;
+		if (ft_cmp(it->content, ref))
+		{
+			prev = node;
+			continue ;
+		}
+		ft_lstdelone(node, ft_del);
+		if (prev != NULL)
+			prev->next = it;
+		else
+			*lst = it;
 	}
-	if (*lst != NULL)
-		ft_lstremoveif(&(*lst)->next, ref, ft_cmp, ft_del);
 }
