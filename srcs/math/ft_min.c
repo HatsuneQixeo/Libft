@@ -13,26 +13,26 @@
 
 int	ft_min(int a, int b)
 {
-	if (a > b)
-		return (b);
-	else
+	if (a < b)
 		return (a);
+	else
+		return (b);
 }
 
 long	ft_min_long(long a, long b)
 {
-	if (a > b)
-		return (b);
-	else
+	if (a < b)
 		return (a);
+	else
+		return (b);
 }
 
 size_t	ft_min_sizet(size_t a, size_t b)
 {
-	if (a > b)
-		return (b);
-	else
+	if (a < b)
 		return (a);
+	else
+		return (b);
 }
 
 double	ft_dmin(double a, double b)
