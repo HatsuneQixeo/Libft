@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   strprintable.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 10:04:01 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/04/10 02:27:49 by hqixeo           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
 static void	print(char c)
@@ -93,15 +81,6 @@ int	main(void)
 }
 	// ft_printno_sign("Coucou\ntu vas bien ?\n");
 	// ft_printno_sign("Hatsune \t Miku \t is   very \t cute \n");
-
-void	asdvcbn_static_isstupid(void)
-{
-	(void)putno;
-	(void)allbase;
-	(void)ft_printno;
-	(void)ft_printno_sign;
-}
-char	*ft_memprintable(const void *src, const char *base, size_t bytes);
 
 static void	memprintable(const void *src, const char *base, size_t bytes)
 {

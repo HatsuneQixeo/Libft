@@ -1,22 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   bitshift.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 10:04:01 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/04/10 02:27:48 by hqixeo           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
-
-char	*ft_prompt(const char *request)
-{
-	ft_printf("%s: ", request);
-	return (get_next_line(0));
-}
 
 int	ft_prompt_nbr(const char *request)
 {

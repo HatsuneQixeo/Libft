@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   strsuffix.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 22:23:59 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/04/10 02:27:49 by hqixeo           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 #define SHOW(str)	ft_dprintf(2, #str": [%s]\n", str)
 
@@ -43,7 +31,7 @@ int	reversed_strcmp(const char *str1, const char *str2)
 	ft_strreverse(rev_str2);
 	// SHOW(rev_str1);
 	// SHOW(rev_str2);
-	int	ret = ft_strcmp(rev_str1, rev_str2);
+	const int	ret = ft_strcmp(rev_str1, rev_str2);
 	free(rev_str1);
 	free(rev_str2);
 	return (ret);
