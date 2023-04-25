@@ -9,7 +9,6 @@
 /*   Updated: 2023/04/10 02:27:54 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include <stdarg.h>
 #include "libstring.h"
 #include "liblinked_list.h"

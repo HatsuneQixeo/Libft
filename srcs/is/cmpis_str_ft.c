@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libstring.h"
-#include "ft_printf.h"
 
 int	cmp_strlesser(const void *str1, const void *str2)
 {

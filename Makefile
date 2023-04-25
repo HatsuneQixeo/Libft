@@ -53,4 +53,7 @@ pft: ${NAME}
 	@cp $< libftprintf.a && cd $@ && make && ./test
 	@${RM} libftprintf.a
 
+header:
+	42header.sh ${SRC_DIR} ${INCLUDE}
+
 .PHONY: test pft

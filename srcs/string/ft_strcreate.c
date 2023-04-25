@@ -9,7 +9,6 @@
 /*   Updated: 2023/04/10 02:27:54 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libstring.h"
 
 char	*ft_strcreate(char set, size_t len)

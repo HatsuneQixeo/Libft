@@ -9,7 +9,6 @@
 /*   Updated: 2023/04/10 02:27:52 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "liblinked_list.h"
 
 /* Not safe? Can crash if dst is smaller than src */

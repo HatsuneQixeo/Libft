@@ -9,7 +9,6 @@
 /*   Updated: 2023/04/10 02:27:52 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "liblinked_list.h"
 
 t_list	*ft_lstextract_back(t_list **lst)
