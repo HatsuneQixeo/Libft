@@ -27,6 +27,15 @@ void	**ft_aamap(void **src, t_ftmap ft_map)
 	return (aa);
 }
 
+void	**ft_aarenew(void **src)
+{
+	void	**aa;
+
+	aa = ft_aamap(src, map_copy);
+	free(src);
+	return (aa);
+}
+
 char	**ft_strlistdup(char **strlist)
 {
 	return ((char **)ft_aamap((void **)strlist, map_strdup));
