@@ -13,6 +13,7 @@
 # define LIBIS_H
 
 # include <stdint.h>
+# include <limits.h>
 
 typedef int	(*t_ftis)(int c);
 /* Is */
@@ -30,9 +31,10 @@ typedef int	(*t_ftstris)(const char *str);
 int		stris_numeric(const char *str);
 
 typedef int	(*t_ftcmp)(const void *ref1, const void *ref2);
-int		cmp_strlesser(const void *str1, const void *str2);
-int		cmp_strgreater(const void *str1, const void *str2);
+int		cmp_str(const void *str1, const void *str2);
+int		cmp_strreverse(const void *str1, const void *str2);
 int		cmp_strprefix(const void *str, const void *prefix);
 int		cmp_strsuffix(const void *str, const void *suffix);
+int		cmp_strlen(const void *str1, const void *str2);
 
 #endif

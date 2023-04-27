@@ -11,12 +11,12 @@
 /* ************************************************************************** */
 #include "libstring.h"
 
-int	cmp_strlesser(const void *str1, const void *str2)
+int	cmp_str(const void *str1, const void *str2)
 {
 	return (ft_strcmp(str1, str2));
 }
 
-int	cmp_strgreater(const void *str1, const void *str2)
+int	cmp_strreverse(const void *str1, const void *str2)
 {
 	return (ft_strcmp(str2, str1));
 }
@@ -50,4 +50,9 @@ int	cmp_strsuffix(const void *str, const void *suffix)
 	if (it_suffix + 1 == suffix)
 		return (0);
 	return (-*it_suffix);
+}
+
+int	cmp_strlen(const void *str1, const void *str2)
+{
+	return (ft_strlen(str1) - ft_strlen(str2));
 }

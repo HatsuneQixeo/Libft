@@ -12,6 +12,9 @@
 #include "libis.h"
 #include "libstring.h"
 
+/**
+ * Question: What should this function return if the given string is empty
+ */
 int	stris_only(const char *str, t_ftis ft_is)
 {
 	while (*str != '\0' && ft_is(*str))
