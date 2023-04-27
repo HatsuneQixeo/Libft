@@ -13,6 +13,7 @@
 # define LIBIS_H
 
 # include <stdint.h>
+# include <limits.h>
 
 typedef int	(*t_ftis)(int c);
 /* Is */
