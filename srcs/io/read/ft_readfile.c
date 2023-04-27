@@ -11,24 +11,23 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-/**
- * @brief 
- * @note This function trim away every '\n', while preserving empty lines
- */
-char	**ft_readfile(int fd)
+char	**ft_readfile(const char *path)
 {
-	t_list	*lst;
-	char	*str_part;
-	char	**strlist;
+	const int	fd = open(path, O_RDONLY);
+	t_list		*lst;
+	char		*str_part;
 
+	if (fd == -1)
+		return (NULL);
 	lst = NULL;
-	str_part = get_next_line(fd);
-	while (str_part != NULL)
+	while (1)
 	{
-		ft_lstadd_back(&lst, ft_lstnew(str_part));
 		str_part = get_next_line(fd);
+		if (str_part == NULL)
+			break ;
+		str_part = ft_strmodify(ft_strtrim, str_part, "\n");
+		ft_lstadd_back(&lst, ft_lstnew(str_part));
 	}
-	strlist = (char **)ft_lsttoaa_clear(&lst);
-	ft_strlistmod(strlist, "\n", ft_strtrim);
-	return (strlist);
+	close(fd);
+	return ((char **)ft_lsttoaa_clear(&lst));
 }
