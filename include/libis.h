@@ -28,6 +28,7 @@ int		ft_isupper(int c);
 
 int		stris_only(const char *str, t_ftis ft_is);
 typedef int	(*t_ftstris)(const char *str);
+int		stris_empty(const char *str);
 int		stris_numeric(const char *str);
 
 typedef int	(*t_ftcmp)(const void *ref1, const void *ref2);
