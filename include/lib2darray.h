@@ -45,6 +45,7 @@ char	**ft_strlistdup(char **strlist);
 void	ft_aaremove(void **aa, t_ftcmp cmp, const void *ref, t_ftdel del);
 
 /* Other */
+char	**ft_strlistpad(char **strlist, t_ftstrpad ft_strpad, char c);
 
 char	**ft_strlistcombine(char **srclist1, char **srclist2);
 

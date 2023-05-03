@@ -22,6 +22,12 @@ typedef char	*(*t_modifier)(const char *str1, const char *str2);
 
 size_t	ft_arrfind(const void *arr, size_t len,
 			t_ftfind ft_find, const void *ref);
+
+/* Padding */
+typedef char	*(*t_ftstrpad)(const char *str, size_t len, char c);
+char	*ft_strpad_right(const char *str, const size_t len, const char c);
+char	*ft_strpad_left(const char *str, const size_t len, const char c);
+
 /* Mem */
 void	ft_bzero(void *str, size_t len);
 void	*ft_calloc(size_t len, size_t size);
