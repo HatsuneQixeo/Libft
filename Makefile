@@ -2,6 +2,9 @@ NAME		:=	libft.a
 
 CC			:=	gcc
 CFLAGS		:=	-Wall -Wextra -Werror
+ifdef SAN
+CFLAGS	+=	-fsanitize=address -g -D SAN=1
+endif
 
 SRC_DIR		:=	srcs
 SRCS		:=	$(shell find ${SRC_DIR} -name "ft_*.c") $(shell find ${SRC_DIR} -name "*_ft.c")
@@ -11,9 +14,6 @@ HEADER		:=	$(wildcard ${INCLUDE}/*.h)
 
 OBJ_DIR		:=	~obj
 OBJS		:=	$(patsubst ${SRC_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRCS})
-
-EXLIB_DIR	:=	experiment/exlib
-EXLIB_MAKE	:=	make -C ${EXLIB_DIR}
 
 all: ${NAME}
 
@@ -34,12 +34,10 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c ${HEADER}
 	${CC} ${CFLAGS} -I${INCLUDE} -c $< -o $@
 
 clean:
-	${EXLIB_MAKE} clean
-	${RM} -r ${OBJ_DIR}
+	${RM} -r ${OBJ_DIR} ${shell find . -name "*.dSYM"}
 
 fclean: clean
-	${EXLIB_MAKE} fclean
-	${RM} ${NAME} ${shell find . -name "*.miku"} ${shell find . -name "*.dSYM"}
+	${RM} ${NAME} ${shell find . -name "*.miku"}
 
 re: fclean all
 
