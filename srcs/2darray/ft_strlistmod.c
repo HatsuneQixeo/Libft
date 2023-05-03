@@ -26,11 +26,15 @@ void	ft_strlistmod(char **strlist, const char *mod, t_modifier ft_mod)
 	*it = NULL;
 }
 
-/// @brief Remove the string if it matches, Dedicated for strlistmod
-/// @param str 
-/// @param str_rm 
-/// @return NULL if the string matches
-///	otherwise it will return the a copy of the data
+/**
+ * @brief Remove the string if it matches, Dedicated for strlistmod
+ * 
+ * @param str 
+ * @param str_rm 
+ * @return char* NULL if the string matches
+ * otherwise it will return the a copy of the data
+ */
+/* This is just aaremove */
 char	*strmod_rmstr(const char *str, const char *str_rm)
 {
 	if (ft_strcmp(str, str_rm))

@@ -26,12 +26,9 @@ int	stris_numeric(const char *str)
 {
 	char *const		trimmed = ft_strtrim(str, " \t");
 	const size_t	start = (*trimmed == '-' || *trimmed == '+');
-	int				ret;
+	const int		ret = (trimmed[start] != '\0'
+			&& stris_only(&trimmed[start], ft_isdigit));
 
-	if (trimmed[start] == '\0')
-		ret = 0;
-	else
-		ret = stris_only(&trimmed[start], ft_isdigit);
 	free(trimmed);
 	return (ret);
 }

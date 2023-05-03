@@ -16,6 +16,8 @@
 # include "libis.h"
 # include "libalgo.h"
 
+# define SPACES	" \t"
+
 typedef char	*(*t_modifier)(const char *str1, const char *str2);
 
 size_t	ft_arrfind(const void *arr, size_t len,
@@ -79,7 +81,7 @@ char	*strmod_clear(const char *str_clear, const char *str_void);
 char	*strmod_realloc(const char *src, const char *str_void);
 char	*strmod_strstrdup(const char *src, const char *find);
 char	*strmod_substr(const char *src, const char *src_end);
-char	*strmod_replace(const char *dst, const char *src);
+char	*strmod_replace(const char *replaced, const char *by);
 
 /* Callback Functions */
 char	mapi_capitalize(unsigned int i, char c);

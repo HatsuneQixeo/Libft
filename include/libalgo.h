@@ -13,25 +13,42 @@
 # define LIBALGO_H
 
 # include "libis.h"
+# include <stdlib.h>
 
 # define ITNAME_DEFAULT	"it"
 # define NOTFOUND		SIZE_MAX
 
-typedef const char	*(*t_ftsetname)(const char *name);
+typedef const char		*(*t_ftsetname)(const char *name);
 const char	*iteri_name(const char *newname);
 
-typedef void		(*t_ftdel)(void *content);
+/* Del */
+typedef void			(*t_ftdel)(void *content);
+void		del_shallowlist(void *list);
 
-typedef void		(*t_ftiteri)(unsigned int i, void *content);
-void		iteri_putendl(unsigned int i, void *p_str);
-void		iteri_showstr(unsigned int i, void *p_str);
-void		iteri_showaddress(unsigned int i, void *p_ptr);
+/* Iteri */
+typedef void			(*t_ftiteri)(unsigned int i, void *aa);
+void		iteri_putendl(unsigned int i, void *strlist);
+void		iteri_showstr(unsigned int i, void *strlist);
+void		iteri_showaddress(unsigned int i, void *aa);
 
-typedef void		*(*t_ftmap)(void *content);
-void		*map_copy(void *content);
-void		*map_strdup(void *content);
+/* Map */
+typedef void			*(*t_ftmap)(const void *content);
+void		*map_copy(const void *content);
+void		*map_strdup(const void *content);
 
-typedef int			(*t_ftfind)(unsigned int i, const void *arr,
+typedef int				(*t_ftfind)(unsigned int i, const void *arr,
 			const void *ref);
+
+typedef struct s_list	t_list;
+typedef void			(*t_ftiterlst)(void *content);
+/* Linked list*/
+const char	*lstshow_name(const char *newname);
+void		lstshow_str(void *str);
+void		lstshow_puterrendl(void *str);
+
+/* Sorting */
+void		sort_insertion(void *begin, size_t len, size_t data_size,
+				t_ftcmp cmp);
+void		ft_lstsort_merge(t_list *begin, t_list *end, t_ftcmp cmp);
 
 #endif

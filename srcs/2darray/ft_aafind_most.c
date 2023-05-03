@@ -5,8 +5,10 @@ void	**ft_aafind_most(void **aa, t_ftcmp cmp)
 	void			**most;
 	unsigned int	i;
 
+	if (aa[0] == NULL)
+		return (aa);
 	most = aa;
-	i = -1;
+	i = 0;
 	while (aa[++i] != NULL)
 	{
 		if (cmp(*most, aa[i]) < 0)

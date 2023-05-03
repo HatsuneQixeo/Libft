@@ -23,8 +23,6 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef void	(*t_ftiterlst)(void *content);
-
 /* Linked list */
 t_list		*ft_lstnew(void *content);
 
@@ -50,8 +48,5 @@ void		ft_lstremoveif(t_list **lst, const void *ref,
 
 t_list		*ft_lstfind(const t_list *lst, const void *ref, t_ftcmp cmp);
 t_list		*ft_lstfind_most(const t_list *lst, t_ftcmp cmp);
-
-const char	*lstshow_name(const char *newname);
-void		lstshow_str(void *content);
 
 #endif

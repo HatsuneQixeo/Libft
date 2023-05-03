@@ -52,10 +52,10 @@ char	*strmod_transfrom(const char *from, const char *to)
  * 
  * 
  */
-char	*strmod_replace(const char *dst, const char *src)
+char	*strmod_replace(const char *replaced, const char *by)
 {
-	return ((char *)src);
-	(void)dst;
+	return ((char *)by);
+	(void)replaced;
 }
 
 /**
