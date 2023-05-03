@@ -25,3 +25,8 @@ void	lstshow_str(void *content)
 {
 	ft_dprintf(2, "%s: [%s]\n", lstshow_name(NULL), content);
 }
+
+void	lstshow_puterrendl(void *str)
+{
+	ft_putendl_fd(str, 2);
+}
