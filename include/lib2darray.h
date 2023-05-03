@@ -23,13 +23,13 @@ int		ft_strcount(char **strlist);
 void	ft_aaclear(void **aa, t_ftdel del);
 void	ft_strlistclear(char **strlist);
 
-char	**ft_strlistcombine(char **srclist1, char **srclist2);
-
 /* Search */
-void	**ft_aafind(void **aa, const void *ref, t_ftcmp ft_cmp);
-void	**ft_aafind_least(void **aa, t_ftcmp cmp);
-void	**ft_aafind_most(void **aa, t_ftcmp cmp);
+void	**ft_aafind(void **aa, const void *ref, t_ftcmp cmp);
 char	**ft_strlistfind_prefix(char **strlist, const char *prefix);
+
+/* Min/Max Element */
+void	**ft_aafind_min(void **aa, t_ftcmp cmp);
+void	**ft_aafind_max(void **aa, t_ftcmp cmp);
 char	**ft_strlistfind_longest(char **strlist);
 
 /* Iteri */
@@ -42,6 +42,10 @@ void	**ft_aarenew(void **src);
 char	**ft_strlistdup(char **strlist);
 
 /* Remove */
-void	ft_aaremove(void **aa, t_ftcmp ft_cmp, const void *ref, t_ftdel ft_del);
+void	ft_aaremove(void **aa, t_ftcmp cmp, const void *ref, t_ftdel del);
+
+/* Other */
+
+char	**ft_strlistcombine(char **srclist1, char **srclist2);
 
 #endif

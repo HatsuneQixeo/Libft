@@ -44,7 +44,7 @@ t_list		*ft_lstmap(const t_list *lst, t_ftmap ft, t_ftdel del);
 
 void		ft_lstremove(t_list **lst, t_list *node, t_ftdel del);
 void		ft_lstremoveif(t_list **lst, const void *ref,
-				t_ftcmp ft_cmp, t_ftdel ft_del);
+				t_ftcmp cmp, t_ftdel del);
 
 t_list		*ft_lstfind(const t_list *lst, const void *ref, t_ftcmp cmp);
 t_list		*ft_lstfind_most(const t_list *lst, t_ftcmp cmp);

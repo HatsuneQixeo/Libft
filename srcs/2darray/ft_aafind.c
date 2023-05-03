@@ -11,12 +11,12 @@
 /* ************************************************************************** */
 #include "lib2darray.h"
 
-void	**ft_aafind(void **aa, const void *ref, t_ftcmp ft_cmp)
+void	**ft_aafind(void **aa, const void *ref, t_ftcmp cmp)
 {
 	unsigned int	i;
 
 	i = 0;
-	while (aa[i] != NULL && ft_cmp(aa[i], ref))
+	while (aa[i] != NULL && cmp(aa[i], ref))
 		i++;
 	if (aa[i] == NULL)
 		return (NULL);

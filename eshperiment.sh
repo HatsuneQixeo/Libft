@@ -3,10 +3,10 @@
 cc="gcc"
 extra="-Wextra"
 error="-Werror"
-cflags="-Wall $extra $error"
+cflags="-Wall $extra $error -g"
 unused="-Wno-unused"
 unused_set="$unused-parameter $unused-function $unused-variable"
-san="-fsanitize=address -g3 -D SAN=1"
+san="-fsanitize=address -D SAN=1"
 
 # Files
 src="$1"
@@ -113,7 +113,7 @@ then
 	do
 		echo "$msg"
 	done
-	make && make -C experiment/exlib &&
+	make $([[ "$cflags" =~ "$san" ]] && echo "SAN=1")&& make -C experiment/exlib &&
 	esh_echo $compile &&
 	$compile &&
 	esh_echo "Compiled: $(basename $prg)"

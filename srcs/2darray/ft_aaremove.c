@@ -16,17 +16,17 @@
  * Problem with this function is that it doesn't reallocate,
  * means that even if the element is removed, it's still taking up space
  */
-void	ft_aaremove(void **aa, t_ftcmp ft_cmp, const void *ref, t_ftdel ft_del)
+void	ft_aaremove(void **aa, t_ftcmp cmp, const void *ref, t_ftdel del)
 {
 	void	**it;
 
 	it = aa - 1;
 	while (*++it != NULL)
 	{
-		if (ft_cmp(*it, ref))
+		if (cmp(*it, ref))
 			*aa++ = *it;
-		else if (ft_del)
-			ft_del(*it);
+		else if (del)
+			del(*it);
 	}
 	*aa = NULL;
 }
@@ -44,7 +44,7 @@ void	ft_aaremove(void **aa, t_ftcmp ft_cmp, const void *ref, t_ftdel ft_del)
  * Can't really delete the element in here either,
  * that's modifying the original array.
  */
-void	**ft_aafilter(void **aa, t_ftcmp ft_cmp, const void *ref, t_ftmap map)
+void	**ft_aafilter(void **aa, t_ftcmp cmp, const void *ref, t_ftmap map)
 {
 	t_list	*lst;
 	void	**it;
@@ -53,7 +53,7 @@ void	**ft_aafilter(void **aa, t_ftcmp ft_cmp, const void *ref, t_ftmap map)
 	it = aa + ft_aasize(aa);
 	while (it-- != aa)
 	{
-		if (ft_cmp(*it, ref))
+		if (cmp(*it, ref))
 			ft_lstadd_front(&lst, ft_lstnew(map(*it)));
 	}
 	return (ft_lsttoaa_clear(&lst));
