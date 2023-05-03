@@ -11,31 +11,50 @@
 /* ************************************************************************** */
 #include "libto.h"
 
+int	ft_lstaccumulate_nonnull(const t_list *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst != NULL)
+	{
+		i += lst->content != NULL;
+		lst = lst->next;
+	}
+	return (i);
+}
+
 /**
  * @brief Maybe a ft_lsttoaa_reverse for a reversed linked list?
  * Example where there would be reversed linked list:
  * Used ft_lstadd_front instead of ft_lstadd_back in loop
  * for linear time complexity
  *
- * Not sure about that idea,
- * I probably need to move the whole array
- * if the map function return NULL somewhere
+ * A function for reversing the 2darray would work too
  */
 
-void	**ft_lsttoaa(t_list *lst, t_ftmap ft_map)
+void	**ft_lsttoaa(const t_list *lst, t_ftmap ft_map, t_ftdel del)
 {
 	void	**aa;
+	void	*content;
 	int		y;
 
-	aa = malloc(sizeof(void *) * (ft_lstsize(lst) + 1));
+	aa = malloc(sizeof(void *) * (ft_lstaccumulate_nonnull(lst) + 1));
 	if (aa == NULL)
 		return (NULL);
-	y = 0;
+	y = -1;
 	while (lst != NULL)
 	{
-		aa[y] = ft_map(lst->content);
-		y += (aa[y] != NULL);
+		content = lst->content;
 		lst = lst->next;
+		if (content == NULL)
+			continue ;
+		aa[++y] = ft_map(content);
+		if (aa[y] == NULL)
+		{
+			ft_aaclear(aa, del);
+			return (NULL);
+		}
 	}
 	aa[y] = NULL;
 	return (aa);
@@ -45,7 +64,7 @@ void	**ft_lsttoaa_clear(t_list **lst)
 {
 	void	**aa;
 
-	aa = ft_lsttoaa(*lst, map_copy);
+	aa = ft_lsttoaa(*lst, map_copy, NULL);
 	ft_lstclear(lst, NULL);
 	return (aa);
 }

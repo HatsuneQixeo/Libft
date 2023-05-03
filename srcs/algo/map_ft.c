@@ -18,9 +18,9 @@
  * @note This function could be used for any data type if I'm not cracked
  * @return void* ) Return the given argument
  */
-void	*map_copy(void *content)
+void	*map_copy(const void *content)
 {
-	return (content);
+	return ((void *)content);
 }
 
 /**
@@ -29,7 +29,7 @@ void	*map_copy(void *content)
  * @param content
  * @return void* ) A deep copy of content assuming it's a string
  */
-void	*map_strdup(void *content)
+void	*map_strdup(const void *content)
 {
 	return (ft_strdup(content));
 }

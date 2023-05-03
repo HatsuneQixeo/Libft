@@ -14,19 +14,20 @@
 t_list	*ft_lstmap(const t_list *lst_src, t_ftmap ft_map, t_ftdel del)
 {
 	t_list	*lst_map;
-	t_list	*node_map;
+	t_list	**it;
 
 	lst_map = NULL;
+	it = &lst_map;
 	while (lst_src != NULL)
 	{
-		node_map = ft_lstnew(ft_map(lst_src->content));
-		if (node_map == NULL)
+		*it = ft_lstnew(ft_map(lst_src->content));
+		if (*it == NULL || (*it)->content == NULL)
 		{
 			ft_lstclear(&lst_map, del);
-			break ;
+			return (NULL);
 		}
+		it = &(*it)->next;
 		lst_src = lst_src->next;
-		ft_lstadd_back(&lst_map, node_map);
 	}
 	return (lst_map);
 }

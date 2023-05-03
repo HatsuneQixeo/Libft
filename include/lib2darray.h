@@ -37,7 +37,7 @@ void	ft_strlistiteri(char **strlist, t_ftiteri ft_iter);
 void	ft_strlistmod(char **strlist, const char *mod, t_modifier ft_str);
 
 /* Map */
-void	**ft_aamap(void **src, t_ftmap ft_map);
+void	**ft_aamap(void **src, t_ftmap ft_map, t_ftdel del);
 void	**ft_aarenew(void **src);
 char	**ft_strlistdup(char **strlist);
 

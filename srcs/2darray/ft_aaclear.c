@@ -17,10 +17,12 @@ void	ft_aaclear(void **aa, t_ftdel del)
 
 	if (aa == NULL)
 		return ;
-	y = -1;
-	while (aa[++y] != NULL)
-		del(aa[y]);
-	ft_bzero(aa, sizeof(*aa) * y);
+	else if (del != NULL)
+	{
+		y = -1;
+		while (aa[++y] != NULL)
+			del(aa[y]);
+	}
 	free(aa);
 }
 

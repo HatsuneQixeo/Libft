@@ -35,8 +35,14 @@ void	ft_aaremove(void **aa, t_ftcmp ft_cmp, const void *ref, t_ftdel ft_del)
  * Under the context of making a shallow copy,
  * this shares the lifetime with the original array
  * 
- * Can't really delete the element either,
- * that's modifying the original array
+ * Why?
+ * Because I can't just delete the filtered element straight forward
+ * outside the scope of this function.
+ * Yes, I can just try finding whether the element is in the new element,
+ * with a n square time complexity.
+ * 
+ * Can't really delete the element in here either,
+ * that's modifying the original array.
  */
 void	**ft_aafilter(void **aa, t_ftcmp ft_cmp, const void *ref, t_ftmap map)
 {
