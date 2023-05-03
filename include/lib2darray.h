@@ -15,6 +15,27 @@
 # include "libalgo.h"
 # include "libstring.h"
 
+/**
+ * Facing a lot of questions with NULL return value from a map function,
+ * and the fact that 2darray is terminated by NULL.
+ * 
+ * - If it is terminated by NULL, how should it react to ft_map returning NULL?
+ * 		1) If we just assumed it is meant to be excluded,
+ * 		this could easily result in undefined behaviour
+ * 		if the memory is temporarily unavailable.
+ * 		2) If we cleared everything under the assumption of malloc error,
+ * 		then linked list with a NULL content
+ * 		would cause a lot of potential problem.
+ * 
+ * - If NULL could not be assumed as the end of the array,
+ * 	wouldn't it be too easy to crash the program ?
+ * Not to mention the inconvenience that every related functions
+ * would need to ask for the length.
+ * 
+ * Let's make a assumption that map function returning NULL is an error,
+ * that makes things slightly easier.
+ */
+
 /* Size */
 int		ft_aasize(void **aa);
 int		ft_strcount(char **strlist);
