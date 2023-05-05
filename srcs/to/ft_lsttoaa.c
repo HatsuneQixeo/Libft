@@ -42,15 +42,15 @@ void	**ft_lsttoaa(const t_list *lst, t_ftmap ft_map, t_ftdel del)
 	aa = malloc(sizeof(void *) * (ft_lstaccumulate_nonnull(lst) + 1));
 	if (aa == NULL)
 		return (NULL);
-	y = -1;
+	y = 0;
 	while (lst != NULL)
 	{
 		content = lst->content;
 		lst = lst->next;
 		if (content == NULL)
 			continue ;
-		aa[++y] = ft_map(content);
-		if (aa[y] == NULL)
+		aa[y] = ft_map(content);
+		if (aa[y++] == NULL)
 		{
 			ft_aaclear(aa, del);
 			return (NULL);
