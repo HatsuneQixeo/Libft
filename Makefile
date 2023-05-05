@@ -2,8 +2,9 @@ NAME		:=	libft.a
 
 CC			:=	gcc
 CFLAGS		:=	-Wall -Wextra -Werror
+CFLAGS		+=	 -g
 ifdef SAN
-CFLAGS	+=	-fsanitize=address -g -D SAN=1
+CFLAGS	+=	-fsanitize=address -D SAN=1
 endif
 
 SRC_DIR		:=	srcs

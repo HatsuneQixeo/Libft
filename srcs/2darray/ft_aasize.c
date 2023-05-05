@@ -15,10 +15,8 @@ int	ft_aasize(void **aa)
 {
 	int	i;
 
-	if (aa == NULL)
-		return (0);
 	i = 0;
-	while (*aa++ != NULL)
+	while (aa[i] != NULL)
 		i++;
 	return (i);
 }
