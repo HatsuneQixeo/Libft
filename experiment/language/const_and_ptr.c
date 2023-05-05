@@ -28,17 +28,54 @@ void	constptr_and_ptrtoconst(void)
 	// constptr1++;
 }
 
+// int	main(void)
+// {
+// 	char	*str;
+// 	// Pointer to a constant pointer
+// 	// char *const	*ptr;
+// 	// Pointer to a constant address
+// 	const char	**ptr;
+
+// 	str = "Hatsune Miku";
+// 	ptr = &str;
+// 	// (*ptr)++;
+// 	// *ptr = "Miku";
+// 	// **ptr = 'a';
+// }
+
+/* Ok */
+void	ptrcptr(void *const *ptr)
+{
+	(void)ptr;
+}
+
+/* Ok */
+void	ptrptr(void **ptr)
+{
+	(void)ptr;
+}
+
+/* Not ok */
+void	cptrptr(const void **ptr)
+{
+	(void)ptr;
+}
+
+/* Not ok */
+void	cptrcptr(const void *const *ptr)
+{
+	(void)ptr;
+}
+
 int	main(void)
 {
-	char	*str;
-	// Pointer to a constant pointer
-	// char *const	*ptr;
-	// Pointer to a constant address
-	const char	**ptr;
+	void	*p;
+	void	**pp;
 
-	str = "Hatsune Miku";
-	ptr = &str;
-	// (*ptr)++;
-	// *ptr = "Miku";
-	// **ptr = 'a';
+	p = "Hatsune Miku";
+	pp = &p;
+	ptrcptr(pp);
+	ptrptr(pp);
+	cptrptr(pp);
+	cptrcptr(pp);
 }
