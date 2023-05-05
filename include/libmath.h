@@ -26,4 +26,6 @@ size_t	ft_min_sizet(size_t a, size_t b);
 
 int		ft_within(int min, int nbr, int max);
 
+double	ft_dminmax(double min, double value, double max);
+
 #endif
