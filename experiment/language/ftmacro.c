@@ -15,5 +15,5 @@
 
 int	main(void)
 {
-	printf("ret: %d\n", PROFILE("Miku", printf("Hatsune Miku")));
+	printf("ret: %d\n", TIME("Miku", printf("Hatsune Miku")));
 }
