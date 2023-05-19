@@ -11,13 +11,15 @@
 /* ************************************************************************** */
 #include "lib2darray.h"
 
-void	ft_strlistiteri(char **strlist, t_ftiteri ft_iteri)
+void	ft_aaiteri(void *ptr, t_ftiteri ft_iteri)
 {
 	unsigned int	y;
+	void			**aa;
 
-	if (strlist == NULL || ft_iteri == NULL)
+	aa = ptr;
+	if (aa == NULL || ft_iteri == NULL)
 		return ;
 	y = -1;
-	while (strlist[++y] != NULL)
-		ft_iteri(y, strlist);
+	while (aa[++y] != NULL)
+		ft_iteri(y, aa);
 }

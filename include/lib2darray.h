@@ -54,7 +54,7 @@ void	**ft_aafind_max(void **aa, t_ftcmp cmp);
 char	**ft_strlistfind_longest(char **strlist);
 
 /* Iteri */
-void	ft_strlistiteri(char **strlist, t_ftiteri ft_iter);
+void	ft_aaiteri(void *aa, t_ftiteri ft_iteri);
 void	ft_strlistmod(char **strlist, const char *mod, t_modifier ft_str);
 
 /* Map */
