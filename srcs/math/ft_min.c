@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
+#include <math.h>
 
 int	ft_min(int a, int b)
 {
@@ -38,6 +39,14 @@ size_t	ft_min_sizet(size_t a, size_t b)
 double	ft_dmin(double a, double b)
 {
 	if (a < b)
+		return (a);
+	else
+		return (b);
+}
+
+double	ft_dmin_abs(double a, double b)
+{
+	if (fabs(a) < fabs(b))
 		return (a);
 	else
 		return (b);
