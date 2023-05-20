@@ -37,7 +37,7 @@ int			ft_lstsize(const t_list *lst);
 t_list		*ft_lstselect(const t_list *lst, unsigned int select);
 t_list		*ft_lstlast(const t_list *lst);
 
-void		ft_lstiter(t_list *lst, t_ftiterlst ft);
+void		ft_lstiter(t_list *lst, t_ftiter ft);
 t_list		*ft_lstmap(const t_list *lst, t_ftmap ft, t_ftdel del);
 
 void		ft_lstremove(t_list **lst, t_list *node, t_ftdel del);

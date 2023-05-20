@@ -30,6 +30,7 @@ typedef void			(*t_ftiteri)(unsigned int i, void *aa);
 void		iteri_putendl(unsigned int i, void *strlist);
 void		iteri_showstr(unsigned int i, void *strlist);
 void		iteri_showaddress(unsigned int i, void *aa);
+void		iteri_lstclear_shallow(unsigned int i, void *arr_lst);
 
 /* Map */
 typedef void			*(*t_ftmap)(const void *content);
@@ -40,7 +41,7 @@ typedef int				(*t_ftfind)(unsigned int i, const void *arr,
 			const void *ref);
 
 typedef struct s_list	t_list;
-typedef void			(*t_ftiterlst)(void *content);
+typedef void			(*t_ftiter)(void *content);
 /* Linked list*/
 const char	*iter_name(const char *newname);
 void		iter_showstr(void *str);

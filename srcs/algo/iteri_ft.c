@@ -41,3 +41,10 @@ void	iteri_showaddress(unsigned int i, void *aa)
 
 	ft_dprintf(2, "%s[%d]: %p\n", iteri_name(NULL), i, ptr);
 }
+
+void	iteri_lstclear_shallow(const unsigned int i, void *ptr)
+{
+	t_list **const	arr_lst = ptr;
+
+	ft_lstclear(&arr_lst[i], NULL);
+}

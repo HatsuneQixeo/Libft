@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "liblinked_list.h"
 
-void	ft_lstiter(t_list *lst, t_ftiterlst ft_iterlst)
+void	ft_lstiter(t_list *lst, t_ftiter ft_iterlst)
 {
 	while (lst != NULL)
 	{
