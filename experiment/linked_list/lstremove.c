@@ -64,6 +64,6 @@ int	main(void)
 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("not")));
 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("not")));
 	ft_lstremoveif(&lst, "not", cmp_strcmp, free);
-	ft_lstiter(lst, lstshow_str);
+	ft_lstiter(lst, iter_showstr);
 	system("leaks -q lstremove.miku");
 }

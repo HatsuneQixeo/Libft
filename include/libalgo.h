@@ -42,9 +42,9 @@ typedef int				(*t_ftfind)(unsigned int i, const void *arr,
 typedef struct s_list	t_list;
 typedef void			(*t_ftiterlst)(void *content);
 /* Linked list*/
-const char	*lstshow_name(const char *newname);
-void		lstshow_str(void *str);
-void		lstshow_puterrendl(void *str);
+const char	*iter_name(const char *newname);
+void		iter_showstr(void *str);
+void		iter_puterrendl(void *str);
 
 /* Sorting */
 void		sort_insertion(void *begin, size_t len, size_t data_size,

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lstiter_ft.c                                       :+:      :+:    :+:   */
+/*   iter_ft.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 10:59:58 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/04/10 02:27:52 by hqixeo           ###   ########.fr       */
+/*   Created: 2023/02/26 18:52:43 by hqixeo            #+#    #+#             */
+/*   Updated: 2023/04/10 02:27:50 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libalgo.h"
 #include "ft_printf.h"
 
-const char	*iter_name(const char *newname)
+const char	*iteri_name(const char *newname)
 {
 	static const char	*name = ITNAME_DEFAULT;
 
@@ -21,12 +21,23 @@ const char	*iter_name(const char *newname)
 	return (name);
 }
 
-void	iter_showstr(void *content)
+void	iteri_putendl(unsigned int i, void *strlist)
 {
-	ft_dprintf(2, "%s: [%s]\n", iter_name(NULL), content);
+	const char	*str = ((const char **)strlist)[i];
+
+	ft_putendl_fd(str, 1);
 }
 
-void	iter_puterrendl(void *str)
+void	iteri_showstr(unsigned int i, void *strlist)
 {
-	ft_putendl_fd(str, 2);
+	const char	*str = ((const char **)strlist)[i];
+
+	ft_dprintf(2, "%s[%d]: [%s]\n", iteri_name(NULL), i, str);
+}
+
+void	iteri_showaddress(unsigned int i, void *aa)
+{
+	const void	*ptr = ((const void **)aa)[i];
+
+	ft_dprintf(2, "%s[%d]: %p\n", iteri_name(NULL), i, ptr);
 }

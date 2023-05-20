@@ -128,7 +128,7 @@ int	main(int argc, char **argv)
 		// while (*++argv != NULL)
 		// 	ft_lstadd_back(&lst_pattern, ft_lstnew(*argv));
 		lst_pattern = wildcard_lexer(argv[1]);
-		ft_lstiter(lst_pattern, lstshow_str);
+		ft_lstiter(lst_pattern, iter_showstr);
 	}
 	strlist_matched = wildcard(lst_pattern);
 	if (strlist_matched != NULL)

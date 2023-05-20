@@ -15,8 +15,6 @@
 # include "libalgo.h"
 # include <stdlib.h>
 
-# define LSTNAME_DEFAULT	"lst"
-
 typedef struct s_list
 {
 	void			*content;
