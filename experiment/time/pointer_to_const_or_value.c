@@ -3,7 +3,7 @@
 /**
  * @brief
  * Note:
- * 	Compiler optimization is turned off for this test with -O0
+ * 	Compiler optimisation is turned off for this test with -O0
  * 
  * 
  * CONCLUSION:

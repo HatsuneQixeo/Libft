@@ -88,7 +88,7 @@ do
 		addflag "$unused_set" && messages+=("Including $unused_set flag")
 	;;
 	'noopti')
-		addflag "-O0" && messages+=('No optimization')
+		addflag "-O0" && messages+=('No optimisation')
 	;;
 	*)
 		esh_echo "Unknown flag: $arg"
