@@ -22,6 +22,8 @@
 #  define TIME(prefix, expression)	expression;
 # endif
 
+# define BENCHMARK_MSG(msg)	if (BENCHMARK) printf(#msg"\n")
+
 double	elapsed_time(struct timeval start, struct timeval end);
 void	*time_debug(const char *prefix, void *(*ft)(void *), void *arg);
 
