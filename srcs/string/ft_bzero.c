@@ -13,5 +13,5 @@
 
 void	ft_bzero(void *ptr, size_t len)
 {
-	ft_memset(ptr, 0b0, len);
+	ft_memset(ptr, 0x00, len);
 }

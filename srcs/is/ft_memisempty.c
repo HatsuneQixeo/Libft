@@ -17,7 +17,7 @@ int	ft_memisempty(const void *ptr, const size_t bytes)
 	const char	*it = ptr;
 	const char	*end = it + bytes;
 
-	while (it != end && *it == 0b0)
+	while (it != end && *it == 0x00)
 		it++;
 	return (it == end);
 }
