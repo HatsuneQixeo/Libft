@@ -1,52 +1,63 @@
 NAME		:=	libft.a
 
 CC			:=	gcc
-CFLAGS		:=	-Wall -Wextra -Werror
-CFLAGS		+=	 -g
+CXXFLAGS	:=	-Wall -Werror -Wextra
+CXXFLAGS	+=	-g
+# CXXFLAGS	+=	-Wno-unused-variable -Wno-unused-parameter -Wno-unused-function
 ifdef SAN
-CFLAGS	+=	-fsanitize=address -D SAN=1
+CXXFLAGS	+=	-fsanitize=address -g -D SAN=1
 endif
 
 SRC_DIR		:=	srcs
 SRCS		:=	$(shell find ${SRC_DIR} -name "ft_*.c") $(shell find ${SRC_DIR} -name "*_ft.c")
 
 INCLUDE		:=	include
-HEADER		:=	$(wildcard ${INCLUDE}/*.h)
+HEADER		:=	$(shell find ${INCLUDE} -name "*.h")
+CFLAGS		:=	-I${INCLUDE}
 
-OBJ_DIR		:=	~obj
-OBJS		:=	$(patsubst ${SRC_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRCS})
+OBJ_DIR		:=	objs
+OBJS 		:=	$(patsubst ${SRC_DIR}%.c, ${OBJ_DIR}%.o, ${SRCS})
+
+GREY		:=	\033[30m
+RED			:=	\033[31m
+CYAN		:=	\033[36m
+LIGHT_CYAN	:=	\033[1;36m
+RESET		:=	\033[0m
 
 all: ${NAME}
 
-showheader:
-	@for header in ${HEADER}; do echo $$header; done
+${OBJ_DIR}:
+	@command="mkdir $@" \
+	&& printf "${GREY}$$command${RESET}\n" \
+	&& $$command
 
-showobj:
-	@for obj in ${OBJS}; do echo $$obj; done
-
-showsrc:
-	@for src in ${SRCS}; do echo $$src; done
-
-${NAME}: ${OBJS}
-	@ar -rcs $@ $^ && echo Library Made: $@
-
-${OBJ_DIR}/%.o: ${SRC_DIR}/%.c ${HEADER}
+${OBJ_DIR}/%.o: ${SRC_DIR}/%.c ${HEADER} | ${OBJ_DIR}
 	@mkdir -p ${@D}
-	${CC} ${CFLAGS} -I${INCLUDE} -c $< -o $@
+	@command="${CC} ${CXXFLAGS} ${CFLAGS} -c $< -o $@" \
+	&& printf "${CYAN}$$command${RESET}\n" \
+	&& $$command
+
+${NAME}: ${OBJS} ${LIBFT}
+	@${AR} -rcs $@ $^ \
+	&& printf "${LIGHT_CYAN}Library Made: $@${RESET}\n"
 
 clean:
-	${RM} -r ${OBJ_DIR} ${shell find . -name "*.dSYM"}
+	@command="${RM} -r ${OBJ_DIR} $$(find . -name "*.dSYM")" \
+	&& printf "${RED}$$command${RESET}\n" \
+	&& $$command
 
 fclean: clean
-	${RM} ${NAME} ${shell find . -name "*.miku"}
+	@command="${RM} ${NAME} $$(find . -name "*.miku")" \
+	&& printf "${RED}$$command${RESET}\n" \
+	&& $$command
 
-re: fclean all
+re:	fclean all
 
 norm:
 	@norminette ${SRCS} ${HEADER}
 
-norme:
-	@norminette ${SRCS} ${HEADER} | grep Error
+normltr:
+	@norminette ${SRCS} ${HEADER} | grep -v INVALID_HEADER
 
 pft: ${NAME}
 	@cp $< libftprintf.a && cd $@ && make && ./test
