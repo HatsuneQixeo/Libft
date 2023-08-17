@@ -32,5 +32,5 @@ int	main(void)
 		ft_printf("Name : %s\nAge: %d\n", teat[i].name, teat[i].age);
 	}
 	guess_size(array);
-	ft_strlistiteri((char **)array, iteristr_showstr);
+	ft_aaiteri(array, iteristr_showstr);
 }

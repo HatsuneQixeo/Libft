@@ -9,5 +9,5 @@ int	main(void)
 		[3] = NULL
 	};
 
-	ft_strlistiteri(strlist, iteri_showstr);
+	ft_aaiteri(strlist, iteri_showstr);
 }

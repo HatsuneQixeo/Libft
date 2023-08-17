@@ -60,8 +60,8 @@ int	main(void)
 {
 	for (char **it = arr_str; it < end; it++)
 		ft_printf("it: %s\n", *it);
-	ft_strlistiteri(arr_str, iteri_strinsertion);
-	ft_strlistiteri(arr_str, iteri_strinsertion);
+	ft_aaiteri(arr_str, iteri_strinsertion);
+	ft_aaiteri(arr_str, iteri_strinsertion);
 	for (char **it = arr_str; it < end; it++)
 		ft_printf("it: %s\n", *it);
 

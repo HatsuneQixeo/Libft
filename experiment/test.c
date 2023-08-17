@@ -12,9 +12,9 @@ typedef int (*t_ftput)(const char *, int);
 */
 // int	main(int argc, char **argv, char **envp)
 // {
-// 	ft_strlistiteri(envp, iteristr_showstr);
+// 	ft_aaiteri(envp, iteristr_showstr);
 // 	*(envp + 1) = NULL;
-// 	ft_strlistiteri(envp, iteristr_showstr);
+// 	ft_aaiteri(envp, iteristr_showstr);
 // 	free(*envp);
 // }
 
@@ -82,7 +82,7 @@ char	*ft_strmultiply(const char *src, const char *delimiter, unsigned int amount
 // 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("is")));
 // 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("cute")));
 // 	aa = (char **)ft_lsttoaa_clear(&lst);
-// 	ft_strlistiteri(aa, iteristr_showstr);
+// 	ft_aaiteri(aa, iteristr_showstr);
 // 	system("leaks -q test.miku");
 // }
 
@@ -130,10 +130,10 @@ void	test_remove(void **strlist, const char *ref, t_ftdel del)
 		return ;
 	}
 	iteri_name("Before remove");
-	ft_strlistiteri(strlist_copy, iteri_showstr);
+	ft_aaiteri(strlist_copy, iteri_showstr);
 	ft_printf("\n");
 	iteri_name("After remove");
-	ft_strlistiteri((char **)strlist, iteri_showstr);
+	ft_aaiteri(strlist, iteri_showstr);
 	ft_printf("\n");
 	free(strlist);
 	free(strlist_copy);

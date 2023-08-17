@@ -80,13 +80,13 @@ void	testsavesplit(const char *str, const char *set)
 	ft_printf("SAVESPLITTEST\n");
 	ft_printf("str:	%s\n", str);
 	ft_printf("set:	%s\n", set);
-	ft_strlistiteri(strlist, iteristr_showstr);
+	ft_aaiteri(strlist, iteristr_showstr);
 	joinquote(strlist, '\"', '\"');
 	ft_printf("join doublequote: \n");
-	ft_strlistiteri(strlist, iteristr_showstr);
+	ft_aaiteri(strlist, iteristr_showstr);
 	joinquote(strlist, '\'', '\'');
 	ft_printf("join singlequote: \n");
-	ft_strlistiteri(strlist, iteristr_showstr);
+	ft_aaiteri(strlist, iteristr_showstr);
 	ft_strlistclear(strlist);
 }
 

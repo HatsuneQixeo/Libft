@@ -132,6 +132,6 @@ int	main(int argc, char **argv)
 	}
 	strlist_matched = wildcard(lst_pattern);
 	if (strlist_matched != NULL)
-		ft_strlistiteri(strlist_matched, iteri_showstr);
+		ft_aaiteri(strlist_matched, iteri_showstr);
 	system("leaks -q wildcard.miku");
 }
