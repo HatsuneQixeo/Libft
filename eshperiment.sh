@@ -113,7 +113,7 @@ then
 	do
 		echo "$msg"
 	done
-	make $([[ "$cflags" =~ "$san" ]] && echo "SAN=1")&& make -C experiment/exlib &&
+	make $([[ "$cflags" =~ "$san" ]] && echo "SAN=1") && make -C experiment/exlib &&
 	esh_echo $compile &&
 	$compile &&
 	esh_echo "Compiled: $(basename $prg)"
