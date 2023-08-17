@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmp_str_ft.c                                       :+:      :+:    :+:   */
+/*   cmpis_str_ft.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hqixeo <hqixeo@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:52:42 by hqixeo            #+#    #+#             */
-/*   Updated: 2023/05/20 17:53:48 by hqixeo           ###   ########.fr       */
+/*   Updated: 2023/04/10 02:27:51 by hqixeo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libstring.h"
@@ -47,7 +47,7 @@ int	cmp_strsuffix(const void *str, const void *suffix)
 		if (*it_str != *it_suffix)
 			return (*it_str - *it_suffix);
 	}
-	if (it_suffix + 1 == suffix)
+	if (it_suffix == suffix)
 		return (0);
 	return (-*it_suffix);
 }
