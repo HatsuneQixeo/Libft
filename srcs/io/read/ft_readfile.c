@@ -26,8 +26,9 @@ char	**ft_readfile(const char *path)
 		if (str_part == NULL)
 			break ;
 		str_part = ft_strmodify(ft_strtrim, str_part, "\n");
-		ft_lstadd_back(&lst, ft_lstnew(str_part));
+		ft_lstadd_front(&lst, ft_lstnew(str_part));
 	}
 	close(fd);
+	ft_lstreverse(&lst);
 	return ((char **)ft_lsttoaa_clear(&lst));
 }

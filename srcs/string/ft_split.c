@@ -30,9 +30,10 @@ char	**ft_split(const char *str, char c)
 		len = 0;
 		while (str[len] != '\0' && str[len] != c)
 			len++;
-		ft_lstadd_back(&lst, ft_lstnew(ft_substr(str, 0, len)));
+		ft_lstadd_front(&lst, ft_lstnew(ft_substr(str, 0, len)));
 		str += len - 1;
 	}
+	ft_lstreverse(&lst);
 	return ((char **)ft_lsttoaa_clear(&lst));
 }
 
@@ -52,8 +53,9 @@ char	**ft_split_is(const char *str, t_ftis ft_is)
 		len = 0;
 		while (str[len] != '\0' && !ft_is(str[len]))
 			len++;
-		ft_lstadd_back(&lst, ft_lstnew(ft_substr(str, 0, len)));
+		ft_lstadd_front(&lst, ft_lstnew(ft_substr(str, 0, len)));
 		str += len - 1;
 	}
+	ft_lstreverse(&lst);
 	return ((char **)ft_lsttoaa_clear(&lst));
 }

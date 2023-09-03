@@ -40,15 +40,16 @@ char	*ft_strmerge(const char *str_format, ...)
 	lst_buffer = NULL;
 	while (format_specifier != NULL && format_specifier[1] != '\0')
 	{
-		ft_lstadd_back(&lst_buffer, ft_lstnew(
+		ft_lstadd_front(&lst_buffer, ft_lstnew(
 				ft_substr(str_format, 0, format_specifier - str_format)));
-		ft_lstadd_back(&lst_buffer, ft_lstnew(
+		ft_lstadd_front(&lst_buffer, ft_lstnew(
 				strmerge_format(&args, format_specifier[1])));
 		str_format = format_specifier + 2;
 		format_specifier = ft_strchr(str_format, '%');
 	}
-	ft_lstadd_back(&lst_buffer, ft_lstnew(
+	ft_lstadd_front(&lst_buffer, ft_lstnew(
 			ft_substr(str_format, 0, format_specifier - str_format)));
 	va_end(args);
+	ft_lstreverse(&lst_buffer);
 	return (ft_lsttostr_clear(&lst_buffer));
 }

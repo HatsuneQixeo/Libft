@@ -24,7 +24,7 @@ void	ft_lstcopy(t_list *dst, const t_list *src)
 
 static void	lstmerge_add(t_list **lst_merged, t_list **lst)
 {
-	ft_lstadd_back(lst_merged, ft_lstnew((*lst)->content));
+	ft_lstadd_front(lst_merged, ft_lstnew((*lst)->content));
 	*lst = (*lst)->next;
 }
 
@@ -49,6 +49,7 @@ static void	lstmerge(t_list *const begin, t_list *const mid, t_list *const end,
 		lstmerge_add(&lst_merged, &it_begin);
 	while (it_mid != end)
 		lstmerge_add(&lst_merged, &it_mid);
+	ft_lstreverse(&lst_merged);
 	ft_lstcopy(begin, lst_merged);
 	ft_lstclear(&lst_merged, NULL);
 }
