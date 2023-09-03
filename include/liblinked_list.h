@@ -49,4 +49,6 @@ void		ft_lstremoveif(t_list **lst, const void *ref,
 t_list		*ft_lstfind(const t_list *lst, const void *ref, t_ftcmp cmp);
 t_list		*ft_lstfind_most(const t_list *lst, t_ftcmp cmp);
 
+void		ft_lstreverse(t_list **lst);
+
 #endif
