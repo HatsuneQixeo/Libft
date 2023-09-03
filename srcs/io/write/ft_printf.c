@@ -31,7 +31,7 @@
  * It will be more efficient too
  * Will I do it? (lol no, like I'm ever using this garbage again)
  */
-int	ft_printf_core(int fd, const char *str, va_list args)
+int	ft_printf_core(int fd, const char *str, va_list *args)
 {
 	int		len_total;
 	char	*ptr_conversion;
@@ -57,7 +57,7 @@ int	ft_printf(const char *str, ...)
 	int		ret;
 
 	va_start(args, str);
-	ret = ft_printf_core(1, str, args);
+	ret = ft_printf_core(1, str, &args);
 	va_end(args);
 	return (ret);
 }
@@ -68,7 +68,7 @@ int	ft_dprintf(int fd, const char *str, ...)
 	int		ret;
 
 	va_start(args, str);
-	ret = ft_printf_core(fd, str, args);
+	ret = ft_printf_core(fd, str, &args);
 	va_end(args);
 	return (ret);
 }

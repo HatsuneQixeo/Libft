@@ -47,14 +47,14 @@ int		ft_putnbr_fd(int n, int fd);
 int		ft_putstr_fd(const char *str, int fd);
 int		ft_strrelease_fd(char *str, int fd);
 
-int		ft_printf_core(int fd, const char *str, va_list args);
+int		ft_printf_core(int fd, const char *str, va_list *args);
 int		ft_printf(const char *str, ...);
 int		ft_dprintf(int fd, const char *str, ...);
 
-char	*ft_flagextract(const char *str, t_flags *flags, va_list args);
+char	*ft_flagextract(const char *str, t_flags *flags, va_list *args);
 char	*ft_decimal(long long d, const t_flags *flags);
 char	*ft_unsigned(unsigned long long hex, const t_flags *flags);
-int		ft_conversion(int fd, va_list args, const t_flags *flags);
+int		ft_conversion(int fd, va_list *args, const t_flags *flags);
 char	*ft_strfinalize(char *str, const t_flags *flags);
 
 #endif

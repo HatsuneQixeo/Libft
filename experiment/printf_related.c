@@ -1,5 +1,6 @@
 #include "libft.h"
 #include <limits.h>
+#include <math.h>
 
 /**
  * @brief Float makes literally no sense
@@ -320,13 +321,18 @@ char	*ft_float(long double n, const t_flags *flags)
 	return (str);
 }
 
+// int	main(void)
+// {
+// 	double	n = 1.23456789;
+// 	char	*str;
+
+// 	str = ft_ftoa(n, 10);
+// 	ft_printf("%s\n", str);
+// 	free(str);
+// 	system("leaks -q printf_related.miku");
+// }
+
 int	main(void)
 {
-	double	n = 1.23456789;
-	char	*str;
-
-	str = ft_ftoa(n, 10);
-	ft_printf("%s\n", str);
-	free(str);
-	system("leaks -q printf_related.miku");
+	ft_printf("%s %s %s %s\n", "Hatsune", "Miku", "is", "cute");
 }

@@ -17,6 +17,6 @@ void	*time_debug(const char *prefix, void *(*ft)(void *), void *arg)
 	gettimeofday(&start, NULL);
 	ret = ft(arg);
 	gettimeofday(&end, NULL);
-	dprintf(2, "%s: %.3f ms\n", prefix, elapsed_time(start, end));
+	ft_dprintf(2, "%s: %.3f ms\n", prefix, elapsed_time(start, end));
 	return (ret);
 }

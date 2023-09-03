@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-static int	ft_atoflag(const char **str, char *flag, int saved, va_list args)
+static int	ft_atoflag(const char **str, char *flag, int saved, va_list *args)
 {
 	int	value;
 
 	if (flag != NULL)
 		*flag = 1;
 	if (*++(*str) == '*')
-		return (va_arg(args, int));
+		return (va_arg(*args, int));
 	value = 0;
 	while (ft_isdigit(**str))
 		value = (value * 10) + (*(*str)++ - '0');
@@ -28,7 +28,7 @@ static int	ft_atoflag(const char **str, char *flag, int saved, va_list args)
 	return (value);
 }
 
-static void	ft_width(const char **str, t_flags *flags, va_list args)
+static void	ft_width(const char **str, t_flags *flags, va_list *args)
 {
 	if (**str == '-')
 		flags->negative_field = 1;
@@ -56,7 +56,7 @@ static void	ft_length_modifier(char c, t_flags *flags)
 		flags->mod_short += 1;
 }
 
-char	*ft_flagextract(const char *str, t_flags *flags, va_list args)
+char	*ft_flagextract(const char *str, t_flags *flags, va_list *args)
 {
 	ft_bzero(flags, sizeof(t_flags));
 	while (*++str != '\0'

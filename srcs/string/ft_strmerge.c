@@ -14,15 +14,15 @@
 #include "liblinked_list.h"
 #include "libto.h"
 
-char	*strmerge_format(va_list args, const char format)
+static char	*strmerge_format(va_list *args, const char format)
 {
 	char		*arg;
 	const char	format_lower = ft_tolower(format);
 
 	if (format_lower == 's')
-		arg = ft_strdup(va_arg(args, char *));
+		arg = ft_strdup(va_arg(*args, char *));
 	else if (format_lower == 'f')
-		arg = va_arg(args, char *);
+		arg = va_arg(*args, char *);
 	else
 		return (ft_substr(&format, 0, 1));
 	if (ft_isupper(format))
@@ -43,7 +43,7 @@ char	*ft_strmerge(const char *str_format, ...)
 		ft_lstadd_back(&lst_buffer, ft_lstnew(
 				ft_substr(str_format, 0, format_specifier - str_format)));
 		ft_lstadd_back(&lst_buffer, ft_lstnew(
-				strmerge_format(args, format_specifier[1])));
+				strmerge_format(&args, format_specifier[1])));
 		str_format = format_specifier + 2;
 		format_specifier = ft_strchr(str_format, '%');
 	}
